@@ -11,7 +11,7 @@ public class LongestSubstringNonRepeating {
      * @return output longest length substring without repeating chars
      * https://www.baeldung.com/java-longest-substring-without-repeated-characters
      */
-    String getUniqueCharacterSubstring(String input) {
+    private String getUniqueCharacterSubstring(String input) {
         Map<Character, Integer> visited = new HashMap<>();
         String output = "";
         for (int start = 0, end = 0; end < input.length(); end++) {
@@ -21,6 +21,8 @@ public class LongestSubstringNonRepeating {
             }
             if (output.length() < end - start + 1) {
                 output = input.substring(start, end + 1);
+                output = output.trim(); // remove spaces
+
             }
             visited.put(currChar, end);
         }
@@ -29,6 +31,6 @@ public class LongestSubstringNonRepeating {
 
     public static void main(String[] args){
         LongestSubstringNonRepeating longestSubstringNonRepeating = new LongestSubstringNonRepeating();
-        System.out.println(longestSubstringNonRepeating.getUniqueCharacterSubstring("Hello"));
+        System.out.println(longestSubstringNonRepeating.getUniqueCharacterSubstring("Hello World"));
     }
 }
