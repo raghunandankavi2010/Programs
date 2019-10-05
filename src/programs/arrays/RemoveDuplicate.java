@@ -9,7 +9,8 @@ public class RemoveDuplicate
     // Function to remove duplicate elements
     // This function returns new size of modified
     // array.
-    static int removeDuplicates(int[] arr, int n)
+
+    private static int removeDuplicates(int[] arr, int n)
     {
         // Return, if array is empty
         // or contains a single element
@@ -34,14 +35,24 @@ public class RemoveDuplicate
         temp[j++] = arr[n-1];
 
         // Modify original array
-        for (int i=0; i<j; i++)
-            arr[i] = temp[i];
+        if (j >= 0) System.arraycopy(temp, 0, arr, 0, j);
 
         return j;
     }
 
-    public static void main (String[] args)
-    {
+    public static void main (String[] args) {
+        /*
+         * unsorted array find duplicates
+         */
+
+        int[] array = {0,4, 2, 4, 5, 2, 3, 1};
+        int arr_size = array.length;
+        printRepeating(array, arr_size);
+
+        /*
+         * below array is sorted
+         */
+
         int[] arr = {1, 2, 2, 3, 4, 4, 4, 5, 5};
         int n = arr.length;
 
@@ -51,4 +62,32 @@ public class RemoveDuplicate
         for (int i=0; i<n; i++)
             System.out.print(arr[i]+" ");
     }
+
+
+
+       private static  void printRepeating(int[] arr, int size)
+        {
+            int[] count = new int[size];
+            int i;
+
+            /*
+               4 (count 1),2 (count 1), 4 (count already 1 so dup), 5 (count 1) , 2 (count already 1 so dup), 3 (count 1) , 1 (count 1)
+               count[0] = 0, count[2] = 1, count[3] = 1 ,count[4] = 1, count[5] = 1, count[6] = 0
+             */
+            System.out.println("Repeated elements are : ");
+            for (i = 0; i < size; i++) {
+                if (count[arr[i]] == 1) {
+                    System.out.println("Repeated " + arr[i]);
+                }
+                else {
+                    count[arr[i]] = count[arr[i]] + 1;
+                }
+
+            }
+            // for logging purpose. Not required
+            for (i = 0; i < size; i++) {
+                    System.out.println("Number :"+arr[i] +" Count at pos " + count[i]);
+
+            }
+        }
 }
