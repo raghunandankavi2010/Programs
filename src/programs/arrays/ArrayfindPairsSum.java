@@ -1,17 +1,22 @@
 package programs.arrays;
 
+import java.util.Arrays;
+
 public class ArrayfindPairsSum {
 
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         int[] arr = {11, 11, 11, 12, 55};
         int sum = 23;
         getPairsCount(arr, sum);
+        int[] arrUnsorted = {2,4,10, 1, 7,5};
+        int total = 11;
+        findPairsEqualToSum(arrUnsorted,total);
     }
 
     // Prints number of pairs in arr[0..n-1] with sum equal
     // to 'sum'
-    public static void getPairsCount(int[] arr, int sum) {
+    private static void getPairsCount(int[] arr, int sum) {
 
         //int count = 0;// Initialize result
 
@@ -25,6 +30,30 @@ public class ArrayfindPairsSum {
                 }
 
         //System.out.printf("Count of pairs is %d", count);
+    }
+
+    // Method Two
+    // 1. sort the array
+    // 2. have two pointers pointing to start and end of array
+    // 3. increment start if arr[start]+arr[end] is less than sum
+    // 4. decrement end if arr[start]+arr[end] is greater than sum
+    // 5. if equal print pair and increment start and decrement end
+    // 6. repeat above until start<end
+    private static void findPairsEqualToSum(int[] arr, int sum){
+        Arrays.sort(arr);
+        int start = 0;
+        int end = arr.length-1;
+        while(start<end){
+            if(arr[start]+arr[end]>sum){
+                end --;
+            } else  if(arr[start]+arr[end]<sum){
+                start ++;
+            } else if(arr[start]+arr[end]==sum){
+                System.out.println("pairs : "+arr[start] +" " +arr[end]+ " Sum is: "+(arr[start] +arr[end]));
+                start++;
+                end--;
+            }
+        }
     }
 
 }
