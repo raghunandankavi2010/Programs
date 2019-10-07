@@ -7,14 +7,12 @@ import java.util.Set;
  * This is from geeks for geeks
  */
 
-public class RemoveDuplicate
-{
+public class RemoveDuplicate {
     // Function to remove duplicate elements
     // This function returns new size of modified
     // array.
 
-    private static int removeDuplicates(int[] arr, int n)
-    {
+    private static int removeDuplicates(int[] arr, int n) {
         // Return, if array is empty
         // or contains a single element
         if (n==0 || n==1)
