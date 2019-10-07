@@ -1,5 +1,8 @@
 package programs.arrays;
 
+import java.util.HashSet;
+import java.util.Set;
+
 /**
  * This is from geeks for geeks
  */
@@ -48,6 +51,7 @@ public class RemoveDuplicate
         int[] array = {0,4, 2, 4, 5, 2, 3, 1};
         int arr_size = array.length;
         printRepeating(array, arr_size);
+        findRepeat(array);
 
         /*
          * below array is sorted
@@ -90,4 +94,19 @@ public class RemoveDuplicate
 
             }
         }
+
+    // find duplicates using HashSet.
+    private static int findRepeat(int[] numbers) {
+        Set<Integer> numbersSeen = new HashSet<>();
+        for (int number : numbers) {
+            if (numbersSeen.contains(number)) {
+                return number;
+            } else {
+                numbersSeen.add(number);
+            }
+        }
+
+        // whoops--no duplicate
+        throw new IllegalArgumentException("no duplicate!");
+    }
 }
