@@ -15,7 +15,7 @@ public class LinkedListDemo {
 
    public static void main(String args[]) {
       // create a linked list
-      LinkedList ll = new LinkedList();
+      LinkedList<String> ll = new LinkedList<>();
       // add elements to the linked list
       ll.add("F");
       ll.add("B");
