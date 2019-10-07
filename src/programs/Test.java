@@ -9,9 +9,7 @@ public class Test {
         new Test();
     }
 
-    public Test(){
-
-
+    public Test() {
 
 
         ArrayList<Integer> a = new ArrayList<>();
@@ -21,22 +19,19 @@ public class Test {
         a.add(2);
         a.add(3);
         a.add(1);
-        NavigableMap<Integer,Integer> map = new TreeMap<>();
-        for(int i=0;i<a.size();i++)
-        if(!map.containsKey(a.get(i)))
-        {
-            map.put(a.get(i),a.get(i));
-        }else{
-            map.remove(a.get(i),a.get(i));
-        }
+        NavigableMap<Integer, Integer> map = new TreeMap<>();
+        for (Integer integer : a)
+            if (!map.containsKey(integer)) {
+                map.put(integer, integer);
+            } else {
+                map.remove(integer, integer);
+            }
 
 
-       System.out.println( map.firstEntry().getValue().intValue());
-
+        System.out.println(map.firstEntry().getValue().intValue());
 
 
     }
-
 
 
 }
