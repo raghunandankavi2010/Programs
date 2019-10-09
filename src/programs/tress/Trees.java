@@ -5,18 +5,15 @@ import java.util.Queue;
 import java.util.Stack;
 
 /**
- *
  * @author Raghunandan
  */
 public class Trees {
 
     private Node rootNode;
     private int height;
-    static int  max_level = 0;
+    static int max_level = 0;
 
     public Trees() {
-
-
 
 
         Node n1 = new Node();
@@ -38,11 +35,14 @@ public class Trees {
         addNode(n7, 9);
         Node n8 = new Node();
         addNode(n8, 10);
+        printDataAtLevel(rootNode);
+        System.out.println("Largest : "+findLargestValueInTree(rootNode));
+        System.out.println("Second Largest : "+findSecondLargest(rootNode,findLargestValueInTree(rootNode),0));
         //rightView(rootNode,1);
         //leftView(rootNode,1);
         //System.out.println("Print data at each level");
         //printDataAtLevelBFS(rootNode);
-        DFS(rootNode);
+        //DFS(rootNode);
      /*   System.out.println("RootNode"+rootNode.getData());
         System.out.println("In Order");
         printInOrder(rootNode);
@@ -53,7 +53,7 @@ public class Trees {
         height = heightOfBinaryTree(rootNode);
 
         System.out.println("Print data at each level");
-        printDataAtLevel(rootNode);
+
         System.out.println("Print data at each level in reverse order");
         reverseLevelOrder(rootNode);
         System.out.println("\n DFS");
@@ -64,12 +64,13 @@ public class Trees {
 
 
     }
+
     public static void main(String[] args) {
         new Trees();
 
     }
 
-    public void addNode(Node n, int value) {
+    private void addNode(Node n, int value) {
         if (rootNode == null) {
             Node temp = new Node();
             temp.setData(value);
@@ -81,7 +82,7 @@ public class Trees {
 
     }
 
-    public void addToPosition(Node n, int value) {
+    private void addToPosition(Node n, int value) {
         if (value <= n.getData()) {
             if (n.getLeftNode() != null) {
                 addToPosition(n.getLeftNode(), value);
@@ -101,7 +102,7 @@ public class Trees {
         }
     }
 
-    public void printInOrder(Node node) {
+    private void printInOrder(Node node) {
         if (node != null) {
             printInOrder(node.getLeftNode());
             System.out.println(node.getData());
@@ -117,7 +118,7 @@ public class Trees {
         }
     }
 
-    public void printPostOrder(Node node) {
+    private void printPostOrder(Node node) {
         if (node != null) {
             printPostOrder(node.getLeftNode());
             printPostOrder(node.getRightNode());
@@ -125,7 +126,7 @@ public class Trees {
         }
     }
 
-    public int heightOfBinaryTree(Node node) {
+    private int heightOfBinaryTree(Node node) {
         if (node == null) {
             return 0;
         } else {
@@ -151,14 +152,14 @@ public class Trees {
 
                 queue.add(n.getLeftNode());
                 nextLevelCount++;
-               // System.out.println("left node data " + n.getLeftNode().getData());// + " " + nextLevelCount);
+                // System.out.println("left node data " + n.getLeftNode().getData());// + " " + nextLevelCount);
             }
             if (n.getRightNode() != null) {
                 //System.out.print(n.getData() + " ");
 
                 queue.add(n.getRightNode());
                 nextLevelCount++;
-               // System.out.println("right node data " + n.getRightNode().getData());// + " " + nextLevelCount);
+                // System.out.println("right node data " + n.getRightNode().getData());// + " " + nextLevelCount);
             }
             currentLevelCount--;
             if (currentLevelCount == 0) {
@@ -199,8 +200,7 @@ public class Trees {
 
     }
 
-    private void reverseLevelOrder(Node node)
-    {
+    private void reverseLevelOrder(Node node) {
         Stack<Node> S = new Stack<Node>();
         Queue<Node> Q = new LinkedList<Node>();
         Q.add(node);
@@ -209,8 +209,7 @@ public class Trees {
         // are the differences with normal level order traversal
         // 1) Instead of printing a node, we push the node to stack
         // 2) Right subtree is visited before left subtree
-        while (!Q.isEmpty())
-        {
+        while (!Q.isEmpty()) {
             /* Dequeue node and make it root */
             node = Q.peek();
             Q.remove();
@@ -227,28 +226,27 @@ public class Trees {
         }
 
         // Now pop all items from stack one by one and print them
-        while (!S.empty())
-        {
+        while (!S.empty()) {
             node = S.peek();
             System.out.print(node.getData() + " \n");
             S.pop();
         }
     }
 
-    public void DFS(Node root) {
+    private void DFS(Node root) {
         Stack<Node> s = new Stack<Node>();
         s.add(root);
         while (!s.isEmpty()) {
             Node x = s.pop();
-            if(x.getRightNode()!=null) s.add(x.getRightNode());
-            if(x.getLeftNode()!=null) s.add(x.getLeftNode());
+            if (x.getRightNode() != null) s.add(x.getRightNode());
+            if (x.getLeftNode() != null) s.add(x.getLeftNode());
             System.out.print(" " + x.getData());
         }
     }
 
-    public Node mirror(Node root) {
+    private Node mirror(Node root) {
 
-        if(root!=null) {
+        if (root != null) {
             mirror(root.getLeftNode());
             mirror(root.getRightNode());
             Node temp = root.getLeftNode();
@@ -257,9 +255,9 @@ public class Trees {
 
 
         }
-       return root;
+        return root;
 
-       }
+    }
 
     public void print(Node root) {
 
@@ -269,49 +267,67 @@ public class Trees {
                 //System.out.println(root.getLeftNode().getData());
                 print(root.getLeftNode());
             }
-           if(root.getRightNode()!=null) { ;
+            if (root.getRightNode() != null) {
+                ;
                 print(root.getRightNode());
             }
         }
     }
 
-    void leftView(Node node, int level)
-    {
+    private void leftView(Node node, int level) {
         // Base Case
-        if (node==null) return;
+        if (node == null) return;
 
         // If this is the first node of its level
-      if (max_level < level)
-        {
-            System.out.println(" " + node.getData()+" "+max_level);
-            max_level = level;
-        }
-
-       // System.out.print(" " + node.getData());
-
-        // Recur for left and right subtrees
-        leftView(node.getLeftNode(), level+1);
-        leftView(node.getRightNode(), level+1);
-    }
-
-    void rightView(Node node, int level)
-    {
-        // Base Case
-        if (node==null) return;
-
-        // If this is the first node of its level
-        if (max_level < level)
-        {
-            System.out.println(" " + node.getData()+" "+max_level);
+        if (max_level < level) {
+            System.out.println(" " + node.getData() + " " + max_level);
             max_level = level;
         }
 
         // System.out.print(" " + node.getData());
 
         // Recur for left and right subtrees
-        rightView(node.getRightNode(), level+1);
-        rightView(node.getLeftNode(), level+1);
+        leftView(node.getLeftNode(), level + 1);
+        leftView(node.getRightNode(), level + 1);
     }
 
+    private void rightView(Node node, int level) {
+        // Base Case
+        if (node == null) return;
+
+        // If this is the first node of its level
+        if (max_level < level) {
+            System.out.println(" " + node.getData() + " " + max_level);
+            max_level = level;
+        }
+
+        // System.out.print(" " + node.getData());
+
+        // Recur for left and right subtrees
+        rightView(node.getRightNode(), level + 1);
+        rightView(node.getLeftNode(), level + 1);
+    }
+
+    // recursively go to the right and if you reach end print the number
+    private static int findLargestValueInTree(Node root) {
+        while (root.getRightNode() != null) {
+            root = root.getRightNode();
+        }
+        return root.getData();
+    }
+
+    // recursively go to the right keeping track og current node less than largest node
+    // if current node is not less than largest node then print root node.
+    private  int findSecondLargest(Node root, int largest, int current) {
+        while (root != null) {
+            if (root.getData() < largest) {
+                current = root.getData();
+                root = root.getRightNode();
+            } else {
+                root = root.getLeftNode();
+            }
+        }
+        return current;
+    }
 
 }
