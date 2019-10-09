@@ -6,7 +6,7 @@ public class PrimeNumbers {
 
         int i;
         int maxCheck = 100; // maxCheck limit till which you want to find prime numbers
-        boolean isPrime = true;
+        boolean isPrime;
 
         //Empty String
         StringBuilder primeNumbersFound = new StringBuilder();
@@ -23,7 +23,7 @@ public class PrimeNumbers {
         System.out.println(primeNumbersFound);
     }
 
-    public static boolean CheckPrime(int numberToCheck) {
+    private static boolean CheckPrime(int numberToCheck) {
         int remainder;
         // suppose you have 25. it is necessary to check only till 13
         // cause 13*2 = 26. That is why numberToCheck/2
