@@ -13,8 +13,7 @@ public class Trees {
     private int height;
     static int max_level = 0;
 
-    public Trees() {
-
+    Trees() {
 
         Node n1 = new Node();
         addNode(n1, 5);
@@ -36,8 +35,8 @@ public class Trees {
         Node n8 = new Node();
         addNode(n8, 10);
         printDataAtLevel(rootNode);
-        System.out.println("Largest : "+findLargestValueInTree(rootNode));
-        System.out.println("Second Largest : "+findSecondLargest(rootNode,findLargestValueInTree(rootNode),0));
+        System.out.println("Largest : " + findLargestValueInTree(rootNode));
+        System.out.println("Second Largest : " + findSecondLargest(rootNode, findLargestValueInTree(rootNode)));
         //rightView(rootNode,1);
         //leftView(rootNode,1);
         //System.out.println("Print data at each level");
@@ -318,7 +317,8 @@ public class Trees {
 
     // recursively go to the right keeping track og current node less than largest node
     // if current node is not less than largest node then print root node.
-    private  int findSecondLargest(Node root, int largest, int current) {
+    private int findSecondLargest(Node root, int largest) {
+        int current = 0;
         while (root != null) {
             if (root.getData() < largest) {
                 current = root.getData();
