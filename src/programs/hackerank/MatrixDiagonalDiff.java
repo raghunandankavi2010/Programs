@@ -45,7 +45,7 @@ class Result {
 public class MatrixDiagonalDiff {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new FileReader("/home/raghu/Desktop/Input.txt"));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File("/home/raghu/Output.txt")));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(new File("/home/raghu/Desktop/Output.txt")));
 
         int n = Integer.parseInt(bufferedReader.readLine().trim());
 
