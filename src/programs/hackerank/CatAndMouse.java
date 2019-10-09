@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class CatAndMouse {
 
     // Complete the catAndMouse function below.
-    static String catAndMouse(int x, int y, int z) {
+    private static String catAndMouse(int x, int y, int z) {
       int diff1 = Math.abs(x-z);
       int diff2 = Math.abs(y-z);
       if(diff1>diff2){
