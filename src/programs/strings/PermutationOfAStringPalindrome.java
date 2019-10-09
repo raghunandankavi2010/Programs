@@ -6,6 +6,8 @@ import java.util.Set;
 
 /**
  * Solution Credit : https://leetcode.com/articles/palindrome-permutation/
+ * Strings with even characters count must have event count for characters
+ * Strings with odd characters count must have one character with odd count
  */
 public class PermutationOfAStringPalindrome {
 
@@ -68,7 +70,7 @@ public class PermutationOfAStringPalindrome {
 
     public static void main(String[] args) {
 
-        boolean check = canPermutePalindrome4("tactcoapapa");
+        boolean check = canPermutePalindrome4("abab");
         if (check) {
             System.out.println("Palindrome Possible");
         } else {
