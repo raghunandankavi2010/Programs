@@ -3,6 +3,9 @@ package programs.tress.dfs;
 
 import java.util.*;
 
+/**
+ * Solution Credit geeksforgeeks
+ */
 // This class represents a directed graph using adjacency list
 // representation
 public class DFS {

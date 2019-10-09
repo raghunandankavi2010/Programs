@@ -11,7 +11,7 @@ public class StringPermutations {
     }
     /** A method exposed to client to calculate permutation of String in Java. */
 
-    public static void permutation(String input) {
+    private static void permutation(String input) {
         try {
             permutation( "", input);
         } catch (InterruptedException e) {

@@ -7,12 +7,12 @@ public class StringReplace {
         source = source.replaceAll("\\s","%20");
         StringBuilder stringBuilder = new StringBuilder();
         char[] sourceChar = source.toCharArray();
-        for(int i=0;i<sourceChar.length;i++){
+        for (char c : sourceChar) {
 
-            if(sourceChar[i]== ' '){
-              stringBuilder.append("%20");
-            }else {
-                stringBuilder.append(sourceChar[i]);
+            if (c == ' ') {
+                stringBuilder.append("%20");
+            } else {
+                stringBuilder.append(c);
             }
         }
 
@@ -20,7 +20,7 @@ public class StringReplace {
         new StringReplace().repalce(sourceChar,source.length());
     }
 
-    public void repalce(char[] s,int length){
+    private void repalce(char[] s, int length){
         int spacecount=0,index;
 
         for(int i=0;i<length;i++){
