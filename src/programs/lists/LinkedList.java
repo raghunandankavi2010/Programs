@@ -16,12 +16,14 @@ public class LinkedList {
         linkedList.add(12);
         linkedList.add(5);
         linkedList.add(10);
-        linkedList.add(15);
-        linkedList.add(20);
-        linkedList.add(25);
-
+        //linkedList.add(15);
+        //linkedList.add(20);
+        //linkedList.add(25);
+        // linkedList.printSize(linkedList.getHead());
+        System.out.println("...................");
+        linkedList.printMiddleElementWithOnePass(linkedList.getHead());
         //linkedList.print(linkedList.getHead());
-       // System.out.println("/******Last but one*********/");
+        // System.out.println("/******Last but one*********/");
         //linkedList.getLastButOneData(linkedList.getHead());
         //linkedList.getNItemFromEnd(linkedList.getHead(),4);
 
@@ -59,9 +61,9 @@ public class LinkedList {
 //        linkedList.setHead(node_returned);
 //        linkedList.print(linkedList.getHead());
 //
-        Node reversed = linkedList.reverse(linkedList.getHead());
-        System.out.println("/*********Reversed & Printing************/");
-        linkedList.print(reversed);
+//        Node reversed = linkedList.reverse(linkedList.getHead());
+//        System.out.println("/*********Reversed & Printing************/");
+//        linkedList.print(reversed);
 
     }
 
@@ -82,12 +84,10 @@ public class LinkedList {
     }
 
     private Node reverse(Node head) {
-        if(head == null) {
+        if (head == null) {
 
             return null;
-        }
-        else if(head.getNext()== null )
-        {
+        } else if (head.getNext() == null) {
             System.out.println("Ony one item is List ");
             return head;
         } else {
@@ -116,8 +116,7 @@ public class LinkedList {
 
         Node current = head;
 
-        if(current==null)
-        {
+        if (current == null) {
             System.out.println("List is Empty");
 
         } else {
@@ -133,7 +132,7 @@ public class LinkedList {
 
     private Node delete(Node head, int data) {
 
-        if (head!=null) {
+        if (head != null) {
             Node prev = null;
             Node next;
             Node current = head;
@@ -158,7 +157,7 @@ public class LinkedList {
             }
 
             return head;
-        } else{
+        } else {
             return null;
         }
 
@@ -169,28 +168,28 @@ public class LinkedList {
         // Initialize Node only incase of 1st element
         if (head == null) {
             head = new Node(data);
+            head.setNext(null);
             setHead(head);
-            setList_size(getList_size()+1);
+            setList_size(getList_size() + 1);
         } else {
 
             Node temp = new Node(data);
             Node current = head;
-            if (current != null) {
 
-                while (current.getNext() != null) {
-                    current = current.getNext();
-                }
-                current.setNext(temp);
-                setList_size(getList_size()+1);
+            while (current.getNext() != null) {
+                current = current.getNext();
             }
+            current.setNext(temp);
+            temp.setNext(null);
+            setList_size(getList_size() + 1);
         }
 
     }
 
     private Node insertAtPosition(Node head, Node node, int pos) {
 
-        if (head!= null && head.getNext() != null && pos!=getList_size() && pos!=0) {
-            int count =0;
+        if (head != null && head.getNext() != null && pos != getList_size() && pos != 0) {
+            int count = 0;
             Node current = head;
             Node prev = null;
             Node next;
@@ -202,44 +201,43 @@ public class LinkedList {
                 count++;
             }
 
-            if (prev != null && count==pos)  {
+            if (prev != null && count == pos) {
                 prev.setNext(node);
                 node.setNext(current);
-                setList_size(getList_size()+1);
-                System.out.println("Insert "+node.getData()+" at "+pos);
+                setList_size(getList_size() + 1);
+                System.out.println("Insert " + node.getData() + " at " + pos);
             } else {
-                System.out.println("Position "+pos+" is Invalid!");
+                System.out.println("Position " + pos + " is Invalid!");
             }
-        } else if(head!=null && pos ==0){
+        } else if (head != null && pos == 0) {
 
             node.setNext(head);
             head = node;
-            setList_size(getList_size()+1);
-            System.out.println(" Inserting "+node.getData()+" at the beginning "+pos);
-        } else if(head!= null && pos ==getList_size()){
+            setList_size(getList_size() + 1);
+            System.out.println(" Inserting " + node.getData() + " at the beginning " + pos);
+        } else if (head != null && pos == getList_size()) {
 
             Node current = head;
-            while(current.getNext()!=null)
-            {
+            while (current.getNext() != null) {
                 current = current.getNext();
             }
             current.setNext(node);
-            System.out.println(" Inserting "+node.getData()+" at the end "+pos);
-            setList_size(getList_size()+1);
+            System.out.println(" Inserting " + node.getData() + " at the end " + pos);
+            setList_size(getList_size() + 1);
 
-        } else if(head==null && pos == 0){
+        } else if (head == null && pos == 0) {
             head = node;
-            setList_size(getList_size()+1);
-            System.out.println(" List Empty. Inserting at beginning "+node.getData());
+            setList_size(getList_size() + 1);
+            System.out.println(" List Empty. Inserting at beginning " + node.getData());
         } else {
-            System.out.println("List is Empty. Cannot insert at position"+pos);
+            System.out.println("List is Empty. Cannot insert at position" + pos);
         }
         return head;
 
     }
 
     private void getLastButOneData(Node head) {
-        if(head!=null) {
+        if (head != null) {
             Node current = head;
             Node prev = null;
             Node next = null;
@@ -259,7 +257,7 @@ public class LinkedList {
     }
 
     private Node swapAdjacentItems(Node head) {
-        if(head!=null) {
+        if (head != null) {
 
             Node current = head;
             Node prev;
@@ -289,33 +287,63 @@ public class LinkedList {
      */
 
 
-
-    private void getNItemFromEnd(Node head,int pos) {
-        if(head!=null) {
+    private void getNItemFromEnd(Node head, int pos) {
+        if (head != null) {
             System.out.println(head.getData());
             Node current = head;
             Node prev = null;
             Node next = null;
-            int count =0;
-            while (current.getNext()!= null) {
+            int count = 0;
+            while (current.getNext() != null) {
                 System.out.println(current.getData());
                 current = current.getNext();
                 count++;
 
-                if(count==pos) {
-                   prev = head;
+                if (count == pos) {
+                    prev = head;
                 }
                 if (prev != null) {
                     prev = prev.getNext();
                 }
             }
             if (prev != null) {
-                System.out.println("Last But " + pos  + " item is " + prev.getData());
+                System.out.println("Last But " + pos + " item is " + prev.getData());
             } else {
                 System.out.println("Only one item. Last But one item " + head.getData());
             }
         } else {
             System.out.println("List is empty");
+        }
+    }
+
+    private void printMiddleElementWithOnePass(Node head) {
+        Node slow_ptr = head;
+        Node fast_ptr = head;
+        if (head != null) {
+            while (fast_ptr != null && fast_ptr.getNext() != null) {
+                fast_ptr = fast_ptr.getNext().getNext();
+                slow_ptr = slow_ptr.getNext();
+            }
+            System.out.println("The middle element is [" +
+                    slow_ptr.getData() + "] \n");
+        }
+    }
+
+    private void printSize(Node head) {
+
+        Node current = head;
+
+        if (current == null) {
+            System.out.println("List is Empty");
+
+        } else {
+            int length = 0;
+            while (current != null) {
+                length++;
+                current = current.getNext();
+            }
+
+            System.out.println("Length :" + length);
         }
     }
 }
