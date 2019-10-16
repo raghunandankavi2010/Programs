@@ -1,24 +1,22 @@
 package programs.hackerank;
 
-import java.io.*;
-import java.math.*;
-import java.text.*;
-import java.util.*;
-import java.util.regex.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
 
 public class TimeConversion {
 
-    /*
+    /**
      * Complete the timeConversion function below.
      */
-    static String timeConversion(String s) {
-        /*
-         * Write your code here.
-         */
+    private static String timeConversion(String s) {
+
         DateFormat df = new SimpleDateFormat("hh:mm:ssaa");
         //Desired format: 24 hour format: Change the pattern as per the need
         DateFormat outputformat = new SimpleDateFormat("HH:mm:ss");
-        Date date = null;
+        Date date ;
         String output = null;
         try {
             //Converting the input String to Date
@@ -35,7 +33,7 @@ public class TimeConversion {
 
     private static final Scanner scan = new Scanner(System.in);
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         String s = scan.nextLine();
 

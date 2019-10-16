@@ -1,21 +1,16 @@
 package programs.hackerank;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class VeryBigSum {
 
     // Complete the aVeryBigSum function below.
-    static long aVeryBigSum(long[] ar) {
+    private static long aVeryBigSum(long[] ar) {
         long sum = 0;
         for (long number :ar) {
              sum += number;
         }
-
-        System.out.println(sum);
         return sum;
     }
 
@@ -37,7 +32,7 @@ public class VeryBigSum {
         }
 
         long result = aVeryBigSum(ar);
-
+        System.out.println(result);
 
         scanner.close();
     }
