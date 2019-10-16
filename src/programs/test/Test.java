@@ -26,7 +26,6 @@ public class Test {
                     count++;
                 }
             }
-
         return min;
     }
 }
