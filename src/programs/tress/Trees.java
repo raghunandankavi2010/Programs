@@ -315,8 +315,9 @@ public class Trees {
         return root.getData();
     }
 
-    // recursively go to the right keeping track og current node less than largest node
-    // if current node is not less than largest node then print root node.
+    // recursively go to the right keeping track of current node less than largest node
+    // if current node is not less than largest printleft node
+    // else print root node.
     private int findSecondLargest(Node root, int largest) {
         int current = 0;
         while (root != null) {
