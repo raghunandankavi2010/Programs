@@ -4,7 +4,8 @@ public class LeftRotateArray {
 
     public static void main(String[] args){
         int[] arr ={ 1,2,3,4,5};
-        leftRotateNTimes(arr,2);
+        int times = 2;
+        leftRotateNTimes(arr,times);
 
     }
 
