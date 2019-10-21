@@ -1,6 +1,6 @@
-JavaPrograms
+#Java Programs
 
-To run
+**To run in IntelliJ**
 
 1. Clone the repo to desired folder.
 2. Right click on the src folder and mark directory as sources root.
@@ -9,9 +9,9 @@ To run
 
 If you try to run without out path specified you get a dialog. More info at https://stackoverflow.com/questions/23688702/cannot-start-compilation-the-output-path-is-not-specified-for-module. Out folder is not committed to repo as it is not required.
 
-CopyRight
+#CopyRight
 
-Copyright [2019] [Raghunandan Kavi]
+**Copyright [2019] Raghunandan Kavi
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
