@@ -1,5 +1,7 @@
 package programs.lists;
 
+import raghu.test.datastructures.LinkedListReverse;
+
 /**
  * Created by raghu on 5/7/17.
  */
@@ -13,15 +15,21 @@ public class LinkedList {
         Node node_returned;
         LinkedList linkedList = new LinkedList();
 
-        linkedList.add(12);
-        linkedList.add(5);
-        linkedList.add(10);
+        linkedList.add(2);
+        linkedList.add(0);
+        linkedList.add(1);
         //linkedList.add(15);
         //linkedList.add(20);
         //linkedList.add(25);
         // linkedList.printSize(linkedList.getHead());
         System.out.println("...................");
-        linkedList.printMiddleElementWithOnePass(linkedList.getHead());
+       // linkedList.printMiddleElementWithOnePass(linkedList.getHead());
+         if(palindrome(linkedList.getHead())){
+         System.out.println("Palindrome");
+        } else{
+         System.out.println("Not Palindrome");
+        }
+
         //linkedList.print(linkedList.getHead());
         // System.out.println("/******Last but one*********/");
         //linkedList.getLastButOneData(linkedList.getHead());
@@ -346,6 +354,52 @@ public class LinkedList {
             System.out.println("Length :" + length);
         }
     }
+
+    private static boolean palindrome(Node head) {
+        if (head == null)
+            return false;
+        Node middle;
+        Node fastPtr = head;
+        Node slowPtr = head;
+        while (fastPtr.getNext()!= null) {
+            if (fastPtr.getNext() != null) {
+                fastPtr = fastPtr.getNext().getNext();
+                slowPtr = slowPtr.getNext();
+            }
+        }
+        middle = slowPtr;
+        Node secondHalfHead = middle.getNext();
+        Node secondHalf = reverseLinkedList(secondHalfHead);
+        return compareLists(head, secondHalf);
+    }
+
+    private static boolean compareLists(Node head, Node secondHalf) {
+        boolean check = false;
+        while (secondHalf!= null) {
+            if (head.getData() == secondHalf.getData()) {
+                check = true;
+            } else {
+                check = false;
+            }
+            head = head.getNext();
+            secondHalf = secondHalf.getNext();
+        }
+        return check;
+    }
+
+    private static Node reverseLinkedList(Node currentNode) {
+        Node previousNode = null;
+        Node nextNode;
+        while (currentNode != null) {
+            nextNode = currentNode.getNext();
+            currentNode.setNext(previousNode);
+            previousNode = currentNode;
+            currentNode = nextNode;
+
+        }
+        return previousNode;
+    }
+
 }
 
 
