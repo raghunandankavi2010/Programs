@@ -1,7 +1,5 @@
 package programs.lists;
 
-import raghu.test.datastructures.LinkedListReverse;
-
 /**
  * Created by raghu on 5/7/17.
  */
