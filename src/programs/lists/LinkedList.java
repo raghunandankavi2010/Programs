@@ -414,10 +414,8 @@ public class LinkedList {
         //whenever last will reach at the end of the linkedlist, we will return true.
         if (last == null)
             return true;
-
         // in each recursive call, we won't modify first, but modify last.
         x = isPalindrome(last.getNext());
-
         //remember, when an element of stack return false, we will return false to each bottom most element.
         if (!x) return false;
 
