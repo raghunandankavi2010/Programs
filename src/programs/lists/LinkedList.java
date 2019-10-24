@@ -17,6 +17,7 @@ public class LinkedList {
 
         linkedList.add(1);
         linkedList.add(0);
+        linkedList.add(0);
         linkedList.add(1);
         //linkedList.add(15);
         //linkedList.add(20);
@@ -24,18 +25,20 @@ public class LinkedList {
         // linkedList.printSize(linkedList.getHead());
         System.out.println("...................");
         // linkedList.printMiddleElementWithOnePass(linkedList.getHead());
-    /*     if(palindrome(linkedList.getHead())){
-         System.out.println("Palindrome");
-        } else{
-         System.out.println("Not Palindrome");
+        if (palindrome(linkedList.getHead())) {
+            System.out.println("Palindrome");
+        } else {
+            System.out.println("Not Palindrome");
         }
-*/
+/*
+
         first = linkedList.getHead();
         if (isPalindrome(linkedList.getHead())) {
             System.out.println("Palindrome");
         } else {
             System.out.println("Not Palindrome");
         }
+*/
 
         //linkedList.print(linkedList.getHead());
         // System.out.println("/******Last but one*********/");
@@ -365,31 +368,39 @@ public class LinkedList {
     private static boolean palindrome(Node head) {
         if (head == null)
             return false;
-        Node middle;
+        Node middle = null;
         Node fastPtr = head;
         Node slowPtr = head;
-        while (fastPtr.getNext() != null) {
-            if (fastPtr.getNext() != null) {
-                fastPtr = fastPtr.getNext().getNext();
-                slowPtr = slowPtr.getNext();
-            }
+        while (fastPtr != null && fastPtr.getNext() != null) {
+
+            fastPtr = fastPtr.getNext().getNext();
+            slowPtr = slowPtr.getNext();
+
         }
-        middle = slowPtr;
-        Node secondHalfHead = middle.getNext();
+         // if length is odd
+         // move sloe ptr by 1
+        if (fastPtr != null) {
+            middle = slowPtr;
+            middle.setNext(null);
+            slowPtr = slowPtr.getNext();
+        }
+        // if even middle is slowptr
+        Node secondHalfHead = slowPtr;
         Node secondHalf = reverseLinkedList(secondHalfHead);
         return compareLists(head, secondHalf);
     }
 
     private static boolean compareLists(Node head, Node secondHalf) {
         boolean check = false;
-        while (secondHalf != null) {
+        while (head != null && secondHalf != null) {
             if (head.getData() == secondHalf.getData()) {
+                head = head.getNext();
+                secondHalf = secondHalf.getNext();
                 check = true;
             } else {
-                check = false;
+               return false;
             }
-            head = head.getNext();
-            secondHalf = secondHalf.getNext();
+
         }
         return check;
     }
@@ -406,7 +417,6 @@ public class LinkedList {
         }
         return previousNode;
     }
-
 
 
     //first = head, last = head, initially
@@ -429,6 +439,7 @@ public class LinkedList {
         first = first.getNext();
         return y;
     }
+
 
 }
 
