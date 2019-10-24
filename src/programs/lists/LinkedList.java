@@ -7,13 +7,15 @@ public class LinkedList {
 
     private Node head;
     private int list_size;
+    private static Node first;
+    private static boolean x = true;
 
     public static void main(String[] args) {
 
         Node node_returned;
         LinkedList linkedList = new LinkedList();
 
-        linkedList.add(2);
+        linkedList.add(1);
         linkedList.add(0);
         linkedList.add(1);
         //linkedList.add(15);
@@ -21,11 +23,18 @@ public class LinkedList {
         //linkedList.add(25);
         // linkedList.printSize(linkedList.getHead());
         System.out.println("...................");
-       // linkedList.printMiddleElementWithOnePass(linkedList.getHead());
-         if(palindrome(linkedList.getHead())){
+        // linkedList.printMiddleElementWithOnePass(linkedList.getHead());
+    /*     if(palindrome(linkedList.getHead())){
          System.out.println("Palindrome");
         } else{
          System.out.println("Not Palindrome");
+        }
+*/
+        first = linkedList.getHead();
+        if (isPalindrome(linkedList.getHead())) {
+            System.out.println("Palindrome");
+        } else {
+            System.out.println("Not Palindrome");
         }
 
         //linkedList.print(linkedList.getHead());
@@ -359,7 +368,7 @@ public class LinkedList {
         Node middle;
         Node fastPtr = head;
         Node slowPtr = head;
-        while (fastPtr.getNext()!= null) {
+        while (fastPtr.getNext() != null) {
             if (fastPtr.getNext() != null) {
                 fastPtr = fastPtr.getNext().getNext();
                 slowPtr = slowPtr.getNext();
@@ -373,7 +382,7 @@ public class LinkedList {
 
     private static boolean compareLists(Node head, Node secondHalf) {
         boolean check = false;
-        while (secondHalf!= null) {
+        while (secondHalf != null) {
             if (head.getData() == secondHalf.getData()) {
                 check = true;
             } else {
@@ -396,6 +405,31 @@ public class LinkedList {
 
         }
         return previousNode;
+    }
+
+
+
+    //first = head, last = head, initially
+    private static boolean isPalindrome(Node last) {
+        //whenever last will reach at the end of the linkedlist, we will return true.
+        if (last == null)
+            return true;
+
+        // in each recursive call, we won't modify first, but modify last.
+        x = isPalindrome(last.getNext());
+
+        //remember, when an element of stack return false, we will return false to each bottom most element.
+        if (!x) return false;
+
+        //if x is true, we will check the next entry.
+        boolean y = false;
+        if (first.getData() == last.getData()) {
+            y = true;
+        }
+
+        //advancing first before returning from the current element of the stack.
+        first = first.getNext();
+        return y;
     }
 
 }
