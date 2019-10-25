@@ -377,8 +377,8 @@ public class LinkedList {
             slowPtr = slowPtr.getNext();
 
         }
-         // if length is odd
-         // move sloe ptr by 1
+        // if length is odd
+        // move sloe ptr by 1
         if (fastPtr != null) {
             middle = slowPtr;
             middle.setNext(null);
@@ -398,7 +398,7 @@ public class LinkedList {
                 secondHalf = secondHalf.getNext();
                 check = true;
             } else {
-               return false;
+                return false;
             }
 
         }
@@ -418,7 +418,18 @@ public class LinkedList {
         return previousNode;
     }
 
-
+    /* If linkedlist has 1 0 0 1
+        isPalindrome(0);
+        isPalindrome(0);
+        isPalindrome(1);
+        recursive call returns
+        recursive call returns last compare first and last
+        1 and 1 is compared
+        increment first - points to 0
+        recursive call returns second last ie 0
+        compare first (points to second ie 0) and second last
+        similarly do for all elements
+    */
     //first = head, last = head, initially
     private static boolean isPalindrome(Node last) {
         //whenever last will reach at the end of the linkedlist, we will return true.
