@@ -4,9 +4,10 @@ package programs.strings;
  * Created by raghu on 3/7/17.
  */
 public class StringPermutations {
-    public static void main(String args[]) {
-        permutation("abab");
+    public static void main(String[] args) {
 
+        String input = "abab";
+        permutation(input);
 
     }
     /** A method exposed to client to calculate permutation of String in Java. */
@@ -30,17 +31,8 @@ public class StringPermutations {
 
        //
         if (word.isEmpty()) {
-            /* String s = perm+word;
-           String reverse = "";
-            for(int i = s. length() - 1; i >= 0; i--) {
-                reverse = reverse + s.charAt(i);
-            }
-
-            if(s.equals(reverse)) {
-                System.out.println(s + " is palindrome");
-            }*/
-            System.out.println(perm);
-
+            //System.out.println(perm);
+            checkPalindrome(perm);
         } else {
             for (int i = 0;i < word.length();i++){
                 permutation(perm + word.charAt(i), word.substring(0, i) + word.substring(i + 1,word.length()));
@@ -48,6 +40,23 @@ public class StringPermutations {
             }
 
         }
+    }
+
+    private static void checkPalindrome(String perm) {
+
+        String reversed = reverse(perm);
+        if(perm.equals(reversed)){
+            System.out.println("Permuation: "+perm+" is a palindrome");
+        }
+    }
+
+    private static String reverse(String input){
+        StringBuilder builder = new StringBuilder();
+        for(int i=input.length()-1;i>=0;i--){
+            builder.append(input.charAt(i));
+        }
+        return builder.toString();
+
     }
 }
 
