@@ -9,8 +9,8 @@ public class FibonacciSeries {
         int value = fibonacciSeries.fib(n);
         System.out.println(value);
         int[] fibs = fibonacciSeries.fib2(n);
-        System.out.println("Fibonacci of nth number:"+fibs[n]);
-        System.out.print("Fibonacci Sequence for 9 numbers : ");
+        System.out.println("Fibonacci of nth number: "+fibs[n-1]);
+        System.out.print("Fibonacci Sequence for 9 numbers: ");
         for(int number: fibs){
             System.out.print(number);
             System.out.print(" ");
@@ -31,10 +31,10 @@ public class FibonacciSeries {
     // if you already have calculated fib of any number
     // re-use it instead of repeating calculation
     private int[] fib2(int n){
-        int[] fib = new int[n+1];
-        fib[0] = 0;
+        int[] fib = new int[n];
+        fib[0] = 1;
         fib[1] = 1;
-        for(int i=2;i<=n;i++){
+        for(int i=2;i<n;i++){
             fib[i] = fib[i-1] +fib[i-2];
         }
         return fib;
