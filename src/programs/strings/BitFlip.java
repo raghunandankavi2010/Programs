@@ -8,10 +8,11 @@ package programs.strings;
  * Output : 3
  * Explanation :
  * 00000 -> 00111 -> 00100 -> 00101
- */
+ * Source Credit : https://stackoverflow.com/questions/58029234/given-a-binary-string-with-all-0s-covert-it-in-the-target-string
+ * */
 public class BitFlip {
 
-    //"00101"
+    //bit = 00101
     //Result 0 */* 2 = 0. So 0^0(bit at 0) = 0
     //Result Count :0
     //Result 0 */* 2 = 0. So 0^0(bit at 1) = 0
