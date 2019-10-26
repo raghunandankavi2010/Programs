@@ -1,4 +1,4 @@
-package programs.strings;
+package programs.bits;
 
 /**
  * Given a binary String which represents the target state.
