@@ -25,7 +25,8 @@ public class LinkedList {
         // linkedList.printSize(linkedList.getHead());
         System.out.println("...................");
         // linkedList.printMiddleElementWithOnePass(linkedList.getHead());
-        if (palindrome(linkedList.getHead())) {
+        first = linkedList.getHead();
+        if (isPalindrome(linkedList.getHead())) {
             System.out.println("Palindrome");
         } else {
             System.out.println("Not Palindrome");
