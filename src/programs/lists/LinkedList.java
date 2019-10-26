@@ -371,19 +371,20 @@ public class LinkedList {
         Node middle = null;
         Node fastPtr = head;
         Node slowPtr = head;
+        Node prevSlowPtr = null;
         while (fastPtr != null && fastPtr.getNext() != null) {
 
             fastPtr = fastPtr.getNext().getNext();
+            prevSlowPtr = slowPtr;
             slowPtr = slowPtr.getNext();
 
         }
         // if length is odd
-        // move sloe ptr by 1
+        // move slow ptr by 1
         if (fastPtr != null) {
-            middle = slowPtr;
-            middle.setNext(null);
             slowPtr = slowPtr.getNext();
         }
+        prevSlowPtr.setNext(null);
         // if even middle is slowptr
         Node secondHalfHead = slowPtr;
         Node secondHalf = reverseLinkedList(secondHalfHead);
