@@ -35,7 +35,7 @@ public class NewYearChaosProblem {
                 if((i-1)>=0 && arr[i-1]==(i+1)){
                     swapCount++;
                     swap(arr,i,i-1);
-                } else if((i-2)>=0 && arr[i-2]== (i+1)){
+                } else if((i-2)>=0 && arr[i-2]==(i+1)){
                     swapCount += 2;
                     swap(arr,i-2,i-1);
                     swap(arr,i,i-1);
