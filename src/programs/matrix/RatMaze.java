@@ -1,8 +1,7 @@
 package programs.matrix;
 
 /**
- *  Java program to solve Rat in a Maze problem using
- *  backtracking
+ *  Java program to solve Rat in a Maze problem using dynamic programming.
  *  Solution Credit : https://www.geeksforgeeks.org/rat-in-a-maze-backtracking-2/
  * */
 
