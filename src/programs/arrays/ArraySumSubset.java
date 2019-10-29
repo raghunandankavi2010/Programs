@@ -1,9 +1,5 @@
 package programs.arrays;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 /**
  * int[] arr = {2,4,6,10,11};
  * int sum = 13;
