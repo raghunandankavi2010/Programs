@@ -1,5 +1,14 @@
 package programs.arrays;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * int[] arr = {2,4,6,10,11};
+ * int sum = 13;
+ * There is only 1 subset that adds up to 13 ie 2 and 11
+ */
 public class ArraySumSubset {
 
     private static int getmNumberOfSubsets(int[] numbers, int sum) {
@@ -17,6 +26,7 @@ public class ArraySumSubset {
 
         return dp[sum];
     }
+
     private static int subsetSum(int[] input, int total) {
 
         int[][] dp = new int[input.length + 1][total + 1];
@@ -33,13 +43,20 @@ public class ArraySumSubset {
                 }
             }
         }
+
+        for (int i = 0; i < input.length; i++) {
+            for (int j = 0; j <= total; j++) {
+                System.out.print(dp[i][j] + " ");
+            }
+            System.out.println();
+        }
         return dp[input.length][total];
 
     }
 
     public static void main(String[] args){
         int[] arr = {2,4,6,10,11};
-        int sum = 13;
+        int sum = 16;
         System.out.println(subsetSum(arr,sum));
     }
 }
