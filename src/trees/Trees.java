@@ -199,16 +199,15 @@ public class Trees {
 
     private void reverseLevelOrder(Node node) 
     {
-        Stack<Node> S = new Stack();
-        Queue<Node> Q = new LinkedList();
+        Stack<Node> S = new Stack<>();
+        Queue<Node> Q = new LinkedList<>();
         Q.add(node);
   
         // Do something like normal level order traversal order.Following
         // are the differences with normal level order traversal
         // 1) Instead of printing a node, we push the node to stack
         // 2) Right subtree is visited before left subtree
-        while (Q.isEmpty() == false) 
-        {
+        while (!Q.isEmpty()) {
             /* Dequeue node and make it root */
             node = Q.peek();
             Q.remove();
@@ -225,7 +224,7 @@ public class Trees {
         }
   
         // Now pop all items from stack one by one and print them
-        while (S.empty() == false) 
+        while (!S.empty())
         {
             node = S.peek();
             System.out.print(node.getData() + " \n");
@@ -236,7 +235,7 @@ public class Trees {
     public void DFS(Node root) {
 		Stack<Node> s = new Stack<Node>();
 		s.add(root);
-		while (s.isEmpty() == false) {
+		while (!s.isEmpty()) {
 			Node x = s.pop();
 			if(x.getRightNode()!=null) s.add(x.getRightNode());
 			if(x.getLeftNode()!=null) s.add(x.getLeftNode());			
