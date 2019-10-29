@@ -16,6 +16,7 @@ import java.util.Queue;
 import java.util.Stack;
 
 /**
+ *
  * @author Raghunandan
  */
 public class Trees {
@@ -23,52 +24,52 @@ public class Trees {
     private Node rootNode;
     private int height;
 
-    public Trees() {
+     public Trees() {
 
 
-        Node n1 = new Node();
-        addNode(n1, 5);
 
-        Node n2 = new Node();
-        addNode(n2, 1);
-        Node n0 = new Node();
-        addNode(n0, 0);
-        Node n3 = new Node();
-        addNode(n3, 8);
-        Node n4 = new Node();
-        addNode(n4, 7);
-        Node n5 = new Node();
-        addNode(n5, 6);
-        Node n6 = new Node();
-        addNode(n6, 3);
-        Node n7 = new Node();
-        addNode(n7, 9);
-        Node n8 = new Node();
-        addNode(n8, 10);
-        System.out.println("RootNode" + rootNode.getData());
-        System.out.println("In Order");
-        printInOrder(rootNode);
-        System.out.println("Pre Order");
-        printPreOrder(rootNode);
-        System.out.println("Post Order");
-        printPostOrder(rootNode);
-        height = heightOfBinaryTree(rootNode);
+     Node n1 = new Node();
+     addNode(n1, 5);
 
-        System.out.println("Print data at each level");
-        printDataAtLevel(rootNode);
-        System.out.println("Print data at each level in reverse order");
-        reverseLevelOrder(rootNode);
-        System.out.println("\n DFS");
-        DFS(rootNode);
+     Node n2 = new Node();
+     addNode(n2, 1);
+         Node n0 = new Node();
+     addNode(n0, 0);
+     Node n3 = new Node();
+     addNode(n3, 8);
+     Node n4 = new Node();
+     addNode(n4, 7);
+     Node n5 = new Node();
+     addNode(n5, 6);
+     Node n6 = new Node();
+     addNode(n6, 3);
+     Node n7 = new Node();
+     addNode(n7, 9);
+      Node n8 = new Node();
+     addNode(n8, 10);
+     System.out.println("RootNode"+rootNode.getData());
+     System.out.println("In Order");
+     printInOrder(rootNode);
+     System.out.println("Pre Order");
+     printPreOrder(rootNode);
+    System.out.println("Post Order");
+     printPostOrder(rootNode);
+       height = heightOfBinaryTree(rootNode);
 
-    }
+    System.out.println("Print data at each level");
+    printDataAtLevel(rootNode);
+    System.out.println("Print data at each level in reverse order");
+    reverseLevelOrder(rootNode);
+     System.out.println("\n DFS");
+    DFS(rootNode);
 
+     }
     public static void main(String[] args) {
         new Trees();
 
     }
 
-    private void addNode(Node n, int value) {
+    public void addNode(Node n, int value) {
         if (rootNode == null) {
             Node temp = new Node();
             temp.setData(value);
@@ -100,7 +101,7 @@ public class Trees {
         }
     }
 
-    private void printInOrder(Node node) {
+    public void printInOrder(Node node) {
         if (node != null) {
             printInOrder(node.getLeftNode());
             System.out.println(node.getData());
@@ -108,7 +109,7 @@ public class Trees {
         }
     }
 
-    private void printPreOrder(Node node) {
+    public void printPreOrder(Node node) {
         if (node != null) {
             System.out.println(node.getData());
             printPreOrder(node.getLeftNode());
@@ -116,7 +117,7 @@ public class Trees {
         }
     }
 
-    private void printPostOrder(Node node) {
+    public void printPostOrder(Node node) {
         if (node != null) {
             printPostOrder(node.getLeftNode());
             printPostOrder(node.getRightNode());
@@ -130,7 +131,7 @@ public class Trees {
         } else {
             return 1
                     + Math.max(heightOfBinaryTree(node.getLeftNode()),
-                    heightOfBinaryTree(node.getRightNode()));
+                            heightOfBinaryTree(node.getRightNode()));
         }
     }
 
@@ -163,7 +164,8 @@ public class Trees {
 
     }
 
-    private void reverseLevelOrder(Node node) {
+    private void reverseLevelOrder(Node node)
+    {
         Stack<Node> S = new Stack<>();
         Queue<Node> Q = new LinkedList<>();
         Q.add(node);
@@ -189,22 +191,23 @@ public class Trees {
         }
 
         // Now pop all items from stack one by one and print them
-        while (!S.empty()) {
+        while (!S.empty())
+        {
             node = S.peek();
             System.out.print(node.getData() + " \n");
             S.pop();
         }
     }
 
-    private void DFS(Node root) {
-        Stack<Node> s = new Stack<Node>();
-        s.add(root);
-        while (!s.isEmpty()) {
-            Node x = s.pop();
-            if (x.getRightNode() != null) s.add(x.getRightNode());
-            if (x.getLeftNode() != null) s.add(x.getLeftNode());
-            System.out.print(" " + x.getData());
-        }
-    }
+    public void DFS(Node root) {
+		Stack<Node> s = new Stack<Node>();
+		s.add(root);
+		while (!s.isEmpty()) {
+			Node x = s.pop();
+			if(x.getRightNode()!=null) s.add(x.getRightNode());
+			if(x.getLeftNode()!=null) s.add(x.getLeftNode());
+			System.out.print(" " + x.getData());
+		}
+	}
 
 }
