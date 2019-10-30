@@ -13,7 +13,7 @@ public class problem5 {
         find();
     }
 
-    static void find()  {
+    private static void find()  {
         long i=1;
         boolean check = false;
         while(i>=1) {

@@ -18,20 +18,20 @@ public class problem6 {
         find();
     }
 
-    static void find() {
+    private static void find() {
 
-        int sum1 =0,sum2=0,diff=0;
+        int sum1 = 0, sum2 = 0, diff = 0;
         for (int j = 1; j <= 100; j++) {
 
-          sum1 = sum1+(j*j);
+            sum1 = sum1 + (j * j);
         }
 
         for (int j = 1; j <= 100; j++) {
 
-            sum2 = sum2+(j);
+            sum2 = sum2 + (j);
         }
-        sum2= sum2*sum2;
-        diff =  sum2-sum1;
+        sum2 = sum2 * sum2;
+        diff = sum2 - sum1;
         System.out.println(diff);
 
 

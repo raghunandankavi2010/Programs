@@ -13,7 +13,7 @@ public class problem7 {
         nthPrime(10001);
     }
 
-    public static void nthPrime(int n) {
+    private static void nthPrime(int n) {
         int counter = 0;
 
         for(int i = 1; ; i++) {
