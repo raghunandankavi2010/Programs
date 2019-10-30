@@ -3,19 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package raghu.test.datastructures;
+package programs.lists;
 
 /**
  *
  * @author Raghunandan
  */
 import java.util.*;
+import java.util.LinkedList;
 
 public class LinkedListDemo {
 
    public static void main(String args[]) {
       // create a linked list
-      LinkedList<String> ll = new LinkedList<>();
+      java.util.LinkedList<String> ll = new LinkedList<>();
       // add elements to the linked list
       ll.add("F");
       ll.add("B");
