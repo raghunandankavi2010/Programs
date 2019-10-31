@@ -1,5 +1,6 @@
 package programs.arrays;
 
+
 /**
  * int[] arr = {2,4,6,10,11};
  * int sum = 13;
@@ -19,9 +20,9 @@ public class ArraySumSubset {
             }
             System.out.println();
         }
-
         return dp[sum];
     }
+
 
     private static int subsetSum(int[] input, int total) {
 
@@ -53,6 +54,6 @@ public class ArraySumSubset {
     public static void main(String[] args){
         int[] arr = {2,4,6,10,11};
         int sum = 16;
-        System.out.println(subsetSum(arr,sum));
+        System.out.println(getmNumberOfSubsets(arr,sum));
     }
 }
