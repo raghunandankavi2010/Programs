@@ -1,8 +1,12 @@
 package programs.arrays;
 
 import java.util.ArrayList;
-public class ArraySumSubset2
-{
+/**
+ * int[] arr = {2,4,6,10,11};
+ * int sum = 13;
+ * There is only 1 subset that adds up to 13 ie 2 and 11
+ */
+public class ArraySumSubset2 {
     // dp[i][j] is going to store true if sum j is
     // possible with array elements from 0 to i.
     private static boolean[][] dp;
@@ -84,9 +88,9 @@ public class ArraySumSubset2
 
     //Driver Program to test above functions
     public static void main(String[] args) {
-        int[] arr = {1, 2, 3, 4, 5};
+        int[] arr = {2,4,6,10,11};
         int n = arr.length;
-        int sum = 10;
+        int sum = 16;
         printAllSubsets(arr, n, sum);
     }
 }
