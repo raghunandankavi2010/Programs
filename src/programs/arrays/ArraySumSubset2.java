@@ -12,10 +12,10 @@ public class ArraySumSubset2
     }
 
     // A recursive function to print all subsets with the
-    // help of dp[][]. Vector p[] stores current subset.
+    // help of dp[][]. ArrayList p stores current subset.
     private static void printSubsetsRec(int[] arr, int i, int sum, ArrayList<Integer> p) {
         // If we reached end and sum is non-zero. We print
-        // p[] only if arr[0] is equal to sum OR dp[0][sum]
+        // p only if arr[0] is equal to sum OR dp[0][sum]
         // is true.
         if (i == 0 && sum != 0 && dp[0][sum]) {
             p.add(arr[i]);
@@ -34,7 +34,7 @@ public class ArraySumSubset2
         // If given sum can be achieved after ignoring
         // current element.
         if (dp[i-1][sum]) {
-            // Create a new vector to store path
+            // Create a new list to store path
             ArrayList<Integer> b = new ArrayList<>(p);
             printSubsetsRec(arr, i-1, sum, b);
         }
