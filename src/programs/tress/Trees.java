@@ -10,8 +10,8 @@ import java.util.Stack;
 public class Trees {
 
     private Node rootNode;
-    private int height;
     private static int max_level = 0;
+
 
     private Trees() {
 
@@ -57,7 +57,9 @@ public class Trees {
         reverseLevelOrder(rootNode);
         System.out.println("\n DFS");
         DFS(rootNode);*/
-        DFS(rootNode);
+        int sumLeft = DFSSUM(rootNode.getLeftNode(),0);
+        int sumRight = DFSSUM(rootNode.getRightNode(),0);
+        System.out.println("Sum of Left tree and right tree "+(sumLeft+sumRight));
         //Node mirror = mirror(rootNode);
         //print(mirror);
 
@@ -245,6 +247,22 @@ public class Trees {
             System.out.print(" " + x.getData());
         }
     }
+
+    private int DFSSUM(Node root,int sum) {
+        Stack<Node> s = new Stack<Node>();
+        s.add(root);
+        while (!s.isEmpty()) {
+            // popping because its already visited
+            Node x = s.pop();
+            // first add right node
+            // then left because we pop from the top of stack
+            if (x.getRightNode() != null) s.add(x.getRightNode());
+            if (x.getLeftNode() != null) s.add(x.getLeftNode());
+            sum += x.getData();
+        }
+        return sum;
+    }
+
 
     private Node mirror(Node root) {
 
