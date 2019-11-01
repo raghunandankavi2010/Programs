@@ -11,9 +11,9 @@ public class Trees {
 
     private Node rootNode;
     private int height;
-    static int max_level = 0;
+    private static int max_level = 0;
 
-    Trees() {
+    private Trees() {
 
         Node n1 = new Node();
         addNode(n1, 5);
@@ -34,9 +34,9 @@ public class Trees {
         addNode(n7, 9);
         Node n8 = new Node();
         addNode(n8, 10);
-        printDataAtLevel(rootNode);
-        System.out.println("Largest : " + findLargestValueInTree(rootNode));
-        System.out.println("Second Largest : " + findSecondLargest(rootNode, findLargestValueInTree(rootNode)));
+       // printDataAtLevel(rootNode);
+        //System.out.println("Largest : " + findLargestValueInTree(rootNode));
+        //System.out.println("Second Largest : " + findSecondLargest(rootNode, findLargestValueInTree(rootNode)));
         //rightView(rootNode,1);
         //leftView(rootNode,1);
         //System.out.println("Print data at each level");
@@ -57,7 +57,7 @@ public class Trees {
         reverseLevelOrder(rootNode);
         System.out.println("\n DFS");
         DFS(rootNode);*/
-        //DFS(rootNode);
+        DFS(rootNode);
         //Node mirror = mirror(rootNode);
         //print(mirror);
 
@@ -236,7 +236,10 @@ public class Trees {
         Stack<Node> s = new Stack<Node>();
         s.add(root);
         while (!s.isEmpty()) {
+            // popping because its already visited
             Node x = s.pop();
+            // first add right node
+            // then left because we pop from the top of stack
             if (x.getRightNode() != null) s.add(x.getRightNode());
             if (x.getLeftNode() != null) s.add(x.getLeftNode());
             System.out.print(" " + x.getData());
