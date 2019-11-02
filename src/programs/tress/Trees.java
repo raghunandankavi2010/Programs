@@ -1,8 +1,6 @@
 package programs.tress;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 /**
  * @author Raghunandan
@@ -57,11 +55,14 @@ public class Trees {
         reverseLevelOrder(rootNode);
         System.out.println("\n DFS");
         DFS(rootNode);*/
-        int sumLeft = DFSSUM(rootNode.getLeftNode(),0);
+       /* int sumLeft = DFSSUM(rootNode.getLeftNode(),0);
         int sumRight = DFSSUM(rootNode.getRightNode(),0);
-        System.out.println("Sum of Left tree and right tree "+(sumLeft+sumRight));
+        System.out.println("Sum of Left tree and right tree "+(sumLeft+sumRight));*/
         //Node mirror = mirror(rootNode);
         //print(mirror);
+        System.out.println("Start node "+rootNode.getRightNode().getRightNode().getData());
+        System.out.println("All nodes at distance 1 from start node is: ");
+        getKthDistanceNodes(rootNode,rootNode.getRightNode().getRightNode(),1);
 
 
     }
@@ -351,5 +352,69 @@ public class Trees {
         }
         return current;
     }
+    // 1. add all parent nodes to hashmap for each node
+    // 2. Use queue and do a BFS traversal.
+    // 3. for each element in queue check if child nodes are there in queue and set
+    // 4. if not add then to the queue and set
+    // 5. check if the node added in queue is there in hashmap and set.
+    // 6. if not add them to the queue and hashmap.
+    // 7. increment current level
+    // 8. if current level is same as k then print all nodes in queue.
+    private static void getKthDistanceNodes(Node root,Node start,int k){
+        Map<Node,Node> parentNodeMap = new HashMap<Node,Node>();
+        populateMap(parentNodeMap,root,null);
 
+        HashSet<Node> seen = new HashSet<>();
+        seen.add(start);
+
+        Queue<Node> queue = new LinkedList<>();
+
+        queue.add(start);
+        int currentLevel = 0;
+        while(!queue.isEmpty()){
+
+            int level = queue.size();
+
+            if(currentLevel == k){
+                printQueueContents(queue);
+            }
+
+            while(level>0){
+                Node node = queue.remove();
+                if(node.getLeftNode()!=null && !seen.contains(node.getLeftNode())){
+                    queue.add(node.getLeftNode());
+                    seen.add(node.getLeftNode());
+                }
+
+                if(node.getRightNode()!=null && !seen.contains(node.getRightNode())){
+                    queue.add(node.getRightNode());
+                    seen.add(node.getRightNode());
+                }
+
+                Node parent = parentNodeMap.get(node);
+                if(parent!=null && !seen.contains(parent)){
+                    seen.add(parent);
+                    queue.add(parent);
+                }
+
+                level--;
+                currentLevel++;
+            }
+        }
+    }
+
+    private static void printQueueContents(Queue<Node> queue) {
+        for (Node node: queue) {
+            System.out.print(node.getData()+" ");
+        }
+    }
+
+    private static void populateMap(Map<Node, Node> parentNodeMap, Node root, Node parent) {
+        if(root==null){
+            return;
+        }
+        parentNodeMap.put(root,parent);
+        populateMap(parentNodeMap,root.getLeftNode(),root);
+        populateMap(parentNodeMap,root.getRightNode(),root);
+    }
 }
