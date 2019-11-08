@@ -4,22 +4,19 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * "aieoueoaeeuioa",2
+ * "ritikisagoodboy", 4
+ */
+
 public class VowelProblem {
 
 
     public static void main(String[] args) {
-
-
-        String s = "dsfffffffffffffhgfhgfffffffffafkdlsajfkjdkafjkdsjfkjdsayyyyyyyyyyyyyyyyyyysfdsfdsafdafdfndnfndfndnfndfndnfndfndnfndfndnfndnfndfdnfdfdfdfdfdfdf" +
-                "dfffffffffffffffffffgfhgffffffffslkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkalakidfuierofpefdmascvdjghfjhgjfsla;dgkakgkdgjkfjkgfkdajgkajkajkjkajgkdfkagkfdgkfgkfdk" +
-                "afdssssssssssssssssssssdfdssssssssssssssssssssssssssssskmjjjjjjjjjjjjasdfadsaaaaaaaaaaafhgfhaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
-                "asssssssssssssssssssssssssssswrerwrekjlkjlkjlkjlkjlkjljkljkljkljklkjljkljkljkljkljrertretertesssssfghfghssssssshfghgfssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss";
-        /**
-         *
-         * "aieoueoaeeuioa",2
-
-         "ritikisagoodboy", 4
-         */
+        String s =  "dsfffffffffffffhgfhgfffffffffafkdlsajfkjdkafjkdsjfkjdsayyyyyyyyyyyyyyyyyyysfdsfdsafdafdfndnfndfndnfndfndnfndfndnfndfndnfndnfndfdnfdfdfdfdfdfdf" +
+                    "dfffffffffffffffffffgfhgffffffffslkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkalakidfuierofpefdmascvdjghfjhgjfsla;dgkakgkdgjkfjkgfkdajgkajkajkjkajgkdfkagkfdgkfgkfdk" +
+                    "afdssssssssssssssssssssdfdssssssssssssssssssssssssssssskmjjjjjjjjjjjjasdfadsaaaaaaaaaaafhgfhaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa" +
+                    "asssssssssssssssssssssssssssswrerwrekjlkjlkjlkjlkjlkjljkljkljkljklkjljkljkljkljkljrertretertesssssfghfghssssssshfghgfssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss";
         System.out.println(Consonant(s, 4));
 
     }
@@ -27,52 +24,43 @@ public class VowelProblem {
     private static NavigableMap<String, Integer> map = new TreeMap<>();
 
     private static int Consonant(String input1, int input2) {
-
-        return SubString(input1, input1.length(), input2);
+        return subString(input1, input1.length(), input2);
     }
 
 
-    static boolean isVowel(char c) {
+    private static boolean isVowel(char c) {
         return (c == 'a' || c == 'e' || c == 'i' ||
                 c == 'o' || c == 'u');
     }
 
-    static int longestVowel(String str) {
+    private static int longestVowel(String str) {
         int count = 0;
         char[] s = str.toCharArray();
 
-        for (int i = 0; i < s.length; i++) {
-
-
-            if (!isVowel(s[i])) {
+        for (char c : s) {
+            if (!isVowel(c)) {
                 count++;
-
             }
         }
 
         return count;
     }
 
-    static int length = 0;
-    static int len;
+    private static int length = 0;
+    private static int len;
 
-    private static Integer SubString(String str, int n, int vowel_length) {
+    private static Integer subString(String str, int n, int vowel_length) {
         len = vowel_length;
         if (vowel_length > 0) {
             for (int i = len; i < n; i++) {
                 for (int j = i + 1; j <= n; j++) {
 
-
                     String substring = str.substring(i, j);
-
-
                     if (substring.length() >= vowel_length && substring.length() >= length && longestVowel(substring) >= vowel_length) {
 
                         // System.out.println(substring+" "+substring.length());
                         length = test(str, substring.length(), vowel_length);
-
                         if (check) {
-
                             return length;
                         } else {
 
