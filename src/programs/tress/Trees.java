@@ -353,13 +353,12 @@ public class Trees {
         return current;
     }
     // 1. add all parent nodes to hashmap for each node
-    // 2. Use queue and do a BFS traversal.
-    // 3. for each element in queue check if child nodes are there in queue and set
-    // 4. if not add then to the queue and set
-    // 5. check if the node added in queue is there in hashmap and set.
-    // 6. if not add them to the queue and hashmap.
-    // 7. increment current level
-    // 8. if current level is same as k then print all nodes in queue.
+    // 2. add start node to set
+    // 3. Use queue and do a BFS traversal.
+    // 4. for each node check if left, right and parent in queue and set
+    // 5. if not add then to the queue and set
+    // 7. increment current level and decrement level traversed.
+    // 8. if current level is same as k (given level) then print all nodes in queue.
     private static void getKthDistanceNodes(Node root,Node start,int k){
         Map<Node,Node> parentNodeMap = new HashMap<Node,Node>();
         populateMap(parentNodeMap,root,null);
