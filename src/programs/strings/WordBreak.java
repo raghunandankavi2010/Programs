@@ -26,7 +26,7 @@ public class WordBreak {
         }
 
        // System.out.println(check("samice"));
-        System.out.println(SegmentString("314159265358979323846264338327",set));
+        System.out.println(segmentString("314159265358979323846264338327",set));
 
 
     }
@@ -47,7 +47,7 @@ public class WordBreak {
 
     }
 
-    private static String SegmentString(String input, Set<String> dict) {
+    private static String segmentString(String input, Set<String> dict) {
         int len = input.length();
         for (int i = 1; i < len; i++) {
             String prefix = input.substring(0, i);
