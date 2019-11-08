@@ -1,5 +1,8 @@
 package programs.sorting;
 
+/**
+ *  QuickSort O(nlogn)
+ */
 public class QuickSort  {
 
     public static void main(String[] args) {
@@ -11,15 +14,14 @@ public class QuickSort  {
     }
 
     private int[] numbers;
-    private int number;
 
-    public void sort(int[] values) {
+    private void sort(int[] values) {
         // check for empty or null array
         if (values ==null || values.length==0){
             return;
         }
         this.numbers = values;
-        number = values.length;
+        int number = values.length;
         quicksort(0, number - 1);
     }
 
@@ -54,8 +56,10 @@ public class QuickSort  {
         }
         // Recursion
         if (low < j)
+            // sort left part of array
             quicksort(low, j);
         if (i < high)
+            // sort right part of array
             quicksort(i, high);
     }
 
@@ -66,8 +70,8 @@ public class QuickSort  {
     }
 
     private void printResult(int[] numbers) {
-        for (int i = 0; i < numbers.length; i++) {
-            System.out.print(numbers[i]);
+        for (int value : numbers) {
+            System.out.print(value);
         }
         System.out.println();
     }
