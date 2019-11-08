@@ -34,7 +34,7 @@ public class SinglyLinkedList {
     }
 
 
-    public void reversePairs(Node head) {
+    private void reversePairs(Node head) {
         if(head!=null) {
          int temp;
          Node current = head;
@@ -93,19 +93,19 @@ public class SinglyLinkedList {
 
     }
 
-    public void setList_size(int list_size) {
+    private void setList_size(int list_size) {
         this.list_size = list_size;
     }
 
-    public int getList_size() {
+    private int getList_size() {
         return list_size;
     }
 
-    public void setHead(Node head) {
+    private void setHead(Node head) {
         this.head = head;
     }
 
-    public Node getHead() {
+    private Node getHead() {
         return head;
     }
 
@@ -177,6 +177,4 @@ public class SinglyLinkedList {
         }
 
     }
-
-
 }

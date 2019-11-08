@@ -95,11 +95,11 @@ public class LinkedListWithCycle {
 
     }
 
-    public void setHead(Node head) {
+    private void setHead(Node head) {
         this.head = head;
     }
 
-    public Node getHead() {
+    private Node getHead() {
         return head;
     }
     /**
@@ -192,7 +192,7 @@ public class LinkedListWithCycle {
         return false;
     }*/
 
-    boolean hasLoop_method2(Node a) {
+    private boolean hasLoop_method2(Node a) {
 
         boolean check =false;
         if(a!=null) {
@@ -226,7 +226,7 @@ public class LinkedListWithCycle {
      1 -> 2 -> 3 -> 4
      */
 
-    public void createCycle() {
+    private void createCycle() {
 
         Node current = head;
         Node next = null;

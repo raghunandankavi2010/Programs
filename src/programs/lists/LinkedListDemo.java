@@ -9,7 +9,7 @@ package programs.lists;
  *
  * @author Raghunandan
  */
-import java.util.*;
+
 import java.util.LinkedList;
 
 public class LinkedListDemo {

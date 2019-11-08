@@ -23,7 +23,7 @@ public class LinkedListReverse {
         }
     }
 
-    public void addToTheLast(Node node) {
+    private void addToTheLast(Node node) {
 
         if (head == null) {
             head = node;
@@ -37,7 +37,7 @@ public class LinkedListReverse {
     }
 
 
-    public void printList(Node head) {
+    private void printList(Node head) {
         Node temp = head;
         while (temp != null) {
             System.out.format("%d ", temp.value);
@@ -87,9 +87,6 @@ public class LinkedListReverse {
         list.printList(reverseHead);*/
 
     }
-
-
-
 }
 
 
