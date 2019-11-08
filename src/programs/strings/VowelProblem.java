@@ -79,8 +79,8 @@ public class VowelProblem {
 
     }
 
-    static int max = 0;
-    static boolean check = false;
+    private static int max = 0;
+    private static boolean check = false;
 
     public static Integer test(String s, int len, int vowel_length) {
 
