@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class ReverseString {
     public static void main(String[] args) {
-        String s = "madam";
+        String s = "madem";
         char[] chars = s.toCharArray();
         int start = 0;
         int end = s.length()-1;
@@ -55,7 +55,7 @@ public class ReverseString {
         }
         String reversed = reverse(input);
         System.out.println();
-        System.out.println("Reversed String"+reversed);
+        System.out.println("Reversed String: "+reversed);
         System.out.println();
         return input.equals(reversed);
     }
