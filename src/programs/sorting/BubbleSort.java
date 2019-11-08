@@ -1,5 +1,10 @@
 package programs.sorting;
 
+/**
+ * Bubble Sort o(n)2
+ * But in best case array is already sorted.
+ * Requires ones pass. Hence the use of flag in the below code.
+ */
 public class BubbleSort {
 
     public static void main(String[] args){
