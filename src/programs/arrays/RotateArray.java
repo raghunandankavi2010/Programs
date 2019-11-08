@@ -1,11 +1,15 @@
 package programs.arrays;
 
-public class LeftRotateArray {
+public class RotateArray {
 
     public static void main(String[] args){
         int[] arr ={ 1,2,3,4,5};
         int times = 2;
+        System.out.println("Left roated array 2 times");
         leftRotateNTimes(arr,times);
+        System.out.println();
+        System.out.println("Right Rotated array");
+        printArray(rightRotate(arr));
 
     }
 
@@ -28,6 +32,17 @@ public class LeftRotateArray {
         int i;
         for(i=0;i<arr.length-1;i++){
             arr[i] = arr[i+1];
+        }
+        arr[i] = temp;
+        return arr;
+    }
+
+    private static int[] rightRotate(int[] arr) {
+        int length = arr.length-1;
+        int temp = arr[length];
+        int i;
+        for(i=length;i>0;i--){
+            arr[i] = arr[i-1];
         }
         arr[i] = temp;
         return arr;
