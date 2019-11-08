@@ -26,6 +26,11 @@ public class ReverseString {
         }else{
             System.out.println(String.format("Given String %s is not a Palindrome", s));
         }
+        if(isPalindrome(s)){
+            System.out.println(String.format("Given String %s is a Palindrome", s));
+        }else{
+            System.out.println(String.format("Given String %s is not a Palindrome", s));
+        }
     }
 
     private static boolean isPalindrome(String s) {   // if length is 0 or 1 then String is palindrome
@@ -49,6 +54,9 @@ public class ReverseString {
             return false;
         }
         String reversed = reverse(input);
+        System.out.println();
+        System.out.println("Reversed String"+reversed);
+        System.out.println();
         return input.equals(reversed);
     }
     private static String reverse(String str) {
@@ -60,5 +68,4 @@ public class ReverseString {
         }
         return reverse(str.substring(1)) + str.charAt(0);
     }
-
 }
