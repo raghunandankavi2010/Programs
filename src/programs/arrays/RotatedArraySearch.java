@@ -16,6 +16,12 @@ public class RotatedArraySearch {
 
     public static void main(String[] args){
         int[] arr = {5, 6, 7, 8, 9, 10, 1, 2, 3};
+        int[] temp = {3,1,2};
+        if(checkArrayRotation(temp)){
+            System.out.println("Array is not rotated");
+        } else{
+            System.out.println("Array rotated right");
+        }
         int n = arr.length;
         int key = 3;
         int searchedElementIndex = search(arr,n,key);
@@ -71,5 +77,10 @@ public class RotatedArraySearch {
             return findPivot(arr,mid+1,high);
         }
 
+    }
+
+    // just a util function to check array rotation
+    private static boolean checkArrayRotation(int[] arr){
+        return arr[0] < arr[arr.length - 1];
     }
 }
