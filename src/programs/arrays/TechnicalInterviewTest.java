@@ -25,7 +25,7 @@ public class TechnicalInterviewTest {
      * method is simple, it first sort the array and then compare adjacent
      * objects, leaving out duplicates, which is already in the result.
      */
-    public static int[] removeDuplicates(int[] numbersWithDuplicates) {
+    private static int[] removeDuplicates(int[] numbersWithDuplicates) {
 
         // Sorting array to bring duplicates together
         Arrays.sort(numbersWithDuplicates);
