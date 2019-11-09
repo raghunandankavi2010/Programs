@@ -9,6 +9,8 @@
 
 If you try to run without out path specified you get a dialog. More info at https://stackoverflow.com/questions/23688702/cannot-start-compilation-the-output-path-is-not-specified-for-module. Out folder is not committed to repo as it is not required.
 
+You can contribute by submitting a pull request.
+
 # CopyRight
 
 **Copyright [2019] Raghunandan Kavi**
