@@ -1,4 +1,4 @@
-package programs.tress;
+package programs.trees;
 
 import java.util.*;
 
@@ -9,8 +9,7 @@ public class Trees {
 
     private Node rootNode;
     private static int max_level = 0;
-
-
+    
     private Trees() {
 
         Node n1 = new Node();

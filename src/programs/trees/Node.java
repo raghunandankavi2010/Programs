@@ -1,4 +1,4 @@
-package programs.tress;
+package programs.trees;
 
 public class Node {
 
