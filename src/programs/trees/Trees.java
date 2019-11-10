@@ -31,11 +31,11 @@ public class Trees {
         addNode(n7, 9);
         Node n8 = new Node();
         addNode(n8, 10);
-        int firstElement = 3;
-        int secondElement = 8;
-        List<Integer> path1 = findPath(rootNode,firstElement,new ArrayList<Integer>());
+        int firstElement = 6;
+        int secondElement = 10;
+        List<Integer> path1 = findPath(rootNode,firstElement,new ArrayList<>());
 
-        List<Integer> path2 = findPath(rootNode,secondElement,new ArrayList<Integer>());
+        List<Integer> path2 = findPath(rootNode,secondElement,new ArrayList<>());
 
         if(path1.size()>0 && path2.size()>0){
             for(int number:path1){
@@ -154,7 +154,7 @@ public class Trees {
         }
     }
 
-    public void printPreOrder(Node node) {
+    private void printPreOrder(Node node) {
         if (node != null) {
             System.out.println(node.getData());
             printPreOrder(node.getLeftNode());
