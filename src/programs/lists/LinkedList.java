@@ -15,10 +15,22 @@ public class LinkedList {
         Node node_returned;
         LinkedList linkedList = new LinkedList();
 
-        linkedList.add(1);
-        linkedList.add(0);
-        linkedList.add(0);
-        linkedList.add(1);
+        linkedList.add(3);
+        linkedList.add(6);
+        linkedList.add(9);
+        linkedList.add(15);
+        linkedList.add(30);
+
+
+        LinkedList linkedList2 = new LinkedList();
+
+        linkedList2.add(10);
+        linkedList2.add(15);
+        linkedList2.add(30);
+
+        int data = findLinkedListIntersection (linkedList.getHead(),linkedList2.getHead());
+        System.out.println(String.format("The two lists intersect at data point %d",data));
+
         //linkedList.add(15);
         //linkedList.add(20);
         //linkedList.add(25);
@@ -84,6 +96,55 @@ public class LinkedList {
 //        System.out.println("/*********Reversed & Printing************/");
 //        linkedList.print(reversed);
 
+    }
+
+    // 1.find length of 1st list
+    // 2. find length 0f 2nd list
+    // 3. find the diff
+    // 4. move the list with largest length by diff
+    // 5. now check if both list node data are same
+    // 5. if same return that data
+    // 6. else increment both the list nodes until they meet
+    private static int findLinkedListIntersection(Node head, Node head1) {
+
+        Node current = head;
+        Node current1 = head;
+        int count=0,count1=0;
+        int data = 0;
+        int diff;
+        int len = findLength(current);
+        int len1 = findLength(current1);
+
+        if(len>len1){
+            diff = len - len1;
+            while(count!=diff){
+                current = current.getNext();
+                count++;
+            }
+        }else {
+            diff = len1 - len;
+            while(count1!=diff){
+                current1 = current.getNext();
+                count1++;
+            }
+        }
+        while(current.getNext()!=null && current.getNext()!=null){
+            if(current.getData() == current1.getData()){
+                data=current.getData();
+            }
+            current = current.getNext();
+            current1 = current1.getNext();
+        }
+        return data;
+    }
+
+    private static int findLength(Node current){
+        int count=0;
+        while(current!=null){
+            current = current.getNext();
+            count++;
+        }
+        return count;
     }
 
     public void setList_size(int list_size) {
