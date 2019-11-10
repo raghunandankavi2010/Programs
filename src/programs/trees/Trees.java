@@ -31,7 +31,50 @@ public class Trees {
         addNode(n7, 9);
         Node n8 = new Node();
         addNode(n8, 10);
-       // printDataAtLevel(rootNode);
+        int firstElement = 3;
+        int secondElement = 8;
+        List<Integer> path1 = findPath(rootNode,firstElement,new ArrayList<Integer>());
+
+        List<Integer> path2 = findPath(rootNode,secondElement,new ArrayList<Integer>());
+
+        if(path1.size()>0 && path2.size()>0){
+            for(int number:path1){
+                System.out.println(number);
+            }
+            System.out.println();
+            for(int number:path2){
+                System.out.println(number);
+            }
+            System.out.println();
+            int i;
+            for (i = 0; i < path1.size() && i < path2.size(); i++) {
+                if (!path1.get(i).equals(path2.get(i))){
+                    break;
+                }
+            }
+            System.out.println(String.format("Lowest Common Ancestor of %d and %d is %d", firstElement, secondElement, path1.get(i - 1)));
+        }else{
+            System.out.println("Element not found");
+        }
+
+
+     /*   if(path2!=null)
+            for(int i=0;i<path2.size()-1;i++){
+                System.out.println(path2.get(i));
+            }*/
+     /*   if(path1!=null || path2!=null){
+            int i;
+            for (i = 0; i < path1.size() && i < path2.size(); i++) {
+                System.out.println(path1.get(i) + " " + path2.get(i));
+                if (!path1.get(i).equals(path2.get(i))){
+                    System.out.println("Lowest Common Ancestor of 0 and 3 is "+path1.get(i));
+                    break;
+                }
+
+            }
+        }*/
+
+        // printDataAtLevel(rootNode);
         //System.out.println("Largest : " + findLargestValueInTree(rootNode));
         //System.out.println("Second Largest : " + findSecondLargest(rootNode, findLargestValueInTree(rootNode)));
         //rightView(rootNode,1);
@@ -59,9 +102,9 @@ public class Trees {
         System.out.println("Sum of Left tree and right tree "+(sumLeft+sumRight));*/
         //Node mirror = mirror(rootNode);
         //print(mirror);
-        System.out.println("Start node "+rootNode.getRightNode().getRightNode().getData());
-        System.out.println("All nodes at distance 1 from start node is: ");
-        getKthDistanceNodes(rootNode,rootNode.getRightNode().getRightNode(),1);
+        //System.out.println("Start node "+rootNode.getRightNode().getRightNode().getData());
+        //System.out.println("All nodes at distance 1 from start node is: ");
+        //getKthDistanceNodes(rootNode,rootNode.getRightNode().getRightNode(),1);
 
 
     }
@@ -414,5 +457,24 @@ public class Trees {
         parentNodeMap.put(root,parent);
         populateMap(parentNodeMap,root.getLeftNode(),root);
         populateMap(parentNodeMap,root.getRightNode(),root);
+    }
+
+
+    private static List<Integer> findPath(Node head,int n,List<Integer> path){
+        if(head!=null)
+            path.add(head.getData());
+        while(head!=null &&head.getData()!=n){
+            if(n<head.getData()){
+                head = head.getLeftNode();
+            }else{
+                head = head.getRightNode();
+            }
+            if(head!=null)
+            path.add(head.getData());
+        }
+        if(!path.contains(n)){
+            path.clear();
+        }
+        return path;
     }
 }
