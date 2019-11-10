@@ -31,6 +31,9 @@ public class Trees {
         addNode(n7, 9);
         Node n8 = new Node();
         addNode(n8, 10);
+
+        System.out.println(lowestCommonAncestor(rootNode, rootNode.getLeftNode().getLeftNode(), rootNode.getLeftNode().getRightNode()).getData());
+        System.out.println();
         int firstElement = 6;
         int secondElement = 10;
         List<Integer> path1 = findPath(rootNode,firstElement,new ArrayList<>());
@@ -477,4 +480,33 @@ public class Trees {
         }
         return path;
     }
+
+    private static Node lowestCommonAncestor(Node root, Node p, Node q) {
+
+         if(root == null){
+            return null;
+        }
+
+        if(root == p || root == q){
+            return root;
+        }
+
+        Node left = lowestCommonAncestor(root.getLeftNode(),p,q);
+
+        Node right = lowestCommonAncestor(root.getRightNode(),p,q);
+
+        if(left!=null && right!=null){
+            return root;
+        }
+        if(right !=null){
+            return right;
+        }
+        if(left !=null){
+            return left;
+        }else{
+            return null;
+        }
+
+    }
+
 }
