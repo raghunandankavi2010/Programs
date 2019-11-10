@@ -18,7 +18,7 @@ public class Manachers {
     private String s;  // original string
     private char[] t;  // transformed string
 
-    public Manachers(String s) {
+    private Manachers(String s) {
         this.s = s;
         preprocess();
         p = new int[t.length];
@@ -60,7 +60,7 @@ public class Manachers {
     }
 
     // longest palindromic substring
-    public String longestPalindromicSubstring() {
+    private String longestPalindromicSubstring() {
         int length = 0;   // length of longest palindromic substring
         int center = 0;   // center of longest palindromic substring
         for (int i = 1; i < p.length-1; i++) {
