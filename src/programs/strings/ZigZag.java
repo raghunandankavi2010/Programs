@@ -33,9 +33,11 @@ public class ZigZag {
 
     public static void main(String[] args) {
         String input = "ABCD";
+        int rows = 3;
+        System.out.println(convert(input,rows));
 
         StringBuilder sb = new StringBuilder(input.length());
-        int rows = 3;
+
         HashMap<Integer, ArrayList<Character>> map = new HashMap<>(rows);
         for (int i = 0; i < rows; i++) {
             ArrayList<Character> arrayList = new ArrayList<>();
@@ -91,5 +93,27 @@ public class ZigZag {
             }
         }
         System.out.println(sb.toString());
+    }
+
+    private static String convert(String s, int numRows) {
+
+        if (numRows == 1) return s;
+
+        List<StringBuilder> rows = new ArrayList<>();
+        for (int i = 0; i < Math.min(numRows, s.length()); i++)
+            rows.add(new StringBuilder());
+
+        int curRow = 0;
+        boolean goingDown = false;
+
+        for (char c : s.toCharArray()) {
+            rows.get(curRow).append(c);
+            if (curRow == 0 || curRow == numRows - 1) goingDown = !goingDown;
+            curRow += goingDown ? 1 : -1;
+        }
+
+        StringBuilder ret = new StringBuilder();
+        for (StringBuilder row : rows) ret.append(row);
+        return ret.toString();
     }
 }
