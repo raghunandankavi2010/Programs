@@ -12,8 +12,13 @@ public class LongestPalinSubstring {
     private static String longestPalSubstr(String str) {
         int maxLength = 1;
 
+
         int start = 0;
         int len = str.length();
+        // check if length of string is less than opr equal to 1
+        if(len<=1){
+            return str;
+        }
 
         int low, high;
 
