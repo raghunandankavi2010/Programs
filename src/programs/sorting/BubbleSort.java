@@ -8,7 +8,7 @@ package programs.sorting;
 public class BubbleSort {
 
     public static void main(String[] args){
-        int[] arr= {1,2,3};
+        int[] arr= {23,1,49,100,5,3,6,21};
         int[] sortedArray = sort(arr);
         for(int number: sortedArray){
             System.out.println(number);
