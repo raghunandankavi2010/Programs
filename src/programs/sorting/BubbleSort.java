@@ -8,7 +8,7 @@ package programs.sorting;
 public class BubbleSort {
 
     public static void main(String[] args){
-        int[] arr= {5,3,1,2,12,24};
+        int[] arr= {4,2,3,1};
         int[] sortedArray = sort(arr);
         for(int number: sortedArray){
             System.out.println(number);
@@ -16,15 +16,15 @@ public class BubbleSort {
     }
 
     private static int[] sort(int[] arr){
-        int n = arr.length-1;
+        int n = arr.length;
         // to check if array is already sorted
         boolean swap = false;
-        for(int i=0;i<=n;i++){
-            for(int j= i+1;j<= n-(i+1);j++){
-                if(arr[i]>arr[j]){
-                    int temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
+        for(int i=0;i<n-1;i++){
+            for(int j = 0;j< n-i-1;j++){
+                if(arr[j]>=arr[j+1]){
+                    int temp = arr[j];
+                    arr[j] = arr[j+1];
+                    arr[j+1] = temp;
                     swap = true;
                 }
             }
