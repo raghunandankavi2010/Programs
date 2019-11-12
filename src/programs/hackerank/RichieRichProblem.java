@@ -25,8 +25,8 @@ public class RichieRichProblem {
         int j = 0;
         while ((lives > 0) && (j < n / 2)) {
             if (temp[j] != '9') {
-                if (mod[j]) lives++;
-                if (lives > 1) {
+                if (mod[j]) lives++; // prevent changing the element again
+                if (lives > 1) { // if lives is 1 that means odd string length
                     temp[j] = '9';
                     temp[n - j - 1] = '9';
                     lives -= 2;
@@ -42,11 +42,11 @@ public class RichieRichProblem {
     }
 
     public static void main(String[] args) {
-        int n = 4;
+        int n = 5;
 
         int k = 1;
 
-        String s = "3943";
+        String s = "12321";
         String result = richieRich(s, n, k);
         System.out.println(result);
 
