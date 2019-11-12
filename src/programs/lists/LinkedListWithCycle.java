@@ -135,6 +135,10 @@ public class LinkedListWithCycle {
         }
     }*/
 
+    // d = distance of list without loop k distance in loop where both slow and fast meet
+    // slow pointer moves N = d+k+c(i) c cycles and i distance travelled.
+    // fast pointer moves 2N = d+k+c(j)
+    // to find where the loop starts solving above equations d = (j-2i)c-K
     boolean hasLoop(Node first) {
 
         if(first == null) // list does not exist..so no loop either
@@ -156,8 +160,7 @@ public class LinkedListWithCycle {
             if (slow == null || fast == null) // if either hits null..no loop
                 return false;
 
-            if (slow == fast) // if the two ever meet...we must have a loop
-            {
+            if (slow == fast) {
                 fast = first;
                 while(fast != slow){
                     fast = fast.getNext();
