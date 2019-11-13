@@ -46,7 +46,7 @@ package programs.strings;
 public class ConvertStringToInteger {
 
     public static void main(String[] args) {
-        String input = "-42".trim();
+        String input = "2147483648".trim();
         String output = "";
         boolean flag = false;
         boolean added = false;
@@ -78,16 +78,18 @@ public class ConvertStringToInteger {
             }else if(output.length()>0 &&value[0]!='-' && output.length()<10){
                 System.out.println(stringToInteger(output));
             }else if(output.length()>0 && value[0]=='-' && output.length()>=11){
-                if(output.charAt(output.length()-1)>'8') {
-                    System.out.println((int)Math.pow(-2,31));
-                }else {
+                if((output.length()==11) && output.charAt(output.length()-1)<='8') {
                     System.out.println(stringToInteger(output));
+
+                }else {
+                    System.out.println((int)Math.pow(-2,31));
                 }
             }else if(output.length()>0 && value[0]!='-'&& output.length()>=10){
-                if(output.charAt(output.length()-1)>'7') {
-                    System.out.println((int)Math.pow(2,31));
-                }else {
+                if(!(output.length()==10) && output.charAt(output.length()-1)<='7') {
                     System.out.println(stringToInteger(output));
+
+                }else {
+                    System.out.println((int)Math.pow(2,31));
                 }
             }else{
                 System.out.println(stringToInteger("0"));
