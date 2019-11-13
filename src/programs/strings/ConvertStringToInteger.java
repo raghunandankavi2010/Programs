@@ -46,7 +46,7 @@ package programs.strings;
 public class ConvertStringToInteger {
 
     public static void main(String[] args) {
-        String input = "-2147483649".trim();
+        String input = "-42".trim();
         String output = "";
         boolean flag = false;
         boolean added = false;
@@ -54,20 +54,19 @@ public class ConvertStringToInteger {
         System.out.print(String.format("Given %s converted to integer : ",input));
         if(input.length()>0){
             value = input.toCharArray();
-            for(int i=0;i<value.length;i++){
-                char val = value[i];
+            for (char val : value) {
                 // add + or - only once if it is first char in input string
-                if((value[0]=='-'||value[0]=='+') && !added){
-                    output = output+val;
+                if ((value[0] == '-' || value[0] == '+') && !added) {
+                    output = output + val;
                     added = true;
                 }
                 // check if there is a invalid char
-                else if(isLetter(val)||val==' '||val=='.'||val=='+'||val=='-'||val=='@'||val=='*'||val=='/'){
+                else if (isLetter(val) || val == ' ' || val == '.' || val == '+' || val == '-' || val == '@' || val == '*' || val == '/') {
                     break;
-                }else if(val=='0' && !flag){ // just skip 0's at the beginning
-                    output = output+"";
-                }else  { // just add the input chars to output;
-                    output = output+val;
+                } else if (val == '0' && !flag) { // just skip 0's at the beginning
+                    output = output + "";
+                } else { // just add the input chars to output;
+                    output = output + val;
                     flag = true;
                 }
             }
@@ -75,31 +74,50 @@ public class ConvertStringToInteger {
             // else if input length is less than 11(including + or -) or 10 parse the string to int
             // check for overflow conditions and return appropriate values.
             if(output.length()>0 && value[0]=='-' && output.length()<11){
-                System.out.println(output);
+                System.out.println(stringToInteger(output));
             }else if(output.length()>0 &&value[0]!='-' && output.length()<10){
-                System.out.println(output);
+                System.out.println(stringToInteger(output));
             }else if(output.length()>0 && value[0]=='-' && output.length()>=11){
                 if(output.charAt(output.length()-1)>'8') {
                     System.out.println((int)Math.pow(-2,31));
                 }else {
-                    System.out.println(output);
+                    System.out.println(stringToInteger(output));
                 }
             }else if(output.length()>0 && value[0]!='-'&& output.length()>=10){
                 if(output.charAt(output.length()-1)>'7') {
                     System.out.println((int)Math.pow(2,31));
                 }else {
-                    System.out.println(output);
+                    System.out.println(stringToInteger(output));
                 }
             }else{
-                System.out.println(0);
+                System.out.println(stringToInteger("0"));
             }
         }else{
-            System.out.println(0);
+            System.out.println(stringToInteger("0"));
         }
     }
 
     private static boolean isLetter(char c) {
         return (c >= 'a' && c <= 'z') ||
                 (c >= 'A' && c <= 'Z');
+    }
+
+    private static int stringToInteger(String str) {
+        boolean isNegative=false;
+        int number =0;
+        if (str.charAt(0)=='-') {
+            isNegative=true;
+        }else{
+            number = number* 10 + str.charAt(0)-'0';
+        }
+
+        for (int i = 1; i < str.length(); i++) {
+
+            number = number*10 + str.charAt(i)-'0';
+        }
+        if(isNegative){
+            number = 0-number;
+        }
+        return number;
     }
 }
