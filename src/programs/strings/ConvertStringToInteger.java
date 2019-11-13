@@ -41,12 +41,12 @@ package programs.strings;
  *  Input: "-91283472332"
  *  Output: -2147483648
  *  Explanation: The number "-91283472332" is out of the range of a 32-bit signed integer.
- *  Thefore INT_MIN (−231) is returned.
+ *  Thefore INT_MIN (−2pow31) is returned.
  */
 public class ConvertStringToInteger {
 
     public static void main(String[] args) {
-        String input = "  -0012a42".trim();
+        String input = "-2147483649".trim();
         String output = "";
         boolean flag = false;
         boolean added = false;
@@ -75,46 +75,31 @@ public class ConvertStringToInteger {
             // else if input length is less than 11(including + or -) or 10 parse the string to int
             // check for overflow conditions and return appropriate values.
             if(output.length()>0 && value[0]=='-' && output.length()<11){
-                System.out.println(parseIntWithOverflow(output));
+                System.out.println(output);
             }else if(output.length()>0 &&value[0]!='-' && output.length()<10){
-                System.out.println(parseIntWithOverflow(output));
+                System.out.println(output);
             }else if(output.length()>0 && value[0]=='-' && output.length()>=11){
-                int val =parseIntWithOverflow(output);
-                if(val!=0){
-                    System.out.println(val);
-                }else {
+                if(output.charAt(output.length()-1)>'8') {
                     System.out.println((int)Math.pow(-2,31));
+                }else {
+                    System.out.println(output);
                 }
             }else if(output.length()>0 && value[0]!='-'&& output.length()>=10){
-                int val = parseIntWithOverflow(output);
-                if(val!=0){
-                    System.out.println(val);
+                if(output.charAt(output.length()-1)>'7') {
+                    System.out.println((int)Math.pow(2,31));
                 }else {
-                    int num = (int)Math.pow(2,31);
-                    System.out.println(num);
+                    System.out.println(output);
                 }
-
             }else{
                 System.out.println(0);
             }
         }else{
             System.out.println(0);
         }
-
     }
 
     private static boolean isLetter(char c) {
         return (c >= 'a' && c <= 'z') ||
                 (c >= 'A' && c <= 'Z');
-    }
-
-    private static int parseIntWithOverflow(String s) {
-        int result;
-        try {
-            result = Integer.parseInt(s);
-        } catch (NumberFormatException e) {
-            result = 0;
-        }
-        return result;
     }
 }
