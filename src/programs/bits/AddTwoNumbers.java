@@ -19,9 +19,9 @@ public class AddTwoNumbers {
 
     private static int add(int a, int b) {
         while(b!=0){
-            int carrb = a & b; // carrb can be got bb using and operator on two bits
-            a = a^b; // sum can be got bbaor two bits
-            b = carrb<<1; // need to add carrb to left bit;
+            int carrb = a & b; // carry can be got bb using and operator on two bits
+            a = a^b; // sum can be got by anding two bits
+            b = carrb<<1; // need to add carry to left bit;
         }
         return  a;
     }
