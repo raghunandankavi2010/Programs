@@ -520,6 +520,7 @@ public class LinkedList {
     // the trick is to see if you are deleting form end or start
     // if you are deleting from any where else you need to have 3 pointers and 3 nodes
     // prev next and current and then just change prev.setNext(current)
+    // https://leetcode.com/submissions/detail/278942358/
     private static Node removeNthItemFromEnd(Node head,int n){
         if(head.getNext()==null){
             return null;
@@ -527,7 +528,7 @@ public class LinkedList {
        Node current= head;
        Node prev = null;
        Node next = null;
-       int count = 0;
+
        int listCount =1;
        while(current.getNext()!=null){
            if(n==1){
@@ -541,7 +542,6 @@ public class LinkedList {
                    next = next.getNext();
                }
                listCount++;
-               count++;
                if (listCount-n==0) {
                    next = head;
                    prev =next;
