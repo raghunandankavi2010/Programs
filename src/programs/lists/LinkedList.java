@@ -15,34 +15,37 @@ public class LinkedList {
         Node node_returned;
         LinkedList linkedList = new LinkedList();
 
+        linkedList.add(1);
+        linkedList.add(2);
         linkedList.add(3);
-        linkedList.add(6);
-        linkedList.add(9);
+        /*linkedList.add(4);
+        linkedList.add(5);
         linkedList.add(15);
-        linkedList.add(30);
+        linkedList.add(30);*/
+        Node root = removeNthItemFromEnd(linkedList.getHead(),1);
+        linkedList.print(root);
 
-
-        LinkedList linkedList2 = new LinkedList();
+       /* LinkedList linkedList2 = new LinkedList();
 
         linkedList2.add(10);
         linkedList2.add(15);
         linkedList2.add(30);
 
         int data = findLinkedListIntersection (linkedList.getHead(),linkedList2.getHead());
-        System.out.println(String.format("The two lists intersect at data point %d",data));
+        System.out.println(String.format("The two lists intersect at data point %d",data));*/
 
         //linkedList.add(15);
         //linkedList.add(20);
         //linkedList.add(25);
         // linkedList.printSize(linkedList.getHead());
-        System.out.println("...................");
+       // System.out.println("...................");
         // linkedList.printMiddleElementWithOnePass(linkedList.getHead());
-        first = linkedList.getHead();
+        /*first = linkedList.getHead();
         if (isPalindrome(linkedList.getHead())) {
             System.out.println("Palindrome");
         } else {
             System.out.println("Not Palindrome");
-        }
+        }*/
 /*
 
         first = linkedList.getHead();
@@ -514,7 +517,58 @@ public class LinkedList {
         return y;
     }
 
+    // the trick is to see if you are deleting form end or start
+    // if you are deleting from any where else you need to have 3 pointers and 3 nodes
+    // prev next and current and then just change prev.setNext(current)
+    private static Node removeNthItemFromEnd(Node head,int n){
+        if(head.getNext()==null){
+            return null;
+        }
+       Node current= head;
+       Node prev = null;
+       Node next = null;
+       int count = 0;
+       int listCount =1;
+       while(current.getNext()!=null){
+           if(n==1){
+               next = current.getNext();
+               prev = current;
+               current = next;
+           }else {
+               current = current.getNext();
+               if (next != null) {
+                   prev = next;
+                   next = next.getNext();
+               }
+               listCount++;
+               count++;
+               if (listCount-n==0) {
+                   next = head;
+                   prev =next;
 
+               }
+           }
+       }
+       if((n!=1) && listCount==n){ // if you are deleting from start
+            prev = next;
+            prev = prev.getNext();
+            head = prev;
+            return head;
+        }
+       if(n==1){ // deleting from end
+           prev.setNext(null);
+           return head;
+       } else if(listCount==2 && n==2){ // if there are just 2 elements
+          head = current;
+            return head;
+        }
+       else if (prev!=null ) { // atleast 3 elements and deleting the middle node
+           next = next.getNext();
+           prev.setNext(next);
+           return head;
+       }
+       return head;
+    }
 }
 
 
