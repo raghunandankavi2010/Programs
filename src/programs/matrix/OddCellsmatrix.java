@@ -19,12 +19,12 @@ public class OddCellsmatrix {
                 {1,1}
         };
 
-        for(int i=0;i<indices.length;i++){
-            for(int j=0;j<indices[i].length;j++){
-                if(j==1){
-                    addMatrixColumn(indices[i][j],matrix);
-                }else {
-                    addMatrixRow(indices[i][j], matrix);
+        for (int[] index : indices) {
+            for (int j = 0; j < index.length; j++) {
+                if (j == 1) {
+                    addMatrixColumn(index[j], matrix);
+                } else {
+                    addMatrixRow(index[j], matrix);
                 }
             }
         }
@@ -43,18 +43,17 @@ public class OddCellsmatrix {
         for(int i=0;i<matrix.length;i++){
             matrix[i][column] = matrix[i][column]+1;
         }
-
     }
 
     private static void printMatrix(int[][] matrix){
         int count =0;
         for (int[] ints : matrix) {
-            for (int j = 0; j < ints.length; j++) {
-                if (ints[j] % 2 != 0) {
+            for (int anInt : ints) {
+                if (anInt % 2 != 0) {
                     count++;
                 }
             }
         }
-        System.out.println(count);
+        System.out.println("Odd count of cells is "+count);
     }
 }
