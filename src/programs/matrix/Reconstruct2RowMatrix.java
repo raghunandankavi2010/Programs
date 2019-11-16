@@ -24,11 +24,16 @@ import java.util.List;
 public class Reconstruct2RowMatrix {
 
     public static void main(String[] args) {
-        int upper = 2, lower = 1;
-        int[] colsum = {1,1,1};
+        int upper = 5, lower = 5;
+        int[] colsum1 = {2, 1, 2, 0, 1, 0, 1, 2, 0, 1};
 
-        reconstructMatrix(upper, lower, colsum);
-
+        List<List<Integer>> mList = reconstructMatrix(upper, lower, colsum1);
+        for (int i = 0; i < mList.size(); i++) {
+            for (int j = 0; j < mList.get(i).size(); j++) {
+                System.out.print(mList.get(i).get(j)+" ");
+            }
+            System.out.println();
+        }
     }
 
     private static List<List<Integer>> reconstructMatrix(int upper, int lower, int[] colsum) {
