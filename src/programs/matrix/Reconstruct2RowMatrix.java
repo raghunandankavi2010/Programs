@@ -41,21 +41,21 @@ public class Reconstruct2RowMatrix {
         matrix.add(new ArrayList<>(colsum.length));
         matrix.add(new ArrayList<>(colsum.length));
 
-        for(int j = 0; j < colsum.length; j++){
-            if(colsum[j] == 0){
+        for (int j = 0; j < colsum.length; j++) {
+            if (colsum[j] == 0) {
                 matrix.get(0).add(0);
                 matrix.get(1).add(0);
-            }else if(colsum[j] == 2){
+            } else if (colsum[j] == 2) {
                 matrix.get(0).add(1);
                 matrix.get(1).add(1);
                 upper--;
                 lower--;
-            }else if(colsum[j] == 1){
-                if(upper > lower){
+            } else if (colsum[j] == 1) {
+                if (upper > lower) {
                     matrix.get(0).add(1);
                     matrix.get(1).add(0);
                     upper--;
-                }else{
+                } else {
                     matrix.get(0).add(0);
                     matrix.get(1).add(1);
                     lower--;
@@ -63,7 +63,7 @@ public class Reconstruct2RowMatrix {
             }
         }
 
-        if(upper == 0 && lower == 0) return matrix;
+        if (upper == 0 && lower == 0) return matrix;
         else return new ArrayList<>();
     }
 
