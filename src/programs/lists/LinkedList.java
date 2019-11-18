@@ -713,11 +713,6 @@ public class LinkedList {
         Node current = head;
         Node prev = null;
         Node next = null;
-        // at the beginning
-        if (head.getData() == value) {
-            head = head.getNext();
-        }
-        current = head;
         while (current.getNext()!= null) {
             if (current.getData() == value && prev == null) {
                 head = head.getNext();
