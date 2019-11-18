@@ -22,7 +22,8 @@ public class LinkedList {
         linkedList.add(3);
         linkedList.add(2);
 
-        linkedList.print(removeAllNodesWithKValue(linkedList.getHead(), 2));
+        linkedList.print(swapPairs(linkedList.getHead()));
+       // linkedList.print(removeAllNodesWithKValue(linkedList.getHead(), 2));
         //linkedList.print(partitionList(linkedList.getHead(),3));
 
         //Node root = reverseKNodesIteratively(linkedList.head,2);
@@ -737,6 +738,36 @@ public class LinkedList {
         }
 
         return head;
+    }
+
+    // this is the same idea as to reverse elements in groups of k
+    // here k = 2;
+    private static Node swapPairs(Node head){
+        Node current = head;
+        Node next;
+        Node prev = null;
+        Node tail=null;
+        Node newHead=null;
+        Node join;
+        int t;
+        while(current!=null ){
+            t= 2;
+            join = current;
+            prev = null;
+           while(current!=null && t--!=0){
+               next = current.getNext();
+               current.setNext(prev);
+               prev = current;
+               current = next;
+           }
+           if(newHead == null){
+               newHead = prev;
+           }
+           if(tail!=null)
+               tail.setNext(prev);
+           tail = join;
+        }
+        return newHead;
     }
 }
 
