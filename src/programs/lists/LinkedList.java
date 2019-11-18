@@ -23,7 +23,9 @@ public class LinkedList {
         linkedList.add(15);
         linkedList.add(30);
 
-        printLastK(linkedList.head,3);
+        Node root = reverseKNodesIteratively(linkedList.head,2);
+        linkedList.print(root);
+       // printLastK(linkedList.head,3);
 
         //Node root =reverseKConsecutiveElements(linkedList.getHead(),2);
        // Node root = reverseKConsecutiveKAlternateElements(linkedList.getHead(), 2);
@@ -622,6 +624,41 @@ public class LinkedList {
             current.setNext(reverseKConsecutiveKAlternateElements(current.getNext(), k));
         }
         return prev;
+    }
+
+    // Reverse k nodes iteratively
+    private static Node reverseKNodesIteratively(Node head, int k){
+
+        Node prev ;
+        Node current = head;
+        Node temp ;
+        Node tail = null;
+        Node newHead = null;
+        Node join ;
+        int t;
+        while(current!=null){
+            t= k;
+            join = current;// initially pointed to head
+            prev = null;
+            // reverse first k elements
+            while(current!=null && t--!=0){
+                temp = current.getNext();
+                current.setNext(prev);
+                prev = current;
+                current = temp;
+            }
+            // we have the new head now
+            if(newHead==null){
+                newHead = prev;
+            }
+
+            if (tail != null)
+                tail.setNext(prev); // join the tail to current head
+            // on first iteration tail is pointing to head
+            tail = join;
+
+        }
+        return newHead;
     }
 
     // print last k elements
