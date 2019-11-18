@@ -12,18 +12,19 @@ public class LinkedList {
 
     public static void main(String[] args) {
 
-        Node node_returned;
         LinkedList linkedList = new LinkedList();
 
         linkedList.add(1);
         linkedList.add(2);
         linkedList.add(3);
-        /*linkedList.add(4);
+        linkedList.add(4);
         linkedList.add(5);
         linkedList.add(15);
-        linkedList.add(30);*/
-        Node root = removeNthItemFromEnd(linkedList.getHead(),1);
+        linkedList.add(30);
+        Node root =reverseKConsecutiveElements(linkedList.getHead(),2);
         linkedList.print(root);
+       // Node root = removeNthItemFromEnd(linkedList.getHead(),1);
+        //linkedList.print(root);
 
        /* LinkedList linkedList2 = new LinkedList();
 
@@ -569,6 +570,26 @@ public class LinkedList {
        }
        return head;
     }
+
+    // reverse k consecutive elements in list
+    private static Node reverseKConsecutiveElements(Node head, int k){
+        Node current = head;
+        Node next = null;
+        Node prev = null;
+        int count = 0;
+        while(count<k && current!=null){
+            next = current.getNext();
+            current.setNext(prev);
+            prev = current;
+            current = next;
+            count++;
+        }
+        if (next != null)
+            // make head point to next node
+            head.setNext(reverseKConsecutiveElements(next, k));
+        return prev;
+    }
+
 }
 
 
