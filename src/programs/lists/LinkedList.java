@@ -16,15 +16,16 @@ public class LinkedList {
         LinkedList linkedList = new LinkedList();
 
         linkedList.add(1);
-        linkedList.add(2);
-        linkedList.add(3);
         linkedList.add(4);
+        linkedList.add(3);
+        linkedList.add(2);
         linkedList.add(5);
-        linkedList.add(15);
-        linkedList.add(30);
+        linkedList.add(2);
 
-        Node root = reverseKNodesIteratively(linkedList.head,2);
-        linkedList.print(root);
+        linkedList.print(partitionList(linkedList.getHead(),3));
+
+        //Node root = reverseKNodesIteratively(linkedList.head,2);
+        //linkedList.print(root);
        // printLastK(linkedList.head,3);
 
         //Node root =reverseKConsecutiveElements(linkedList.getHead(),2);
@@ -674,6 +675,29 @@ public class LinkedList {
         if(count<=k){
             System.out.println(head.getData());
         }
+    }
+
+    // partition list such that all values less than k appear before
+    // and the rest of the elements later.
+    private static Node partitionList(Node head,int k){
+        Node current = head;
+        Node before = new Node(0) ;
+        Node after = new Node(0) ;
+        Node beforeHead= before;
+        Node afterHead= after;
+        while(current!=null){
+            if(current.getData()<k){
+                before.setNext(current);
+                before = before.getNext();
+            }else{
+                after.setNext(current);
+                after = after.getNext();
+            }
+            current = current.getNext();
+        }
+        after.setNext(null);
+        before.setNext(afterHead.getNext());
+        return beforeHead.getNext();
     }
 }
 
