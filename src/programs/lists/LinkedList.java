@@ -15,21 +15,22 @@ public class LinkedList {
 
         LinkedList linkedList = new LinkedList();
 
-        linkedList.add(1);
+        linkedList.add(2);
         linkedList.add(4);
+        linkedList.add(2);
+        linkedList.add(2);
         linkedList.add(3);
         linkedList.add(2);
-        linkedList.add(5);
-        linkedList.add(2);
 
-        linkedList.print(partitionList(linkedList.getHead(),3));
+        linkedList.print(removeAllNodesWithKValue(linkedList.getHead(), 2));
+        //linkedList.print(partitionList(linkedList.getHead(),3));
 
         //Node root = reverseKNodesIteratively(linkedList.head,2);
         //linkedList.print(root);
-       // printLastK(linkedList.head,3);
+        // printLastK(linkedList.head,3);
 
         //Node root =reverseKConsecutiveElements(linkedList.getHead(),2);
-       // Node root = reverseKConsecutiveKAlternateElements(linkedList.getHead(), 2);
+        // Node root = reverseKConsecutiveKAlternateElements(linkedList.getHead(), 2);
         //Node root = removeNthItemFromEnd(linkedList.getHead(),1);
         //linkedList.print(root);
 
@@ -628,28 +629,28 @@ public class LinkedList {
     }
 
     // Reverse k nodes iteratively
-    private static Node reverseKNodesIteratively(Node head, int k){
+    private static Node reverseKNodesIteratively(Node head, int k) {
 
-        Node prev ;
+        Node prev;
         Node current = head;
-        Node temp ;
+        Node temp;
         Node tail = null;
         Node newHead = null;
-        Node join ;
+        Node join;
         int t;
-        while(current!=null){
-            t= k;
+        while (current != null) {
+            t = k;
             join = current;// initially pointed to head
             prev = null;
             // reverse first k elements
-            while(current!=null && t--!=0){
+            while (current != null && t-- != 0) {
                 temp = current.getNext();
                 current.setNext(prev);
                 prev = current;
                 current = temp;
             }
             // we have the new head now
-            if(newHead==null){
+            if (newHead == null) {
                 newHead = prev;
             }
 
@@ -666,30 +667,30 @@ public class LinkedList {
     // recursively traverse the list
     // as each recursion returns increment a count
     // print data until count is less than or equal to k
-    private static void printLastK(Node head,int k){
-        if (head==null)
-        return;
+    private static void printLastK(Node head, int k) {
+        if (head == null)
+            return;
 
-        printLastK(head.getNext(),k);
+        printLastK(head.getNext(), k);
         count++;
-        if(count<=k){
+        if (count <= k) {
             System.out.println(head.getData());
         }
     }
 
     // partition list such that all values less than k appear before
     // and the rest of the elements later.
-    private static Node partitionList(Node head,int k){
+    private static Node partitionList(Node head, int k) {
         Node current = head;
-        Node before = new Node(0) ;
-        Node after = new Node(0) ;
-        Node beforeHead= before;
-        Node afterHead= after;
-        while(current!=null){
-            if(current.getData()<k){
+        Node before = new Node(0);
+        Node after = new Node(0);
+        Node beforeHead = before;
+        Node afterHead = after;
+        while (current != null) {
+            if (current.getData() < k) {
                 before.setNext(current);
                 before = before.getNext();
-            }else{
+            } else {
                 after.setNext(current);
                 after = after.getNext();
             }
@@ -698,6 +699,49 @@ public class LinkedList {
         after.setNext(null);
         before.setNext(afterHead.getNext());
         return beforeHead.getNext();
+    }
+
+    // https://leetcode.com/problems/remove-linked-list-elements/submissions/
+    private static Node removeAllNodesWithKValue(Node head, int value) {
+        if(head==null){
+            return head;
+        }
+        if(head.getNext()==null && head.getData()==value){
+            head = null;
+            return head;
+        }
+        Node current = head;
+        Node prev = null;
+        Node next = null;
+        // at the beginning
+        if (head.getData() == value) {
+            head = head.getNext();
+        }
+        current = head;
+        while (current.getNext()!= null) {
+            if (current.getData() == value && prev == null) {
+                head = head.getNext();
+                current = head;
+            } else if (current.getNext()!=null && current.getData() == value && prev != null) {
+                next = current.getNext();
+                prev.setNext(next);
+                current = next;
+            }
+            else if(current.getNext()!=null) {
+                next = current.getNext();
+                prev = current;
+                current = next;
+            }
+        }
+
+        if(current.getNext()==null && current.getData()==value && prev!=null) {
+            prev.setNext(null);
+        }else if(current.getNext()==null && current.getData()==value && prev==null){
+            current = null;
+            head = current;
+        }
+
+        return head;
     }
 }
 
