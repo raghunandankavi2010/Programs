@@ -21,10 +21,11 @@ public class LinkedList {
         linkedList.add(5);
         linkedList.add(15);
         linkedList.add(30);
+
         Node root =reverseKConsecutiveElements(linkedList.getHead(),2);
+       // Node root = reverseKConsecutiveKAlternateElements(linkedList.getHead(), 2);
+        //Node root = removeNthItemFromEnd(linkedList.getHead(),1);
         linkedList.print(root);
-       // Node root = removeNthItemFromEnd(linkedList.getHead(),1);
-        //linkedList.print(root);
 
        /* LinkedList linkedList2 = new LinkedList();
 
@@ -39,7 +40,7 @@ public class LinkedList {
         //linkedList.add(20);
         //linkedList.add(25);
         // linkedList.printSize(linkedList.getHead());
-       // System.out.println("...................");
+        // System.out.println("...................");
         // linkedList.printMiddleElementWithOnePass(linkedList.getHead());
         /*first = linkedList.getHead();
         if (isPalindrome(linkedList.getHead())) {
@@ -113,28 +114,28 @@ public class LinkedList {
 
         Node current = head;
         Node current1 = head;
-        int count=0,count1=0;
+        int count = 0, count1 = 0;
         int data = 0;
         int diff;
         int len = findLength(current);
         int len1 = findLength(current1);
 
-        if(len>len1){
+        if (len > len1) {
             diff = len - len1;
-            while(count!=diff){
+            while (count != diff) {
                 current = current.getNext();
                 count++;
             }
-        }else {
+        } else {
             diff = len1 - len;
-            while(count1!=diff){
+            while (count1 != diff) {
                 current1 = current.getNext();
                 count1++;
             }
         }
-        while(current.getNext()!=null && current.getNext()!=null){
-            if(current.getData() == current1.getData()){
-                data=current.getData();
+        while (current.getNext() != null && current.getNext() != null) {
+            if (current.getData() == current1.getData()) {
+                data = current.getData();
             }
             current = current.getNext();
             current1 = current1.getNext();
@@ -142,9 +143,9 @@ public class LinkedList {
         return data;
     }
 
-    private static int findLength(Node current){
-        int count=0;
-        while(current!=null){
+    private static int findLength(Node current) {
+        int count = 0;
+        while (current != null) {
             current = current.getNext();
             count++;
         }
@@ -522,62 +523,61 @@ public class LinkedList {
     // if you are deleting from any where else you need to have 3 pointers and 3 nodes
     // prev next and current and then just change prev.setNext(current)
     // https://leetcode.com/submissions/detail/278942358/
-    private static Node removeNthItemFromEnd(Node head,int n){
-        if(head.getNext()==null){
+    private static Node removeNthItemFromEnd(Node head, int n) {
+        if (head.getNext() == null) {
             return null;
         }
-       Node current= head;
-       Node prev = null;
-       Node next = null;
+        Node current = head;
+        Node prev = null;
+        Node next = null;
 
-       int listCount =1;
-       while(current.getNext()!=null){
-           if(n==1){
-               next = current.getNext();
-               prev = current;
-               current = next;
-           }else {
-               current = current.getNext();
-               if (next != null) {
-                   prev = next;
-                   next = next.getNext();
-               }
-               listCount++;
-               if (listCount-n==0) {
-                   next = head;
-                   prev =next;
+        int listCount = 1;
+        while (current.getNext() != null) {
+            if (n == 1) {
+                next = current.getNext();
+                prev = current;
+                current = next;
+            } else {
+                current = current.getNext();
+                if (next != null) {
+                    prev = next;
+                    next = next.getNext();
+                }
+                listCount++;
+                if (listCount - n == 0) {
+                    next = head;
+                    prev = next;
 
-               }
-           }
-       }
-       if((n!=1) && listCount==n){ // if you are deleting from start
+                }
+            }
+        }
+        if ((n != 1) && listCount == n) { // if you are deleting from start
             prev = next;
             prev = prev.getNext();
             head = prev;
             return head;
         }
-       if(n==1){ // deleting from end
-           prev.setNext(null);
-           return head;
-       } else if(listCount==2 && n==2){ // if there are just 2 elements
-          head = current;
+        if (n == 1) { // deleting from end
+            prev.setNext(null);
+            return head;
+        } else if (listCount == 2 && n == 2) { // if there are just 2 elements
+            head = current;
+            return head;
+        } else if (prev != null) { // atleast 3 elements and deleting the middle node
+            next = next.getNext();
+            prev.setNext(next);
             return head;
         }
-       else if (prev!=null ) { // atleast 3 elements and deleting the middle node
-           next = next.getNext();
-           prev.setNext(next);
-           return head;
-       }
-       return head;
+        return head;
     }
 
     // reverse k consecutive elements in list
-    private static Node reverseKConsecutiveElements(Node head, int k){
+    private static Node reverseKConsecutiveElements(Node head, int k) {
         Node current = head;
         Node next = null;
         Node prev = null;
         int count = 0;
-        while(count<k && current!=null){
+        while (count < k && current != null) {
             next = current.getNext();
             current.setNext(prev);
             prev = current;
@@ -590,6 +590,36 @@ public class LinkedList {
         return prev;
     }
 
+    // reverse k consecutive alternate elements in list
+    private static Node reverseKConsecutiveKAlternateElements(Node head, int k) {
+        Node current = head;
+        Node next;
+        Node prev = null;
+        int count = 0;
+        while (count < k && current != null) {
+            next = current.getNext();
+            current.setNext(prev);
+            prev = current;
+            current = next;
+            count++;
+        }
+
+        // point head to element next of k elements reversed
+        if (head != null) {
+            head.setNext(current);
+        }
+        // skip next k elements
+        count = 0;
+        while (count < k - 1 && current != null) {
+            current = current.getNext();
+            count++;
+        }
+        // recursively reverse next k elements and so on till end.
+        if (current != null) {
+            current.setNext(reverseKConsecutiveKAlternateElements(current.getNext(), k));
+        }
+        return prev;
+    }
 }
 
 
