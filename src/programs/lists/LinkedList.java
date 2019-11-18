@@ -9,6 +9,7 @@ public class LinkedList {
     private int list_size;
     private static Node first;
     private static boolean x = true;
+    private static int count = 0;
 
     public static void main(String[] args) {
 
@@ -22,10 +23,12 @@ public class LinkedList {
         linkedList.add(15);
         linkedList.add(30);
 
-        Node root =reverseKConsecutiveElements(linkedList.getHead(),2);
+        printLastK(linkedList.head,3);
+
+        //Node root =reverseKConsecutiveElements(linkedList.getHead(),2);
        // Node root = reverseKConsecutiveKAlternateElements(linkedList.getHead(), 2);
         //Node root = removeNthItemFromEnd(linkedList.getHead(),1);
-        linkedList.print(root);
+        //linkedList.print(root);
 
        /* LinkedList linkedList2 = new LinkedList();
 
@@ -619,6 +622,21 @@ public class LinkedList {
             current.setNext(reverseKConsecutiveKAlternateElements(current.getNext(), k));
         }
         return prev;
+    }
+
+    // print last k elements
+    // recursively traverse the list
+    // as each recursion returns increment a count
+    // print data until count is less than or equal to k
+    private static void printLastK(Node head,int k){
+        if (head==null)
+        return;
+
+        printLastK(head.getNext(),k);
+        count++;
+        if(count<=k){
+            System.out.println(head.getData());
+        }
     }
 }
 
