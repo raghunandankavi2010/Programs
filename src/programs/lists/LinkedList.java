@@ -10,19 +10,24 @@ public class LinkedList {
     private static Node first;
     private static boolean x = true;
     private static int count = 0;
+    private static long number=0;
 
     public static void main(String[] args) {
 
         LinkedList linkedList = new LinkedList();
+        linkedList.add(9);
 
-        linkedList.add(2);
-        linkedList.add(4);
-        linkedList.add(2);
-        linkedList.add(2);
-        linkedList.add(3);
-        linkedList.add(2);
 
-        linkedList.print(swapPairs(linkedList.getHead()));
+        LinkedList linkedList1 = new LinkedList();
+
+        linkedList1.add(1);
+        linkedList1.add(9);
+        linkedList1.add(9);
+
+        Node head =addTwoNumbers(linkedList.getHead(),linkedList1.getHead());
+        linkedList.print(head);
+
+        //linkedList.print(swapPairs(linkedList.getHead()));
        // linkedList.print(removeAllNodesWithKValue(linkedList.getHead(), 2));
         //linkedList.print(partitionList(linkedList.getHead(),3));
 
@@ -768,6 +773,47 @@ public class LinkedList {
            tail = join;
         }
         return newHead;
+    }
+
+    // this works for numbers within or equal to range of long
+    // for numbers greater than range there is a solution at https://www.programcreek.com/2012/12/add-two-numbers/
+    private static Node addTwoNumbers(Node l1, Node l2) {
+        if(l1.getData()==0 && l1.getNext()==null && l2.getData()==0 && l2.getNext()==null){
+            return new Node(0);
+        }
+        long num1 = getNumber(l1);
+        number =0;
+        long num2 = getNumber(l2);
+        long sum = num1+num2;
+        Node head=null ;
+        long num;
+        while(sum!=0){
+            num = sum%10;
+            sum = sum/10;
+            if(head==null){
+                head = new Node((int)num);
+
+            }else{
+                Node temp = new Node((int)num);
+                Node current = head;
+                while(current.getNext()!=null){
+                    current = current.getNext();
+                }
+                current.setNext(temp);
+                temp.setNext(null);
+
+            }
+        }
+        return head;
+    }
+
+    private static long getNumber(Node node) {
+        if(node==null){
+            return -1;
+        }
+        getNumber(node.getNext());
+        number = number*10+node.getData();
+        return number;
     }
 }
 
