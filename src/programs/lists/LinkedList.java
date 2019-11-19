@@ -10,7 +10,7 @@ public class LinkedList {
     private static Node first;
     private static boolean x = true;
     private static int count = 0;
-    private static long number=0;
+    private static long number = 0;
 
     public static void main(String[] args) {
 
@@ -20,7 +20,9 @@ public class LinkedList {
         linkedList.add(3);
         linkedList.add(4);
         linkedList.add(5);
-        Node root = reverseBetween(linkedList.getHead(),1,2);
+        //linkedList.add(6);
+        Node root = reverseInGroups(linkedList.getHead(), 2);
+        //Node root = reverseBetween(linkedList.getHead(),1,2);
         linkedList.print(root);
 
         LinkedList linkedList1 = new LinkedList();
@@ -34,10 +36,10 @@ public class LinkedList {
         //linkedList.print(head);
 
         //linkedList.print(swapPairs(linkedList.getHead()));
-       // linkedList.print(removeAllNodesWithKValue(linkedList.getHead(), 2));
+        // linkedList.print(removeAllNodesWithKValue(linkedList.getHead(), 2));
         //linkedList.print(partitionList(linkedList.getHead(),3));
 
-        //Node root = reverseKNodesIteratively(linkedList.head,2);
+        //Node root = reverseKNodesIteratively(linkedList.head,3);
         //linkedList.print(root);
         // printLastK(linkedList.head,3);
 
@@ -121,6 +123,8 @@ public class LinkedList {
 //        linkedList.print(reversed);
 
     }
+
+
 
     // 1.find length of 1st list
     // 2. find length 0f 2nd list
@@ -715,35 +719,34 @@ public class LinkedList {
 
     // https://leetcode.com/problems/remove-linked-list-elements/submissions/
     private static Node removeAllNodesWithKValue(Node head, int value) {
-        if(head==null){
+        if (head == null) {
             return head;
         }
-        if(head.getNext()==null && head.getData()==value){
+        if (head.getNext() == null && head.getData() == value) {
             head = null;
             return head;
         }
         Node current = head;
         Node prev = null;
         Node next = null;
-        while (current.getNext()!= null) {
+        while (current.getNext() != null) {
             if (current.getData() == value && prev == null) {
                 head = head.getNext();
                 current = head;
-            } else if (current.getNext()!=null && current.getData() == value && prev != null) {
+            } else if (current.getNext() != null && current.getData() == value && prev != null) {
                 next = current.getNext();
                 prev.setNext(next);
                 current = next;
-            }
-            else if(current.getNext()!=null) {
+            } else if (current.getNext() != null) {
                 next = current.getNext();
                 prev = current;
                 current = next;
             }
         }
 
-        if(current.getNext()==null && current.getData()==value && prev!=null) {
+        if (current.getNext() == null && current.getData() == value && prev != null) {
             prev.setNext(null);
-        }else if(current.getNext()==null && current.getData()==value && prev==null){
+        } else if (current.getNext() == null && current.getData() == value && prev == null) {
             current = null;
             head = current;
         }
@@ -753,30 +756,30 @@ public class LinkedList {
 
     // this is the same idea as to reverse elements in groups of k
     // here k = 2;
-    private static Node swapPairs(Node head){
+    private static Node swapPairs(Node head) {
         Node current = head;
         Node next;
         Node prev = null;
-        Node tail=null;
-        Node newHead=null;
+        Node tail = null;
+        Node newHead = null;
         Node join;
         int t;
-        while(current!=null ){
-            t= 2;
+        while (current != null) {
+            t = 2;
             join = current;
             prev = null;
-           while(current!=null && t--!=0){
-               next = current.getNext();
-               current.setNext(prev);
-               prev = current;
-               current = next;
-           }
-           if(newHead == null){
-               newHead = prev;
-           }
-           if(tail!=null)
-               tail.setNext(prev);
-           tail = join;
+            while (current != null && t-- != 0) {
+                next = current.getNext();
+                current.setNext(prev);
+                prev = current;
+                current = next;
+            }
+            if (newHead == null) {
+                newHead = prev;
+            }
+            if (tail != null)
+                tail.setNext(prev);
+            tail = join;
         }
         return newHead;
     }
@@ -784,25 +787,25 @@ public class LinkedList {
     // this works for numbers within or equal to range of long
     // for numbers greater than range there is a solution at https://www.programcreek.com/2012/12/add-two-numbers/
     private static Node addTwoNumbers(Node l1, Node l2) {
-        if(l1.getData()==0 && l1.getNext()==null && l2.getData()==0 && l2.getNext()==null){
+        if (l1.getData() == 0 && l1.getNext() == null && l2.getData() == 0 && l2.getNext() == null) {
             return new Node(0);
         }
         long num1 = getNumber(l1);
-        number =0;
+        number = 0;
         long num2 = getNumber(l2);
-        long sum = num1+num2;
-        Node head=null ;
+        long sum = num1 + num2;
+        Node head = null;
         long num;
-        while(sum!=0){
-            num = sum%10;
-            sum = sum/10;
-            if(head==null){
-                head = new Node((int)num);
+        while (sum != 0) {
+            num = sum % 10;
+            sum = sum / 10;
+            if (head == null) {
+                head = new Node((int) num);
 
-            }else{
-                Node temp = new Node((int)num);
+            } else {
+                Node temp = new Node((int) num);
                 Node current = head;
-                while(current.getNext()!=null){
+                while (current.getNext() != null) {
                     current = current.getNext();
                 }
                 current.setNext(temp);
@@ -814,11 +817,11 @@ public class LinkedList {
     }
 
     private static long getNumber(Node node) {
-        if(node==null){
+        if (node == null) {
             return -1;
         }
         getNumber(node.getNext());
-        number = number*10+node.getData();
+        number = number * 10 + node.getData();
         return number;
     }
 
@@ -837,7 +840,7 @@ public class LinkedList {
             int y = (q != null) ? q.getData() : 0;
             int sum = carry + x + y;
             carry = sum / 10;
-            System.out.print(sum % 10+" ");
+            System.out.print(sum % 10 + " ");
             curr.setNext(new Node(sum % 10));
             curr = curr.getNext();
             if (p != null) p = p.getNext();
@@ -865,31 +868,31 @@ public class LinkedList {
         Node current = head;
         Node prev = null;
         Node next = null;
-        Node start=null;
-        Node end=null;
-        int count =0;
-        while(current!=null){
+        Node start = null;
+        Node end = null;
+        int count = 0;
+        while (current != null) {
 
-            if(m>=1 && n>=m && count==(m-1)){
+            if (m >= 1 && n >= m && count == (m - 1)) {
                 end = current;
-               while(count<=n-1) {
-                   next = current.getNext();
-                   current.setNext(prev);
-                   prev = current;
-                   current = next;
-                   count++;
+                while (count <= n - 1) {
+                    next = current.getNext();
+                    current.setNext(prev);
+                    prev = current;
+                    current = next;
+                    count++;
 
-               }
-                if(start!=null){
+                }
+                if (start != null) {
                     start.setNext(prev);
-                }else{
+                } else {
                     head = prev;
                 }
-                if(end!=null && current!=null){
+                if (end != null && current != null) {
                     end.setNext(current);
                 }
 
-            }else {
+            } else {
                 start = current;
                 count++;
                 current = current.getNext();
@@ -899,6 +902,59 @@ public class LinkedList {
         return head;
     }
 
+    // My leetcode submission https://leetcode.com/problems/reverse-nodes-in-k-group/submissions/
+    private static Node reverseInGroups(Node head, int k) {
+        if(head==null||k==1)
+                return head;
+
+            Node fake = new Node(0);
+            fake.setNext(head);
+            Node prev = fake;
+            int i=0;
+
+            Node p = head;
+            while(p!=null){
+                i++;
+                if(i%k==0){
+                    prev = reverse(prev, p.getNext());
+                    // 1->4 p points to 4
+                    p = prev.getNext();
+                }else{
+                    p = p.getNext();
+                }
+            }
+
+            return fake.getNext();
+
+    }
+
+    // 0->1->2->3->4 say reversing from 0 to 4
+    // first iteration prev =0; last = 1 (prev.next),next = 4, curr = 2
+    // last.setNext(curr.getNext()) 1->3
+    // curr.setNext(prev.getNext()) 2->1
+    // prev.setNext(curr) 0->2
+    // curr = last.getNext() curr =3
+    // prev =0, last =1, curr =3 0->2->1->3
+    // second iteration
+    // last.setNext(curr.getNext()) 1->4
+    // curr.setNext(prev.getNext()) 3->2
+    // prev.setNext(curr) 0->3
+    // curr = last.getNext() curr = 4
+    // 0->3->2->1->4
+    // last it pointing to 1
+    private static Node reverse(Node prev, Node next){
+        Node last = prev.getNext();
+        Node curr = last.getNext();
+
+        while(curr != next){
+            last.setNext(curr.getNext());
+            curr.setNext(prev.getNext());
+            prev.setNext(curr);
+            curr = last.getNext();
+        }
+
+        return last;
+    }
 }
 
 
