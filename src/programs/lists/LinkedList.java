@@ -15,9 +15,13 @@ public class LinkedList {
     public static void main(String[] args) {
 
         LinkedList linkedList = new LinkedList();
+        linkedList.add(1);
         linkedList.add(2);
-        linkedList.add(4);
         linkedList.add(3);
+        linkedList.add(4);
+        linkedList.add(5);
+        Node root = reverseBetween(linkedList.getHead(),1,2);
+        linkedList.print(root);
 
         LinkedList linkedList1 = new LinkedList();
 
@@ -25,8 +29,9 @@ public class LinkedList {
         linkedList1.add(6);
         linkedList1.add(4);
 
-        Node head =addTwoNumbers2(linkedList.getHead(),linkedList1.getHead());
-        linkedList.print(head);
+
+        //Node head =addTwoNumbers2(linkedList.getHead(),linkedList1.getHead());
+        //linkedList.print(head);
 
         //linkedList.print(swapPairs(linkedList.getHead()));
        // linkedList.print(removeAllNodesWithKValue(linkedList.getHead(), 2));
@@ -844,6 +849,55 @@ public class LinkedList {
         System.out.println();
         return dummyHead.getNext();
     }
+
+    // reverse list between given m and n nodes
+    // where m>1 and n>=m
+    // Have 4 pointers
+    // start which points to previous element where the reversing starts
+    // end points to current element when reversing starts
+    // reverse the elements now prev  is the head of reversed list
+    // if start is not null start should point to head of reversed list ie prev
+    // if start is null that means we are reversing at the beginning itself so head should point to prev
+    // in case current is not null then pointer end points to current
+    private static Node reverseBetween(Node head, int m, int n) {
+
+        Node current = head;
+        Node prev = null;
+        Node next = null;
+        Node start=null;
+        Node end=null;
+        int count =0;
+        while(current!=null){
+
+            if(m>=1 && n>=m && count==(m-1)){
+                end = current;
+               while(count<=n-1) {
+                   next = current.getNext();
+                   current.setNext(prev);
+                   prev = current;
+                   current = next;
+                   count++;
+
+               }
+                if(start!=null){
+                    start.setNext(prev);
+                }else{
+                    head = prev;
+                }
+                if(end!=null && current!=null){
+                    end.setNext(current);
+                }
+
+            }else {
+                start = current;
+                count++;
+                current = current.getNext();
+            }
+
+        }
+        return head;
+    }
+
 }
 
 
