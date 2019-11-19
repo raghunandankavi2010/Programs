@@ -15,16 +15,17 @@ public class LinkedList {
     public static void main(String[] args) {
 
         LinkedList linkedList = new LinkedList();
-        linkedList.add(9);
-
+        linkedList.add(2);
+        linkedList.add(4);
+        linkedList.add(3);
 
         LinkedList linkedList1 = new LinkedList();
 
-        linkedList1.add(1);
-        linkedList1.add(9);
-        linkedList1.add(9);
+        linkedList1.add(5);
+        linkedList1.add(6);
+        linkedList1.add(4);
 
-        Node head =addTwoNumbers(linkedList.getHead(),linkedList1.getHead());
+        Node head =addTwoNumbers2(linkedList.getHead(),linkedList1.getHead());
         linkedList.print(head);
 
         //linkedList.print(swapPairs(linkedList.getHead()));
@@ -814,6 +815,34 @@ public class LinkedList {
         getNumber(node.getNext());
         number = number*10+node.getData();
         return number;
+    }
+
+    // Another variation
+    // x and y get data first and second list if the lists are nto null
+    // add x+y+carry which is sum carry is sum/10 for example if sum is 7 carry is 0
+    // if sum is 12 then carry is 1 add sum%10 which is 2 as a node
+    // now check if lists are null or not and increment pointers
+    // finally if carry is >0 create a new node and add it to the end of list
+    private static Node addTwoNumbers2(Node l1, Node l2) {
+        Node dummyHead = new Node(0);
+        Node p = l1, q = l2, curr = dummyHead;
+        int carry = 0;
+        while (p != null || q != null) {
+            int x = (p != null) ? p.getData() : 0;
+            int y = (q != null) ? q.getData() : 0;
+            int sum = carry + x + y;
+            carry = sum / 10;
+            System.out.print(sum % 10+" ");
+            curr.setNext(new Node(sum % 10));
+            curr = curr.getNext();
+            if (p != null) p = p.getNext();
+            if (q != null) q = q.getNext();
+        }
+        if (carry > 0) {
+            curr.setNext(new Node(carry));
+        }
+        System.out.println();
+        return dummyHead.getNext();
     }
 }
 
