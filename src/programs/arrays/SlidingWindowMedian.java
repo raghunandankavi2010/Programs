@@ -1,6 +1,5 @@
 package programs.arrays;
 
-import java.util.*;
 
 public class SlidingWindowMedian {
     public static void main(String[] args) {
