@@ -13,9 +13,13 @@ public class Trees {
     private Trees() {
 
         Node n1 = new Node();
-        addNode(n1, 5);
 
+        addNode(n1, 1);
         Node n2 = new Node();
+        addNode(n2, 2);
+        Node n3 = new Node();
+        addNode(n3, 3);
+        /*Node n2 = new Node();
         addNode(n2, 1);
         Node n0 = new Node();
         addNode(n0, 0);
@@ -30,7 +34,9 @@ public class Trees {
         Node n7 = new Node();
         addNode(n7, 9);
         Node n8 = new Node();
-        addNode(n8, 10);
+        addNode(n8, 10);*/
+        System.out.println("maximum path sum"+maxPathSum(rootNode));
+/*
 
         System.out.println(lowestCommonAncestor(rootNode, rootNode.getLeftNode().getLeftNode(), rootNode.getLeftNode().getRightNode()).getData());
         System.out.println();
@@ -59,6 +65,7 @@ public class Trees {
         }else{
             System.out.println("Element not found");
         }
+*/
 
 
      /*   if(path2!=null)
@@ -507,6 +514,39 @@ public class Trees {
             return null;
         }
 
+    }
+
+    // maximum sum path of a tree
+    private static int res = Integer.MIN_VALUE;
+    private static int maxPathSumHelper(Node root){
+        // if root is null sum is o
+        if(root ==null){
+            return 0;
+        }else if(root.getLeftNode() == null && root.getRightNode() == null) { // if both left and right of root is null set root as result
+            if(root.getData() > res) res = root.getData();
+            return root.getData();
+        }else{
+            // recursively travel left and right
+            int leftsum= maxPathSumHelper(root.getLeftNode());
+            int rightsum = maxPathSumHelper(root.getRightNode());
+            // all possible sums and at each recursion
+            int sum1 = root.getData();
+            int sum2 = leftsum+root.getData();
+            int sum3 = rightsum+root.getData();
+            int sum4 = leftsum+root.getData()+rightsum;
+            int temp = Math.max(Math.max(sum1,sum2),sum3);
+            int tempres = Math.max(temp,sum4);
+            // set the result to maximum of the above sums
+            if(tempres>res){
+                res = tempres;
+            }
+            return temp;
+        }
+    }
+
+    private static int maxPathSum(Node root) {
+        maxPathSumHelper(root);
+        return res;
     }
 
 }
