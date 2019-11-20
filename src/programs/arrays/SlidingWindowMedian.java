@@ -15,21 +15,17 @@ public class SlidingWindowMedian {
 
     private static double[] calculateMedian(int[] arr, int k) {
 
-        double[] output;
-        List<Double> mList = new ArrayList<>();
+        double[] output = new double[arr.length - k + 1];
         int startIndex = 0;
         int endIndex = k-1;
+        int index =0;
         while(endIndex<arr.length){
-            mList.add(calculateMedianWindow(arr,startIndex,endIndex,k));
+            output[index]=calculateMedianWindow(arr,startIndex,endIndex,k);
             startIndex++;
             endIndex++;
-        }
-        output = new double[mList.size()];
-        for(int i=0;i<mList.size();i++){
-            output[i] = mList.get(i);
+            index++;
         }
         return output;
-    
     }
 
 
