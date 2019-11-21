@@ -1,11 +1,14 @@
 package programs.arrays;
 
 
+import java.util.Comparator;
+import java.util.TreeSet;
+
 public class SlidingWindowMedian {
     public static void main(String[] args) {
         int[] arr ={1,3,-1,-3,5,3,6,7};
         int k = 3;
-        double[] output =calculateMedian(arr,k);
+        double[] output = new SlidingWindowMedian().medianSlidingWindow(arr,k);// calculateMedian(arr,k);
         for(double num:output){
             System.out.print(num+" ");
         }
@@ -106,6 +109,58 @@ public class SlidingWindowMedian {
 
     private static double  add(int a, int b) {
         return ((double) a) + (double)b;
+    }
+
+
+    public double[] medianSlidingWindow(int[] nums, int k) {
+        if (nums == null || k == 0 || k > nums.length) {
+            return new double[0];
+        }
+        Comparator<Integer> comparator = (a, b) -> nums[a] != nums[b]
+                ? Integer.compare(nums[a], nums[b])
+                : a - b;
+        TreeSet<Integer> smalls = new TreeSet<>(comparator);
+        TreeSet<Integer> bigs   = new TreeSet<>(comparator);
+
+        double[] result = new double[nums.length - k + 1];
+
+        for (int i = 0; i < nums.length; i++) {
+            addNum(i, smalls, bigs);
+            if (i + 1 >= k) {
+                int start = i - k + 1;
+                result[start] = findMedian(smalls, bigs, nums);
+
+                // remove tail index of window, from 1 of the TreeSets
+                if (!smalls.remove(start)) {
+                    bigs.remove(start);
+                }
+                // rebalance if necessary
+                if (smalls.size() < bigs.size()) {
+                    smalls.add(bigs.pollFirst());
+                }
+            }
+        }
+        return result;
+    }
+
+    private void addNum(int num, TreeSet<Integer> smalls, TreeSet<Integer> bigs) {
+        if (smalls.size() == bigs.size()) {
+            bigs.add(num);
+            smalls.add(bigs.pollFirst());
+        } else if (smalls.size() > bigs.size()) {
+            smalls.add(num);
+            bigs.add(smalls.pollLast());
+        } // "smalls" will never be smaller size than "bigs"
+    }
+
+    private double findMedian(TreeSet<Integer> smalls, TreeSet<Integer> bigs, int[] nums) {
+        if (smalls.isEmpty()) { // ideally should never happen
+            return 0;
+        } else if (smalls.size() == bigs.size()) {
+            return ((double) nums[smalls.last()] + nums[bigs.first()]) / 2;
+        } else {
+            return nums[smalls.last()];
+        }
     }
 }
 
