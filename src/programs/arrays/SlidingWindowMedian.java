@@ -112,7 +112,7 @@ public class SlidingWindowMedian {
     }
 
 
-    public double[] medianSlidingWindow(int[] nums, int k) {
+    private double[] medianSlidingWindow(int[] nums, int k) {
         if (nums == null || k == 0 || k > nums.length) {
             return new double[0];
         }
