@@ -6,7 +6,7 @@ import java.util.TreeSet;
 
 public class SlidingWindowMedian {
     public static void main(String[] args) {
-        int[] arr ={1,3,-1,-3,5,3,6,7};
+        int[] arr ={5,6,7};
         int k = 3;
         double[] output = new SlidingWindowMedian().medianSlidingWindow(arr,k);// calculateMedian(arr,k);
         for(double num:output){
@@ -145,8 +145,8 @@ public class SlidingWindowMedian {
 
     private void addNum(int num, TreeSet<Integer> smalls, TreeSet<Integer> bigs) {
         if (smalls.size() == bigs.size()) {
-            bigs.add(num);
-            smalls.add(bigs.pollFirst());
+            bigs.add(num);// you need to do this for cases when array is already sorted
+            smalls.add(bigs.pollFirst()); // when array is sorted this will help
         } else if (smalls.size() > bigs.size()) {
             smalls.add(num);
             bigs.add(smalls.pollLast());
