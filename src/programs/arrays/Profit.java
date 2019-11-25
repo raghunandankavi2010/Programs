@@ -15,7 +15,6 @@ public class Profit {
         int maxP = 0, minS = arr[0];
         for(int p:arr){
             minS = Math.min(minS,p);
-
             maxP = Math.max(maxP,p-minS);
         }
         return maxP;
