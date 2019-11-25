@@ -65,7 +65,7 @@ public class SumDivisibleBy3 {
         int[][] dp = new int[N][3];
         dp[0][nums[0] % 3] = nums[0];
         for (int i = 1; i < N; i++) {
-            // copy from previous sum
+            // copy from previous sum. maximum possible at current position
             for (int j = 0; j < 3; j++) {
                 dp[i][j] = dp[i - 1][j];
                 System.out.print(dp[i][j]+" ");
