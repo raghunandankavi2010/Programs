@@ -6,13 +6,14 @@ public class UniquePathFromSrcToDes {
     public static void main(String[] args) {
         int c = 7;
         int r = 3;
-        getUniquePath(c,r);
+        int uniquePaths = getUniquePath(c,r);
+        System.out.println("Unique paths is "+uniquePaths);
     }
 
     // 1. initially 1st row and column is 1 unique paths
     // 2. for all the rest of the matrix it is dp[r-1][c] + dp[c-1] [r]
     // 3. result is dp[c-1][r-1]
-    private static void getUniquePath(int c, int r) {
+    private static int getUniquePath(int c, int r) {
         int[][] dp = new int[r][c];
 
         for(int i=0;i<c;i++){
@@ -28,6 +29,6 @@ public class UniquePathFromSrcToDes {
                 dp[i][j]= dp[i-1][j]+dp[i][j-1];
             }
         }
-        System.out.println("Unique paths is "+dp[r-1][c-1]);
+      return dp[r-1][c-1];
     }
 }
