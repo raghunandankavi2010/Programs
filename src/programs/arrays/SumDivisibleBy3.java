@@ -7,8 +7,8 @@ package programs.arrays;
  */
 public class SumDivisibleBy3 {
     public static void main(String[] args) {
-        int[] arr ={3,6,5,1,8};
-        int sum = calCulateSum(arr);
+        int[] arr = {3, 6, 5, 1, 8};
+        int sum = maxSumDivThree(arr);
         System.out.println(sum);
     }
 
@@ -56,6 +56,29 @@ public class SumDivisibleBy3 {
                 }
             }
         }
-        return dp[arr.length-1][0];
+        return dp[arr.length - 1][0];
+    }
+
+    // Same as above but easier to understand
+    private static int maxSumDivThree(int[] nums) {
+        int N = nums.length;
+        int[][] dp = new int[N][3];
+        dp[0][nums[0] % 3] = nums[0];
+        for (int i = 1; i < N; i++) {
+            // copy from previous sum
+            for (int j = 0; j < 3; j++) {
+                dp[i][j] = dp[i - 1][j];
+                System.out.print(dp[i][j]+" ");
+            }
+            System.out.println();
+            // calculate new sum
+            for (int j = 0; j < 3; j++) {
+                int s = dp[i - 1][j] + nums[i];
+                dp[i][s % 3] = Math.max(s, dp[i][s % 3]);
+                System.out.print(dp[i][s%3]);
+            }
+            System.out.println();
+        }
+        return dp[nums.length - 1][0];
     }
 }
