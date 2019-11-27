@@ -1,10 +1,9 @@
 package programs.arrays;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-public class KthSmallestElementInArray {
+public class KthSmallestAndLargestElementInArray {
 
     public static void main(String[] args) {
         int[] arr= {2,3,15,1,0,23,21};
