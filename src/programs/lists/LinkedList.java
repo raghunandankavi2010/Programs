@@ -21,15 +21,21 @@ public class LinkedList {
         linkedList.add(4);
         linkedList.add(5);
         //linkedList.add(6);
-        Node root = reverseInGroups(linkedList.getHead(), 2);
+        //Node root = reverseInGroups(linkedList.getHead(), 2);
         //Node root = reverseBetween(linkedList.getHead(),1,2);
-        linkedList.print(root);
+        //linkedList.print(root);
 
         LinkedList linkedList1 = new LinkedList();
 
         linkedList1.add(5);
         linkedList1.add(6);
         linkedList1.add(4);
+        Node end = linkedList1.getHead();
+        while(end.getNext()!=null){
+            end = end.getNext();
+        }
+        sort(linkedList1.getHead(),end);
+        linkedList1.print(linkedList1.getHead());
 
 
         //Node head =addTwoNumbers2(linkedList.getHead(),linkedList1.getHead());
@@ -955,6 +961,54 @@ public class LinkedList {
 
         return last;
     }
+
+    private static void sort(Node start,Node end){
+
+        if(start == end){
+            return;
+        }
+
+        Node pivot_prev = partition(start,end);
+
+        // if start and pivot are same sort next part of the array
+        if(pivot_prev!=null && pivot_prev==start){
+            sort(pivot_prev.getNext(),end);
+        }else if(pivot_prev != null &&
+                pivot_prev.getNext() != null)
+            sort(pivot_prev.getNext().getNext(), end); // any where between the list sort from pivots next next
+    }
+
+    private static Node partition(Node start,Node end){
+
+        if(start == end ||
+                start == null || end == null)
+            return start;
+        Node pivot_prev = start;
+        Node curr = start;
+        int pivot = end.getData();
+
+        // if data at current position is less than pivot swap
+        while(start!=end) {
+            if (start.getData() < pivot) {
+                pivot_prev = curr;
+                int temp = curr.getData();
+                curr.setData(start.getData());
+                start.setData(temp);
+                curr = curr.getNext();
+            }
+            start = start.getNext();
+        }
+
+        // swap current element and pivot
+        int temp = curr.getData();
+        curr.setData(pivot);
+        end.setData(temp);
+
+
+        // return prev element as current element point to end
+        return pivot_prev;
+    }
+
 }
 
 
