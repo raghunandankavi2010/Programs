@@ -16,35 +16,37 @@ public class SpiralTraversalMatrix {
          int i, start_row=0;
          int start_column=0;
 
-         while(start_row<m && start_column<n){
+         if(matrix.length>0) {
+             while (start_row < m && start_column < n) {
 
-             // print first row
-             for(i=start_column;i<n;i++){
-                 System.out.print(matrix[start_column][i]+" ");
-             }
-             start_row++; //printed first row increase start_row index
-             // print first column
-             for(i=start_row;i<m;i++){
-                 System.out.print(matrix[i][n-1]+" ");
-             }
-             n--; // decrease end column index
-
-             // print last row in reverse
-             if (start_row < m) {
-                 for (i = n-1; i >= start_column; i--) {
-                     System.out.print(matrix[m-1][i] + " ");
+                 // print first row
+                 for (i = start_column; i < n; i++) {
+                     System.out.print(matrix[start_column][i] + " ");
                  }
-                 m--; // decrease row  end index
-             }
-
-             // print first column
-             if (start_column < n) {
-                 for (i = m-1; i >= start_row; i--) {
-                     System.out.print(matrix[i][start_column] + " ");
+                 start_row++; //printed first row increase start_row index
+                 // print first column
+                 for (i = start_row; i < m; i++) {
+                     System.out.print(matrix[i][n - 1] + " ");
                  }
-                 start_column++; // increase start column index;
-             }
+                 n--; // decrease end column index
 
+                 // print last row in reverse
+                 if (start_row < m) {
+                     for (i = n - 1; i >= start_column; i--) {
+                         System.out.print(matrix[m - 1][i] + " ");
+                     }
+                     m--; // decrease row  end index
+                 }
+
+                 // print first column
+                 if (start_column < n) {
+                     for (i = m - 1; i >= start_row; i--) {
+                         System.out.print(matrix[i][start_column] + " ");
+                     }
+                     start_column++; // increase start column index;
+                 }
+
+             }
          }
     }
 }
