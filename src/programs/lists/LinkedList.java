@@ -30,6 +30,8 @@ public class LinkedList {
         linkedList1.add(5);
         linkedList1.add(6);
         linkedList1.add(4);
+        linkedList1.add(23);
+        linkedList1.add(3);
         Node end = linkedList1.getHead();
         while(end.getNext()!=null){
             end = end.getNext();
@@ -999,7 +1001,8 @@ public class LinkedList {
             start = start.getNext();
         }
 
-        // swap current element and pivot
+        // put pivot at the right place by setting it to curr to pivot
+        // set end to curr data.
         int temp = curr.getData();
         curr.setData(pivot);
         end.setData(temp);
