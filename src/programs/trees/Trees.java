@@ -19,6 +19,7 @@ public class Trees {
         addNode(n2, 2);
         Node n3 = new Node();
         addNode(n3, 3);
+        bottomView(rootNode);
         /*Node n2 = new Node();
         addNode(n2, 1);
         Node n0 = new Node();
@@ -35,7 +36,7 @@ public class Trees {
         addNode(n7, 9);
         Node n8 = new Node();
         addNode(n8, 10);*/
-        System.out.println("maximum path sum"+maxPathSum(rootNode));
+       // System.out.println("maximum path sum"+maxPathSum(rootNode));
 /*
 
         System.out.println(lowestCommonAncestor(rootNode, rootNode.getLeftNode().getLeftNode(), rootNode.getLeftNode().getRightNode()).getData());
@@ -543,6 +544,40 @@ public class Trees {
     private static int maxPathSum(Node root) {
         maxPathSumHelper(root);
         return res;
+    }
+
+    // print bottomview
+    // traverse by level
+    // left horizontal distance is root-1
+    // right horizontal distance is root+1
+    // print the value in map. use TreeMap to track nodes in order
+    private static void bottomView(Node head) {
+        Map<Integer, Integer> map = new TreeMap<>();
+
+        Queue<Node> queue = new LinkedList<>();
+        int hd = 0;
+        head.setHd(hd);
+        queue.add(head);
+
+        while (!queue.isEmpty()) {
+            Node temp = queue.remove();
+            map.put(hd, temp.getData());
+                if (temp.getLeftNode() != null) {
+                    temp.getLeftNode().setHd(hd-1);
+                    queue.add(temp.getLeftNode());
+                }
+                if (temp.getRightNode() != null) {
+                    temp.getRightNode().setHd(hd-1);
+                    queue.add(temp.getRightNode());
+                }
+            }
+
+
+        for(Map.Entry<Integer,Integer> entry : map.entrySet()) {
+            Integer value = entry.getValue();
+            System.out.println(value+" ");
+        }
+
     }
 
 }

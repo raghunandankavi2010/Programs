@@ -3,6 +3,8 @@ package programs.trees;
 public class Node {
 
     private int data;
+    private int hd;
+
     private Node leftNode,rightNode;
 
     public int getData() {
@@ -27,6 +29,15 @@ public class Node {
 
     public void setRightNode(Node rightNode) {
         this.rightNode = rightNode;
+    }
+
+
+    public void setHd(int hd) {
+        this.hd = hd;
+    }
+
+    public int getHd() {
+        return hd;
     }
 
 
