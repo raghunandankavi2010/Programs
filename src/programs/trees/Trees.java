@@ -508,11 +508,7 @@ public class Trees {
         if(right !=null){
             return right;
         }
-        if(left !=null){
-            return left;
-        }else{
-            return null;
-        }
+        return left;
 
     }
 
