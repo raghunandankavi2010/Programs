@@ -19,6 +19,9 @@ public class Trees {
         addNode(n2, 2);
         Node n3 = new Node();
         addNode(n3, 3);
+
+        Node result = search(rootNode,3);
+        System.out.println("Searched Node "+result.getData());
         bottomView(rootNode);
         /*Node n2 = new Node();
         addNode(n2, 1);
@@ -118,6 +121,22 @@ public class Trees {
         //getKthDistanceNodes(rootNode,rootNode.getRightNode().getRightNode(),1);
 
 
+    }
+    private static Node result;
+
+    private static Node search(Node rootNode, int value) {
+        if(rootNode==null){
+            return null;
+        }
+        if(rootNode.getData()==value){
+            result =  rootNode;
+        }
+        if(value<rootNode.getData()){
+            result = search(rootNode.getLeftNode(),value);
+        }else if(value>rootNode.getData()){
+           result = search(rootNode.getRightNode(),value);
+        }
+        return result;
     }
 
     public static void main(String[] args) {
