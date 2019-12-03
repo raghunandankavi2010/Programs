@@ -20,9 +20,10 @@ public class Trees {
         Node n3 = new Node();
         addNode(n3, 3);
 
-        Node result = search(rootNode,3);
-        System.out.println("Searched Node "+result.getData());
-        bottomView(rootNode);
+        printSpiral(rootNode);
+        //Node result = search(rootNode,3);
+       // System.out.println("Searched Node "+result.getData());
+       // bottomView(rootNode);
         /*Node n2 = new Node();
         addNode(n2, 1);
         Node n0 = new Node();
@@ -200,7 +201,7 @@ public class Trees {
         }
     }
 
-    private int heightOfBinaryTree(Node node) {
+    private static int heightOfBinaryTree(Node node) {
         if (node == null) {
             return 0;
         } else {
@@ -597,6 +598,35 @@ public class Trees {
             System.out.println(value+" ");
         }
 
+    }
+
+    private static void printSpiral(Node head){
+        if(head==null){
+            return;
+        }
+        boolean ltr = false;
+        int height = heightOfBinaryTree(head);
+        for(int i=1;i<=height;i++){
+            printSpiralOrder(head,i,ltr);
+            ltr = !ltr;
+        }
+    }
+
+    private static void printSpiralOrder(Node node, int level, boolean ltr) {
+        if (node == null)
+            return;
+        if(level==1){
+            System.out.print(node.getData()+" ");
+        }
+        else if(level>1){
+            if(ltr){
+                printSpiralOrder(node.getLeftNode(),level-1,ltr);
+                printSpiralOrder(node.getRightNode(),level-1,ltr);
+            }else{
+                printSpiralOrder(node.getRightNode(),level-1,ltr);
+                printSpiralOrder(node.getLeftNode(),level-1,ltr);
+            }
+        }
     }
 
 }
