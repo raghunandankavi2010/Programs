@@ -1,6 +1,6 @@
 package programs.strings;
 
-public class PalindromebyRemovingChar {
+public class PalindromeRemovingChar {
 
     public static void main(String[] args) {
         String str = "aaa";
