@@ -15,6 +15,10 @@ public class SortArrays012 {
         }
     }
 
+    // 1 keep 3 pointers low = 0, high = arr.length-1 and mid =0
+    // exchange arr[mid] and arr[low] if num is 0 increment mid and low
+    // if num is 1 just increment mid pointer
+    // exchange arr[high] and arr[mid] decrement high pointer.
     private static int[] sortArray(int[] arr) {
         int low = 0, mid = 0, high = arr.length-1;
         int temp;
