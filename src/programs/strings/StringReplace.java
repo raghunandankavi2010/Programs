@@ -1,8 +1,13 @@
 package programs.strings;
 
+
+
 public class StringReplace {
 
     public static void main(String[] args) {
+        String original = "Raghunandan";
+        String replacedString = replaceChar(original);
+        System.out.println("Replaced a with * :"+replacedString);
         String source = "Hello World   ".trim();
         source = source.replaceAll("\\s","%20");
         StringBuilder stringBuilder = new StringBuilder();
@@ -18,6 +23,24 @@ public class StringReplace {
 
         System.out.println(stringBuilder.toString());
         new StringReplace().repalce(sourceChar,source.length());
+    }
+    // replace every occurrence of a with *
+    // if a occurrs second time replace with **
+    // and so on..
+    private static String replaceChar(String original) {
+        char[] strChar = original.toCharArray();
+        StringBuilder sb = new StringBuilder();
+        int count = 0;
+        for (char character : strChar) {
+            if (character == 'a') {
+                count++;
+                for (int i = 0; i < count; i++)
+                    sb.append("*");
+            } else {
+                sb.append(character);
+            }
+        }
+        return sb.toString();
     }
 
     private void repalce(char[] s, int length){
