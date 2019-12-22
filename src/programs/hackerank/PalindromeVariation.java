@@ -30,7 +30,7 @@ public class PalindromeVariation {
             } else if (strChar[low] != strChar[high] && strChar[low] > strChar[high]) {
                 char val;
                 while (strChar[low] != strChar[high]) {
-                    int ascii = (int) strChar[low];
+                    int ascii = strChar[low];
                     ascii--;
                     val = (char) ascii;
                     strChar[low] = val;
@@ -41,7 +41,7 @@ public class PalindromeVariation {
             } else {
                 char val;
                 while (strChar[high] != strChar[low]) {
-                    int ascii = (int) strChar[high];
+                    int ascii = strChar[high];
                     ascii--;
                     val = (char) ascii;
                     strChar[high] = val;
