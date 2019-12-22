@@ -24,7 +24,7 @@ public class PalindromeVariation {
         char[] strChar = s.toCharArray();
         int count = 0;
         while (low <= high) {
-            if (strChar[low] == strChar[high] && strChar[low] < strChar[high]) {
+            if (strChar[low] == strChar[high] ) {
                 low++;
                 high--;
             } else if (strChar[low] != strChar[high] && strChar[low] > strChar[high]) {
@@ -38,7 +38,7 @@ public class PalindromeVariation {
                 }
                 low++;
                 high--;
-            } else {
+            } else if(strChar[low] != strChar[high] && strChar[low] < strChar[high]) {
                 char val;
                 while (strChar[high] != strChar[low]) {
                     int ascii = strChar[high];
