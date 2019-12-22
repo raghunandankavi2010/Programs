@@ -25,7 +25,7 @@ public class StringReplace {
         new StringReplace().repalce(sourceChar,source.length());
     }
     // replace every occurrence of a with *
-    // if a occurrs second time replace with **
+    // if a occurs second time replace with **
     // and so on..
     private static String replaceChar(String original) {
         char[] strChar = original.toCharArray();
