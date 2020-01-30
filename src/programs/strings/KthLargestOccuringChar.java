@@ -22,10 +22,6 @@ public class KthLargestOccuringChar {
         // the trick is to sort based on key which i missed.
         Map<Character,Integer> sortedMap = sorted(hm);
         int key = 4;
-     /*   int key = 4;
-        if(!sortedMap.containsValue(key)){
-            System.out.println(-1);
-        }else {*/
             int d = 0;
             boolean found = false;
             for (Map.Entry<Character,Integer>entry : sortedMap.entrySet()) {
@@ -43,6 +39,7 @@ public class KthLargestOccuringChar {
             }
 
 
+            // sorting based on key skipping those that are already there.
         /*TreeMap<Integer, Character> tm = new TreeMap<>();
 
         for (Map.Entry<Character, Integer> entry : hm.entrySet()) {
@@ -88,6 +85,8 @@ public class KthLargestOccuringChar {
         // put data from sorted list to hashmap
         HashMap<Character, Integer> temp = new LinkedHashMap<>();
         for (Map.Entry<Character, Integer> aa : list) {
+            // skip those keys which already in map to avoid duplicates.
+            // Linked hash map to maintain insertion order
             if(!temp.containsValue(aa.getValue())) {
                 temp.put(aa.getKey(), aa.getValue());
             }
