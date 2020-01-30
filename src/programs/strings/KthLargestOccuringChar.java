@@ -79,7 +79,7 @@ public class KthLargestOccuringChar {
 
         // Create a list from elements of HashMap
         List<Map.Entry<Character, Integer> > list =
-                new LinkedList<Map.Entry<Character, Integer> >(hm.entrySet());
+                new LinkedList<>(hm.entrySet());
 
         // Sort the list
         list.sort((o1, o2) -> (o2.getValue()).compareTo(o1.getValue()));
