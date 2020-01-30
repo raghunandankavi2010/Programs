@@ -6,10 +6,12 @@ import java.lang.*;
 public class KthLargestOccuringChar {
 
     public static void main(String[] args)  {
-        String s = "aabcdeeee";
+        String s = "eeeeddccbba";
        // a-2,b-1,c-1,d-1,e-4
        // 4,2,1,1,1
 
+        sort(s);
+        System.out.println(".......................................");
         Map<Character, Integer> hm = new TreeMap<>();
         for (int i = 0; i < s.length(); i++) {
             char cur = s.charAt(i);
@@ -92,5 +94,22 @@ public class KthLargestOccuringChar {
             }
         }
         return temp;
+    }
+
+    private static void sort(String name){
+
+        // tree map sorting based on key example
+        TreeMap<Character,Integer> map = new TreeMap<>();
+        char[] arr = name.toCharArray();
+        for (char c : arr) {
+            if (!map.containsKey(c)) {
+                map.put(c, 1);
+            } else {
+                map.put(c, map.get(c) + 1);
+            }
+        }
+        for (Map.Entry<Character,Integer>entry : map.entrySet()) {
+            System.out.println(entry.getValue()+" "+entry.getKey());
+        }
     }
 }
