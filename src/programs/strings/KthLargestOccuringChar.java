@@ -17,6 +17,7 @@ public class KthLargestOccuringChar {
             }
             hm.put(cur, hm.get(cur) + 1);
         }
+        // the trick is to sort based on key which i missed.
         TreeMap<Integer, Character> tm = new TreeMap<>();
 
         for (Map.Entry<Character, Integer> entry : hm.entrySet()) {
