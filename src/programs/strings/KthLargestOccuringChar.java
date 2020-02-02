@@ -5,10 +5,10 @@ import java.lang.*;
 
 public class KthLargestOccuringChar {
 
-    public static void main(String[] args)  {
-        String s = "eeeeddccbba";
-       // a-2,b-1,c-1,d-1,e-4
-       // 4,2,1,1,1
+    public static void main(String[] args) {
+        String s = "eeeedccbaaa";
+        // a-2,b-1,c-1,d-1,e-4
+        // 4,2,1,1,1
 
         sort(s);
         System.out.println(".......................................");
@@ -17,13 +17,35 @@ public class KthLargestOccuringChar {
             char cur = s.charAt(i);
             if (!hm.containsKey(cur)) {
                 hm.put(cur, 1);
-            }else {
+            } else {
                 hm.put(cur, hm.get(cur) + 1);
             }
         }
-        // the trick is to sort based on key which i missed.
-        Map<Character,Integer> sortedMap = sorted(hm);
         int key = 4;
+        // another alternative using priority Queue but in case of character with same frequency the last
+        // character will be printed
+        PriorityQueue<CountCharacters> pq = new PriorityQueue<>(s.length(), new Comparator<CountCharacters>() {
+            public int compare(CountCharacters a, CountCharacters b) {
+                return b.count - a.count; // in reverse
+            }
+        });
+        for (HashMap.Entry<Character, Integer> entry : hm.entrySet()) {
+                pq.add(new CountCharacters(entry.getValue(), entry.getKey()));
+
+        }
+        for (int i = 0; i < key - 1; i++) {
+            pq.remove();
+        }
+        if (!pq.isEmpty()) {
+            System.out.println(pq.remove().character);
+        } else {
+            System.out.println(-1);
+        }
+        // end of solution using priority Queue
+        // the trick is to sort based on key which i missed.
+        // My Soluion
+       /* Map<Character,Integer> sortedMap = sorted(hm);
+
             int d = 0;
             boolean found = false;
             for (Map.Entry<Character,Integer>entry : sortedMap.entrySet()) {
@@ -39,10 +61,9 @@ public class KthLargestOccuringChar {
             if(!found){
                 System.out.println(-1);
             }
-
-
-            // sorting based on key skipping those that are already there.
-        /*TreeMap<Integer, Character> tm = new TreeMap<>();
+        // end of my solution
+        // sorting based on key skipping those that are already there.
+        TreeMap<Integer, Character> tm = new TreeMap<>();
 
         for (Map.Entry<Character, Integer> entry : hm.entrySet()) {
             int x = entry.getValue();
@@ -75,10 +96,10 @@ public class KthLargestOccuringChar {
 */
     }
 
-    private static Map<Character,Integer> sorted(Map<Character, Integer> hm) {
+    private static Map<Character, Integer> sorted(Map<Character, Integer> hm) {
 
         // Create a list from elements of HashMap
-        List<Map.Entry<Character, Integer> > list =
+        List<Map.Entry<Character, Integer>> list =
                 new LinkedList<>(hm.entrySet());
 
         // Sort the list
@@ -89,17 +110,17 @@ public class KthLargestOccuringChar {
         for (Map.Entry<Character, Integer> aa : list) {
             // skip those keys which already in map to avoid duplicates.
             // Linked hash map to maintain insertion order
-            if(!temp.containsValue(aa.getValue())) {
+            if (!temp.containsValue(aa.getValue())) {
                 temp.put(aa.getKey(), aa.getValue());
             }
         }
         return temp;
     }
 
-    private static void sort(String name){
+    private static void sort(String name) {
 
         // tree map sorting based on key example
-        TreeMap<Character,Integer> map = new TreeMap<>();
+        TreeMap<Character, Integer> map = new TreeMap<>();
         char[] arr = name.toCharArray();
         for (char c : arr) {
             if (!map.containsKey(c)) {
@@ -108,8 +129,19 @@ public class KthLargestOccuringChar {
                 map.put(c, map.get(c) + 1);
             }
         }
-        for (Map.Entry<Character,Integer>entry : map.entrySet()) {
-            System.out.println(entry.getValue()+" "+entry.getKey());
+        for (Map.Entry<Character, Integer> entry : map.entrySet()) {
+            System.out.println(entry.getValue() + " " + entry.getKey());
         }
+    }
+
+}
+
+class CountCharacters {
+    int count;
+    Character character;
+
+    CountCharacters(int count, char ch) {
+        this.count = count;
+        this.character = ch;
     }
 }
