@@ -9,27 +9,27 @@ import java.util.TreeSet;
  * You can only see the w numbers in the window. Each time the sliding window moves
  * rightwards by one position. You have to find the maximum for each window.
  * The following example will give you more clarity.
- *
+ * <p>
  * The array A is [1 3 -1 -3 5 3 6 7], and B is 3.
  * This is similar to sliding window finding the median problem.
  */
 public class SlidingWindowMax {
 
     public static void main(String[] args) {
-        int[] arr = {1, 3, -1 ,-3, 5 ,3, 6, 7};
+        int[] arr = {1, 3, -1, -3, 5, 3, 6, 7};
         int windowSize = 3;
         Comparator<Integer> comparator = (a, b) -> arr[a] != arr[b]
                 ? Integer.compare(arr[a], arr[b])
                 : a - b;
         TreeSet<Integer> smalls = new TreeSet<>(comparator);
-        TreeSet<Integer> bigs   = new TreeSet<>(comparator);
-        int[] result = new int [arr.length-windowSize+1];
+        TreeSet<Integer> bigs = new TreeSet<>(comparator);
+        int[] result = new int[arr.length - windowSize + 1];
 
-        for(int i=0;i<arr.length;i++){
-            addNum(i,smalls,bigs);
-            if(i+1>=windowSize){
+        for (int i = 0; i < arr.length; i++) {
+            addNum(i, smalls, bigs);
+            if (i + 1 >= windowSize) {
                 int start = i - windowSize + 1;
-                result[start] =  findMax(smalls, bigs, arr);
+                result[start] = findMax(smalls, bigs, arr);
 
                 if (!smalls.remove(start)) {
                     bigs.remove(start);
@@ -40,8 +40,8 @@ public class SlidingWindowMax {
                 }
             }
         }
-        for(int num:result){
-            System.out.print(num+" ");
+        for (int num : result) {
+            System.out.print(num + " ");
         }
 
     }
@@ -50,7 +50,7 @@ public class SlidingWindowMax {
         if (smalls.isEmpty()) { // ideally should never happen
             return 0;
         } else if (smalls.size() > bigs.size()) {
-            return ((int)  nums[bigs.first()]);
+            return nums[bigs.first()];
         } else {
             return nums[smalls.last()];
         }
