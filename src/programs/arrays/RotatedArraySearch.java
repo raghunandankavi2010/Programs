@@ -5,7 +5,7 @@ package programs.arrays;
  * 1. find the pivot element
  * 2. the pivot element is always greater than the right element to it.
  * 3. check if pivot index is the key return the index.
- * 4. if arr[pivot]<=key then search left part of array. low = 0, high = pivot-1
+ * 4. if arr[0]<=key then search left part of array. low = 0, high = pivot-1
  * 5. else search right part of array, low = pivot+1, high = n-1
  * 6. the other case to handle is if array is not rotated then pivot is -1 so do normal binary search.
  * Input  : arr[] = {5, 6, 7, 8, 9, 10, 1, 2, 3};
@@ -23,7 +23,7 @@ public class RotatedArraySearch {
             System.out.println("Array rotated right");
         }
         int n = arr.length;
-        int key = 3;
+        int key = 9;
         int searchedElementIndex = search(arr,n,key);
         System.out.println("Searched Element is at index: "+searchedElementIndex);
     }
@@ -38,7 +38,7 @@ public class RotatedArraySearch {
         if(arr[pivot]==key){
             return pivot;
         }
-        if(arr[pivot]<=key){
+        if(arr[0]<=key){
            return binarySearch(arr,0,pivot-1,key);
         }
         return binarySearch(arr,pivot+1,n-1,key);
