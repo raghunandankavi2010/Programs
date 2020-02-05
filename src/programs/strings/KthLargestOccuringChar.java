@@ -13,8 +13,7 @@ public class KthLargestOccuringChar {
         sort(s);
         System.out.println(".......................................");
         Map<Character, Integer> hm = new TreeMap<>();
-        for (int i = 0; i < s.length(); i++) {
-            char cur = s.charAt(i);
+        for (char cur: s.toCharArray()) {
             if (!hm.containsKey(cur)) {
                 hm.put(cur, 1);
             } else {
