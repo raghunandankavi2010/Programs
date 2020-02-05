@@ -23,10 +23,8 @@ public class KthLargestOccuringChar {
         int key = 4;
         // another alternative using priority Queue but in case of character with same frequency the last
         // character will be printed
-        PriorityQueue<CountCharacters> pq = new PriorityQueue<>(s.length(), new Comparator<CountCharacters>() {
-            public int compare(CountCharacters a, CountCharacters b) {
-                return b.count - a.count; // in reverse
-            }
+        PriorityQueue<CountCharacters> pq = new PriorityQueue<>(s.length(), (a, b) -> {
+            return b.count - a.count; // in reverse
         });
         for (HashMap.Entry<Character, Integer> entry : hm.entrySet()) {
                 pq.add(new CountCharacters(entry.getValue(), entry.getKey()));
