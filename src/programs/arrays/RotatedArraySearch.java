@@ -14,34 +14,34 @@ package programs.arrays;
  */
 public class RotatedArraySearch {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         int[] arr = {5, 6, 7, 8, 9, 10, 1, 2, 3};
-        int[] temp = {3,1,2};
-        if(checkArrayRotation(temp)){
+        int[] temp = {3, 1, 2};
+        if (checkArrayRotation(temp)) {
             System.out.println("Array is not rotated");
-        } else{
+        } else {
             System.out.println("Array rotated right");
         }
         int n = arr.length;
         int key = 9;
-        int searchedElementIndex = search(arr,n,key);
-        System.out.println("Searched Element is at index: "+searchedElementIndex);
+        int searchedElementIndex = search(arr, n, key);
+        System.out.println("Searched Element is at index: " + searchedElementIndex);
     }
 
     private static int search(int[] arr, int n, int key) {
-        int pivot = findPivot(arr,0,n-1);
+        int pivot = findPivot(arr, 0, n - 1);
 
-        if(pivot==-1){
+        if (pivot == -1) {
             // array not rotated
-           return binarySearch(arr,0,n-1,key);
+            return binarySearch(arr, 0, n - 1, key);
         }
-        if(arr[pivot]==key){
+        if (arr[pivot] == key) {
             return pivot;
         }
-        if(arr[0]<=key){
-           return binarySearch(arr,0,pivot-1,key);
+        if (arr[0] <= key) {
+            return binarySearch(arr, 0, pivot - 1, key);
         }
-        return binarySearch(arr,pivot+1,n-1,key);
+        return binarySearch(arr, pivot + 1, n - 1, key);
     }
 
     private static int binarySearch(int[] arr, int low, int high, int key) {
@@ -49,38 +49,34 @@ public class RotatedArraySearch {
             return -1;
 
         /* low + (high - low)/2; */
-        int mid = (low + high)/2;
+        int mid = (low + high) / 2;
         if (key == arr[mid])
             return mid;
         if (key > arr[mid])
             return binarySearch(arr, (mid + 1), high, key);
-        return binarySearch(arr, low, (mid -1), key);
+        return binarySearch(arr, low, (mid - 1), key);
     }
 
-    private static int findPivot(int[] arr,int low, int high) {
-        if(low>high){
+    private static int findPivot(int[] arr, int low, int high) {
+        // base cases
+        if (high < low)
             return -1;
-        }
-        if(low==high){
+        if (high == low)
             return low;
-        }
-        int mid = (low+high)/2;
-        if(arr[mid]>arr[mid+1]){
-            return mid;
-        }else if(arr[mid]<arr[mid-1]){
-            return mid-1;
-        }
-        if(arr[low]>=arr[mid]){
-            return findPivot(arr,low,mid-1);
-        }
-        else {
-            return findPivot(arr,mid+1,high);
-        }
 
+        /* low + (high - low)/2; */
+        int mid = (low + high) / 2;
+        if (mid < high && arr[mid] > arr[mid + 1])
+            return mid;
+        if (mid > low && arr[mid] < arr[mid - 1])
+            return (mid - 1);
+        if (arr[low] >= arr[mid])
+            return findPivot(arr, low, mid - 1);
+        return findPivot(arr, mid + 1, high);
     }
 
     // just a util function to check array rotation
-    private static boolean checkArrayRotation(int[] arr){
+    private static boolean checkArrayRotation(int[] arr) {
         return arr[0] < arr[arr.length - 1];
     }
 }
