@@ -1,7 +1,6 @@
 package programs.strings;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -21,12 +20,7 @@ public class SortListofStrings {
              s = s+i;
             mList.add(s);
         }
-        mList.sort(new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return o2.length()-o1.length();
-            }
-        });
+        mList.sort((o1, o2) -> o2.length()-o1.length());
 
         mList.forEach(System.out::println);
     }
