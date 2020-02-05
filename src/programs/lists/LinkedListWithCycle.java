@@ -135,7 +135,7 @@ public class LinkedListWithCycle {
         }
     }*/
 
-    // d = distance of list without loop k distance in loop where both slow and fast meet
+    // d = distance of list without loop. k = distance in loop where both slow and fast meet
     // slow pointer moves N = d+k+c(i) c cycles and i distance travelled.
     // fast pointer moves 2N = d+k+c(j)
     // to find where the loop starts solving above equations d = (j-2i)c-K
