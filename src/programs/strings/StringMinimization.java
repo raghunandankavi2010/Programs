@@ -15,17 +15,17 @@ public class StringMinimization {
 
     private static void minimization() {
         String s = "aabcccabba";
+
         int mid = s.length() / 2; //get the middle of the String
+
         String[] parts = {s.substring(0, mid), s.substring(mid)};
         String part1 = parts[0];
         String part2 = parts[1];
 
         while (part1.length() > 0 && part2.length() > 0 && part2.charAt(part2.length() - 1) == part1.charAt(0)) {
             char toRemove = part2.charAt(part2.length() - 1);
-
             while (part2.length() > 0 && part2.charAt(part2.length() - 1) == toRemove) {
                 part2 = part2.substring(0, (part2.length() - 1));
-
             }
             while (part1.length() > 0 && part1.charAt(0) == toRemove) {
                 part1 = part1.substring(1);
