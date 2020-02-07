@@ -3,22 +3,25 @@ package programs.strings;
 public class RomanNumeralsToInteger {
 
     public static void main(String[] args) {
-        String s = "CCCXLVIII";
+        String s = "XIV";
         char[] arr = s.toCharArray();
         int res = 0;
         for(int i = 0;i < arr.length;i++){
              int value1 = getValue(arr[i]);
              if(i+1 < arr.length){
                  int value2 = getValue(arr[i+1]);
+                 // if values are equal add to result
                  if( value1 >= value2){
                      res = res + value1;
                  }else {
                      res = res + value2 - value1;
+                     // in case values are not equal increment index i
                      i++;
                  }
              } else {
+                 // just one value
                  res = res + value1;
-
+                 i++;
              }
         }
         System.out.println(res);
