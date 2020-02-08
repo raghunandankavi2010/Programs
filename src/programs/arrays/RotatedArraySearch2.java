@@ -16,6 +16,11 @@ package programs.arrays;
  *
  * Input: nums = [2,5,6,0,0,1,2], target = 3
  * Output: false
+ *
+ * My initial idea was to use pivot element as in problem 1 but it does not work in all cases
+ * as pivot in previous case was element greater than the next one.
+ * Here elements on the right of pivot and towards left can repeat.
+ *
  */
 public class RotatedArraySearch2 {
 
