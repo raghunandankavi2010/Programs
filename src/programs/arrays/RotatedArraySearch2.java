@@ -56,7 +56,8 @@ public class RotatedArraySearch2 {
                 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 
         RotatedArraySearch2 rotatedArraySearch = new RotatedArraySearch2();
-        System.out.println(rotatedArraySearch.search(arr, 2));
+        int target = 2;
+        System.out.println(rotatedArraySearch.search(arr, target));
     }
 
     private boolean search(int[] arr, int target) {
