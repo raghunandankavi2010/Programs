@@ -587,7 +587,7 @@ public class Trees {
                     queue.add(temp.getLeftNode());
                 }
                 if (temp.getRightNode() != null) {
-                    temp.getRightNode().setHd(hd-1);
+                    temp.getRightNode().setHd(hd+1);
                     queue.add(temp.getRightNode());
                 }
             }
