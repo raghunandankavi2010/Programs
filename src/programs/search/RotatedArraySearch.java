@@ -1,4 +1,4 @@
-package programs.arrays;
+package programs.search;
 
 /**
  * Search an element in a sorted and rotated array

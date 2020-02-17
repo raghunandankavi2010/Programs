@@ -1,4 +1,4 @@
-package programs;
+package programs.search;
 
 /**
  *  Search in sorted array binary search

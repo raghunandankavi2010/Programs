@@ -1,4 +1,4 @@
-package programs.arrays;
+package programs.search;
 
 /**
  *  Rotated search variation
