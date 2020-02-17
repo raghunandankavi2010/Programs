@@ -449,6 +449,8 @@ public class Trees {
 
             if(currentLevel == k){
                 printQueueContents(queue);
+                // uncomment to add all nodes at kth distance
+                //addAllContentsKthDistance(queue);
             }
 
             while(level>0){
@@ -479,6 +481,15 @@ public class Trees {
         for (Node node: queue) {
             System.out.print(node.getData()+" ");
         }
+    }
+
+    // add all contents at kth distance
+    private static void addAllContentsKthDistance(Queue<Node> queue) {
+        int sum = 0;
+        for (Node node: queue) {
+            sum += node.getData();
+        }
+        System.out.println("Sum of all nodes at Kth distance is "+sum);
     }
 
     private static void populateMap(Map<Node, Node> parentNodeMap, Node root, Node parent) {
