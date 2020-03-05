@@ -1,7 +1,6 @@
 package programs.arrays;
 
 import java.util.Arrays;
-import java.util.Comparator;
 
 /**
  * https://www.hackerrank.com/challenges/big-sorting/problem?h_r=next-challenge&h_v=zen
