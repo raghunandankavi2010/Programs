@@ -36,7 +36,7 @@ public class NonDecreasingArrayVariation {
     }
 
     public static void main(String[] args)  {
-        // reading values can be doen through buffered reader
+        // reading values can be done through buffered reader
         // this prevented time out on a test case.
        String[] arr = {"31415926535897932384626433832795",
                "1",
