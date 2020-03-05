@@ -11,6 +11,7 @@ public class NonDecreasingArrayVariation {
     // Complete the bigSorting function below.
     static String[] bigSorting(String[] unsorted) {
 
+        // sorting hint taken from discussion section.
         Arrays.sort(unsorted, (x, y) -> {
             // If the length is not the same, we return the difference.
             // A negative # means, x Length is shorter, 0 means the same (this doesn't occur) and a postive # means Y is bigger
@@ -35,6 +36,8 @@ public class NonDecreasingArrayVariation {
     }
 
     public static void main(String[] args)  {
+        // reading values can be doen through buffered reader
+        // this prevented time out on a test case.
        String[] arr = {"31415926535897932384626433832795",
                "1",
                "3",
