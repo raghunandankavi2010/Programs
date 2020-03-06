@@ -59,11 +59,26 @@ public class RankMarks {
         student6.setMarks(45);
         student6.setName("joy");
         list.add(student6);
-
+        //67
         Student student7 = new Student();
         student7.setMarks(32);
         student7.setName("Raghu");
         list.add(student7);
+        //8
+        Student student8 = new Student();
+        student8.setMarks(32);
+        student8.setName("student8");
+        list.add(student7);
+        // 9
+        Student student9 = new Student();
+        student9.setMarks(34);
+        student9.setName("student9");
+        list.add(student9);
+        //10
+        Student student10 = new Student();
+        student10.setMarks(48);
+        student10.setName("rancho2");
+        list.add(student10);
 
         list.sort((s1, s2) -> {
 
@@ -90,14 +105,23 @@ public class RankMarks {
 
 
         int rank = 1;
+        boolean conseqEqual = false;
         list.get(0).setRank(rank);
         for (int i = 1; i < list.size(); i++) {
             if (list.get(i).getMarks() == list.get(i - 1).getMarks()) {
                 list.get(i).setRank(rank);
                 list.get(i - 1).setRank(rank);
+                conseqEqual = true;
             } else {
-                rank = rank+2;
-                list.get(i).setRank(rank);
+                if(conseqEqual){
+                    rank = rank+2;
+                    list.get(i).setRank(rank);
+                    conseqEqual = false;
+                }else {
+                    rank = rank + 1;
+                    list.get(i).setRank(rank);
+                }
+
             }
         }
 
