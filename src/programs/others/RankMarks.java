@@ -27,7 +27,7 @@ public class RankMarks {
 
         Student student0 = new Student();
         student0.setMarks(45);
-        student0.setName("AAB");
+        student0.setName("AA");
         list.add(student0);
         // 2
         Student student = new Student();
@@ -83,6 +83,9 @@ public class RankMarks {
         list.sort((s1, s2) -> {
 
             if (s1.marks == s2.marks) {
+                // lengths are different
+                if (s1.name.length() != s2.name.length()) return s1.name.length() - s2.name.length();
+                // lengths are same
                 char[] xarray = s1.name.toCharArray();
                 char[] yarray = s2.name.toCharArray();
                 for(int i=0;i<xarray.length;i++) {
