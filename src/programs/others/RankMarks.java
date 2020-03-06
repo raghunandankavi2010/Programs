@@ -118,7 +118,6 @@ public class RankMarks {
         for (int i = 1; i < list.size(); i++) {
             if (list.get(i).getMarks() == list.get(i - 1).getMarks()) {
                 list.get(i).setRank(rank);
-                list.get(i - 1).setRank(rank);
                 conseqEqual = true;
             } else {
                 if (conseqEqual) {
