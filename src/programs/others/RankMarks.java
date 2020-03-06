@@ -27,7 +27,7 @@ public class RankMarks {
 
         Student student0 = new Student();
         student0.setMarks(45);
-        student0.setName("AA");
+        student0.setName("AAB");
         list.add(student0);
         // 2
         Student student = new Student();
@@ -68,7 +68,7 @@ public class RankMarks {
         Student student8 = new Student();
         student8.setMarks(32);
         student8.setName("student8");
-        list.add(student7);
+        list.add(student8);
         // 9
         Student student9 = new Student();
         student9.setMarks(34);
@@ -91,22 +91,20 @@ public class RankMarks {
                 for(int i=0;i<xarray.length;i++) {
                     char left = xarray[i];
                     char right = yarray[i];
-
                     if (right < left)
                         return 1;
                     else if (right > left)
                         return -1;
+
                 }
             } else if (s1.marks > s2.marks) {
-
                 return -1;
             }
-
-            return 1;
+            return 0;
 
         });
 
-
+        // add rank.
         int rank = 1;
         boolean conseqEqual = false;
         list.get(0).setRank(rank);
