@@ -7,6 +7,7 @@ import java.util.*;
  */
 public class RankMarks {
 
+
     public static void main(String args[]) throws Exception {
         List<Student> list = new ArrayList<>();
  /*       Scanner sc = new Scanner(System.in);
@@ -23,8 +24,6 @@ public class RankMarks {
             student.setName(a);
             list.add(student);
         }*/
-
-
         Student student0 = new Student();
         student0.setMarks(45);
         student0.setName("AAB");
@@ -80,14 +79,18 @@ public class RankMarks {
         student10.setName("rancho2");
         list.add(student10);
 
-        list.sort((s1, s2) -> {
+        RankMarks rankMarks = new RankMarks();
+        rankMarks.sort_print(list);
+    }
 
-            if (s1.marks == s2.marks) {
+    private void sort_print(List<Student> list){
+        list.sort((s1, s2) -> {
+            if (s1.getMarks() == s2.getMarks()) {
                 // lengths are different
-                if (s1.name.length() != s2.name.length()) return s1.name.length() - s2.name.length();
+                if (s1.getName().length() != s2.getName().length()) return s1.getName().length() - s2.getName().length();
                 // lengths are same
-                char[] xarray = s1.name.toCharArray();
-                char[] yarray = s2.name.toCharArray();
+                char[] xarray = s1.getName().toCharArray();
+                char[] yarray = s2.getName().toCharArray();
                 for(int i=0;i<xarray.length;i++) {
                     char left = xarray[i];
                     char right = yarray[i];
@@ -95,9 +98,8 @@ public class RankMarks {
                         return 1;
                     else if (right > left)
                         return -1;
-
                 }
-            } else if (s1.marks > s2.marks) {
+            } else if (s1.getMarks() > s2.getMarks()) {
                 return -1;
             }
             return 0;
@@ -127,15 +129,15 @@ public class RankMarks {
         }
 
         for (Student value : list) {
-            System.out.println(value.name + " " + value.rank + " " + value.marks);
+            System.out.println(value.getName() + " " + value.getMarks() + " " + value.getRank());
         }
     }
 }
 
 class Student {
-    int marks;
-    String name;
-    int rank;
+    private int marks;
+    private String name;
+    private  int rank;
 
     public int getMarks() {
         return marks;
