@@ -27,7 +27,7 @@ public class RankMarks {
         }*/
         Student student0 = new Student();
         student0.setMarks(45);
-        student0.setName("AAB");
+        student0.setName("ABA");
         list.add(student0);
         // 2
         Student student = new Student();
