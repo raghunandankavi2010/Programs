@@ -8,9 +8,10 @@ import java.util.*;
 public class RankMarks {
 
 
-    public static void main(String args[]) throws Exception {
+    public static void main(String[] args)  {
         List<Student> list = new ArrayList<>();
- /*       Scanner sc = new Scanner(System.in);
+        // read from command line.
+        /*Scanner sc = new Scanner(System.in);
         String s = sc.nextLine();
         int size =  Integer.parseInt(s);
         for(int i=0;i<size;i++){
@@ -83,15 +84,16 @@ public class RankMarks {
         rankMarks.sort_print(list);
     }
 
-    private void sort_print(List<Student> list){
+    private void sort_print(List<Student> list) {
         list.sort((s1, s2) -> {
             if (s1.getMarks() == s2.getMarks()) {
                 // lengths are different
-                if (s1.getName().length() != s2.getName().length()) return s1.getName().length() - s2.getName().length();
+                if (s1.getName().length() != s2.getName().length())
+                    return s1.getName().length() - s2.getName().length();
                 // lengths are same
                 char[] xarray = s1.getName().toCharArray();
                 char[] yarray = s2.getName().toCharArray();
-                for(int i=0;i<xarray.length;i++) {
+                for (int i = 0; i < xarray.length; i++) {
                     char left = xarray[i];
                     char right = yarray[i];
                     if (right < left)
@@ -116,11 +118,11 @@ public class RankMarks {
                 list.get(i - 1).setRank(rank);
                 conseqEqual = true;
             } else {
-                if(conseqEqual){
-                    rank = rank+2;
+                if (conseqEqual) {
+                    rank = rank + 2;
                     list.get(i).setRank(rank);
                     conseqEqual = false;
-                }else {
+                } else {
                     rank = rank + 1;
                     list.get(i).setRank(rank);
                 }
@@ -137,7 +139,7 @@ public class RankMarks {
 class Student {
     private int marks;
     private String name;
-    private  int rank;
+    private int rank;
 
     public int getMarks() {
         return marks;
