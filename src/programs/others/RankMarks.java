@@ -32,7 +32,7 @@ public class RankMarks {
         // 2
         Student student = new Student();
         student.setMarks(45);
-        student.setName("AB");
+        student.setName("A");
         list.add(student);
         // 2
         Student student2 = new Student();
