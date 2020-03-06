@@ -27,12 +27,12 @@ public class RankMarks {
         }*/
         Student student0 = new Student();
         student0.setMarks(45);
-        student0.setName("ABA");
+        student0.setName("AAA");
         list.add(student0);
         // 2
         Student student = new Student();
         student.setMarks(45);
-        student.setName("AAA");
+        student.setName("AB");
         list.add(student);
         // 2
         Student student2 = new Student();
@@ -89,8 +89,11 @@ public class RankMarks {
             if (s1.getMarks() == s2.getMarks()) {
                 // lengths are different
                 if (s1.getName().length() != s2.getName().length())
-                    return s1.getName().length() - s2.getName().length();
-                // lengths are same
+                    if(s1.getName().length()>s2.getName().length()) // if first string length is greater than second
+                        return s1.getName().length() - s2.getName().length();
+                    else // if second string length is greater than first
+                        return s2.getName().length() - s1.getName().length();
+                // lengths are same. go through each character and compare.
                 char[] xarray = s1.getName().toCharArray();
                 char[] yarray = s2.getName().toCharArray();
                 for (int i = 0; i < xarray.length; i++) {
@@ -126,7 +129,6 @@ public class RankMarks {
                     rank = rank + 1;
                     list.get(i).setRank(rank);
                 }
-
             }
         }
 
@@ -137,6 +139,7 @@ public class RankMarks {
 }
 
 class Student {
+
     private int marks;
     private String name;
     private int rank;
