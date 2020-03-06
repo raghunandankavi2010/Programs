@@ -22,17 +22,17 @@ public class RankMarks {
             student.setMarks(Integer.parseInt(b));
             student.setName(a);
             list.add(student);
-        }
+        }*/
 
-*/
+
         Student student0 = new Student();
         student0.setMarks(45);
-        student0.setName("rancho1");
+        student0.setName("AAB");
         list.add(student0);
         // 2
         Student student = new Student();
         student.setMarks(45);
-        student.setName("rancho");
+        student.setName("AAA");
         list.add(student);
         // 2
         Student student2 = new Student();
@@ -85,15 +85,15 @@ public class RankMarks {
             if (s1.marks == s2.marks) {
                 char[] xarray = s1.name.toCharArray();
                 char[] yarray = s2.name.toCharArray();
-                char left = xarray[0];
-                char right = yarray[0];
+                for(int i=0;i<xarray.length;i++) {
+                    char left = xarray[i];
+                    char right = yarray[i];
 
-                if (right < left)
-                    return 1;
-                else if (right > left)
-                    return -1;
-                else
-                    return 0;
+                    if (right < left)
+                        return 1;
+                    else if (right > left)
+                        return -1;
+                }
             } else if (s1.marks > s2.marks) {
 
                 return -1;
