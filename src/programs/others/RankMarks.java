@@ -133,7 +133,7 @@ public class RankMarks {
         }
 
         for (Student value : list) {
-            System.out.println(value.getRank()+" "+value.getName());
+            System.out.println(value.getRank()+" "+ value.getMarks()+" "+value.getName());
         }
     }
 }
