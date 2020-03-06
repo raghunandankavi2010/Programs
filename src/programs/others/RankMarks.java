@@ -121,7 +121,7 @@ public class RankMarks {
                 conseqEqual = true;
             } else {
                 if (conseqEqual) {
-                    rank = rank + 2;
+                    rank += 2;
                     list.get(i).setRank(rank);
                     conseqEqual = false;
                 } else {
