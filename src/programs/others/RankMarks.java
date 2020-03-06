@@ -126,14 +126,14 @@ public class RankMarks {
                     list.get(i).setRank(rank);
                     conseqEqual = false;
                 } else {
-                    rank = rank + 1;
+                    rank++;
                     list.get(i).setRank(rank);
                 }
             }
         }
 
         for (Student value : list) {
-            System.out.println(value.getName() + " " + value.getMarks() + " " + value.getRank());
+            System.out.println(value.getRank()+" "+value.getName());
         }
     }
 }
