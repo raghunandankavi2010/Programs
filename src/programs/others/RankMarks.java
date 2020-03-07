@@ -7,7 +7,6 @@ import java.util.*;
  */
 public class RankMarks {
 
-
     public static void main(String[] args) {
         List<Student> list = new ArrayList<>();
         // read from command line.
@@ -73,19 +72,20 @@ public class RankMarks {
 
         // add rank.
         int rank = 1;
-        boolean conseqEqual = false;
+        boolean consecutiveEqual = false;
         list.get(0).setRank(rank);
         for (int i = 1; i < list.size(); i++) {
             if (list.get(i).getMarks() == list.get(i - 1).getMarks()) {
                 list.get(i).setRank(rank);
-                conseqEqual = true;
+                consecutiveEqual = true;
             } else {
-                if (conseqEqual) {
+                // if two consecutive ranks are same skip by 2
+                if (consecutiveEqual) {
                     rank += 2;
                     list.get(i).setRank(rank);
-                    conseqEqual = false;
+                    consecutiveEqual = false;
                 } else {
-                    rank++;
+                    rank++; // skip rank by one
                     list.get(i).setRank(rank);
                 }
             }
