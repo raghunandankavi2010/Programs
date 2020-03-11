@@ -10,7 +10,7 @@ public class ReverseWordsInString {
         String s = " Hello World! ";
         reverseWordsInString.reverse(s);
         // philips test.
-        String s2 = "I am working at manyata ";
+        String s2 = "I am working at Manyata";
         reverseWordsInString.reverseWords(s2);
 
     }
