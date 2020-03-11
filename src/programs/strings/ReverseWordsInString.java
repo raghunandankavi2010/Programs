@@ -17,14 +17,16 @@ public class ReverseWordsInString {
         char[] arr = s.toCharArray();
         int i=0;
         int j = arr.length-1;
-        while(i<=j){
+        while(i<j){
+            // if it is not space then swap char at i and j
+            // increment i and decrement j
             if(arr[i]!=' '){
                 arr[i] ^= arr[j];
                 arr[j] ^= arr[i];
                 arr[i] ^= arr[j];
                 i++;
                 j--;
-            }else{
+            }else{ // space just increment i
                 i++;
             }
         }
