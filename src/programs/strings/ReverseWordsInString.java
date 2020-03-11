@@ -6,27 +6,28 @@ package programs.strings;
 public class ReverseWordsInString {
 
     public static void main(String[] args) {
-        String s = " Hello World! ";
-        reverse(s);
-        // philips test.
         ReverseWordsInString reverseWordsInString = new ReverseWordsInString();
+        String s = " Hello World! ";
+        reverseWordsInString.reverse(s);
+        // philips test.
         reverseWordsInString.reverseWords("I am working at manyata");
+
     }
 
     private void reverseWords(String s) {
         char[] arr = s.toCharArray();
-        int i=0;
-        int j = arr.length-1;
-        while(i<j){
+        int i = 0;
+        int j = arr.length - 1;
+        while (i < j) {
             // if it is not space then swap char at i and j
             // increment i and decrement j
-            if(arr[i]!=' '){
+            if (arr[i] != ' ') {
                 arr[i] ^= arr[j];
                 arr[j] ^= arr[i];
                 arr[i] ^= arr[j];
                 i++;
                 j--;
-            }else{ // space just increment i
+            } else { // space just increment i
                 i++;
             }
         }
@@ -34,16 +35,16 @@ public class ReverseWordsInString {
 
     }
 
-    private static void reverse(String s) {
+    private void reverse(String s) {
         s = s.replaceAll("\\s+", " ").trim();
         String[] strgs = s.split("\\s");
         int n = strgs.length - 1;
         StringBuilder sb = new StringBuilder();
         int i = n;
         while (i >= 0) {
-            if(i==0){
+            if (i == 0) {
                 sb.append(strgs[i]);
-            }else {
+            } else {
                 sb.append(strgs[i]).append(" ");
             }
             i--;
