@@ -10,7 +10,8 @@ public class ReverseWordsInString {
         String s = " Hello World! ";
         reverseWordsInString.reverse(s);
         // philips test.
-        reverseWordsInString.reverseWords("I am working at manyata");
+        String s2 = "I am working at manyata ";
+        reverseWordsInString.reverseWords(s2);
 
     }
 
@@ -21,14 +22,16 @@ public class ReverseWordsInString {
         while (i < j) {
             // if it is not space then swap char at i and j
             // increment i and decrement j
-            if (arr[i] != ' ') {
+            if (arr[i] != ' ' && arr[j]!= ' ') {
                 arr[i] ^= arr[j];
                 arr[j] ^= arr[i];
                 arr[i] ^= arr[j];
                 i++;
                 j--;
-            } else { // space just increment i
+            } else if(arr[i]==' ') { // space just increment i
                 i++;
+            } else if(arr[j]==' ') { // space just decrement j
+                j--;
             }
         }
         System.out.println(String.valueOf(arr));
