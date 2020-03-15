@@ -33,7 +33,7 @@ public class MyMap<K,V> {
     public V get(K key){
         Entry<K,V> bucket = buckets[getHash(key)%getBucketsSize()]; // get index of array
 
-        while(bucket!=null){ // loop through the array to get the value based on key
+        while(bucket!=null){ // loop through the list to get the value based on key
             if(key == bucket.key) {
                 return bucket.value;
 
