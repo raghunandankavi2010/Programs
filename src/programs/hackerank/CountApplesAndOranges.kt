@@ -6,13 +6,13 @@ import java.util.*
  * https://www.hackerrank.com/challenges/apple-and-orange/problem
  */
 // Complete the countApplesAndOranges function below.
-fun countApplesAndOranges(s: Int, t: Int, a: Int, b: Int, apples: Array<Int>, oranges: Array<Int>): Unit {
+fun countApplesAndOranges(s: Int, t: Int, a: Int, b: Int, apples: Array<Int>, oranges: Array<Int>) {
 
     var count = 0
     for(i in apples.indices){
         val newDistance = apples[i]+a
         if(newDistance in s..t){
-            count++;
+            count++
         }
     }
     println(count)
@@ -21,7 +21,7 @@ fun countApplesAndOranges(s: Int, t: Int, a: Int, b: Int, apples: Array<Int>, or
     for(i in oranges.indices){
         val newDistance = oranges[i]+b
         if(newDistance in s..t){
-            count++;
+            count++
         }
     }
     println(count)
