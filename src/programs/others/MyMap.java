@@ -30,6 +30,7 @@ public class MyMap<K,V> {
     private int getBucketsSize(){
         return buckets.length;
     }
+
     public V get(K key){
         Entry<K,V> bucket = buckets[getHash(key)%getBucketsSize()]; // get index of array
 
@@ -38,7 +39,7 @@ public class MyMap<K,V> {
                 return bucket.value;
 
             }
-            bucket = bucket .next;
+            bucket = bucket.next;
         }
         return null;
     }
