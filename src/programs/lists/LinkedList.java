@@ -3,7 +3,7 @@ package programs.lists;
 /**
  * Created by raghu on 5/7/17.
  */
-public class LinkedList {
+public class LinkedList<I extends Number> {
 
     private Node head;
     private int list_size;
@@ -14,7 +14,7 @@ public class LinkedList {
 
     public static void main(String[] args) {
 
-        LinkedList linkedList = new LinkedList();
+        LinkedList<Number> linkedList = new LinkedList<Number>();
         linkedList.add(1);
         linkedList.add(2);
         linkedList.add(3);
@@ -25,7 +25,7 @@ public class LinkedList {
         //Node root = reverseBetween(linkedList.getHead(),1,2);
         //linkedList.print(root);
 
-        LinkedList linkedList1 = new LinkedList();
+        LinkedList<Number> linkedList1 = new LinkedList<Number>();
 
         linkedList1.add(5);
         linkedList1.add(6);

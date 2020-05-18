@@ -20,7 +20,7 @@ public class Trees {
         Node n3 = new Node();
         addNode(n3, 3);
 
-        printSpiral(rootNode);
+        //printSpiral(rootNode);
         //Node result = search(rootNode,3);
        // System.out.println("Searched Node "+result.getData());
        // bottomView(rootNode);
@@ -96,7 +96,7 @@ public class Trees {
         //leftView(rootNode,1);
         //System.out.println("Print data at each level");
         //printDataAtLevelBFS(rootNode);
-        //DFS(rootNode);
+         DFS(rootNode);
      /*   System.out.println("RootNode"+rootNode.getData());
         System.out.println("In Order");
         printInOrder(rootNode);
