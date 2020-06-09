@@ -11,7 +11,7 @@ public class SingletonClass{
         return instance;
     }
 
-    // throw error if you try to creat4e isntance with reflection
+    // throw error if you try to create instance with reflection
     private SingletonClass() {
         if(instance!=null){
             throw new InstantiationError( "Creating of this object is not allowed." );

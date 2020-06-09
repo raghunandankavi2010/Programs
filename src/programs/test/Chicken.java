@@ -28,14 +28,11 @@ class Chicken implements Bird {
         egg1.hatch();
 
     }
-
-
 }
 
-class Egg {
-
+class Egg
+{
     Callable<Bird> createBird;
-
     public Egg(Callable<Bird> createBird) {
         this.createBird = createBird;
     }
