@@ -1,75 +1,77 @@
 package programs.threads;
 
-/** Prints 1 and 2 from two threads alternatively
- *
+/**  Program to print 12 alternatively
+ *   from two different threads
+ *   using wait and notify
  */
+
 public class Print12 {
 
-    private final Object object = new Object();
+    private final Object lock = new Object();
+
     public static void main(String[] args) {
 
-        PrintEvenOdd print = new PrintEvenOdd();
-        Thread t1 = new Thread(new EvenOdd(print, 10, false),"Odd");
-        Thread t2 = new Thread(new EvenOdd(print, 10, true),"Even");
+        Print12 print12 = new Print12();
+        print12.print();
+
+    }
+
+    public void print(){
+
+        Thread1 t1 = new Thread1(lock);
+        Thread2 t2 = new Thread2(lock);
+
         t1.start();
         t2.start();
     }
-
 }
 
+class Thread1 extends Thread {
 
-class EvenOdd implements Runnable {
-    private final int max;
-    private final PrintEvenOdd print;
-    private final boolean isEvenNumber;
+    private final Object lock;
 
-    public EvenOdd(PrintEvenOdd print, int i, boolean b) {
-        this.print = print;
-        this. max = i;
-        this.isEvenNumber = b;
+    public Thread1(Object lock) {
+        this.lock = lock;
     }
 
     @Override
     public void run() {
-        int number = isEvenNumber ? 2 : 1;
-        while (number <= max) {
-            if (isEvenNumber) {
-                print.printEven(number);
-            } else {
-                print.printOdd(number);
+        for (int i = 1; i < 51; i = i + 2) {
+            synchronized (lock) {
+                System.out.println("t1 " + i);
+                lock.notify();
+                try {
+                    lock.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-            number += 2;
         }
     }
 }
 
-class PrintEvenOdd {
+class Thread2 extends Thread {
 
-    private volatile boolean isOdd;
+    private final Object lock;
 
-    synchronized void printEven(int number) {
-        while (!isOdd) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-               e.printStackTrace();
-            }
-        }
-        System.out.println(Thread.currentThread().getName() + ":" + number);
-        isOdd = false;
-        notify();
+    public Thread2(Object lock) {
+        this.lock = lock;
     }
 
-    synchronized void printOdd(int number) {
-        while (isOdd) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+    @Override
+    public void run() {
+        for (int i = 2; i < 51; i = i + 2) {
+            synchronized (lock) {
+                System.out.println("t2 " + i);
+                lock.notify();
+                try {
+                    if(i==50)
+                        break;
+                    lock.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
-        System.out.println(Thread.currentThread().getName() + ":" + number);
-        isOdd = true;
-        notify();
     }
 }
