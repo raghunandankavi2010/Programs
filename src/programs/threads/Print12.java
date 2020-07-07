@@ -1,13 +1,16 @@
 package programs.threads;
 
+/** Prints 1 and 2 from two threads alternatively
+ *
+ */
 public class Print12 {
 
     private final Object object = new Object();
     public static void main(String[] args) {
 
-        Printer print = new Printer();
-        Thread t1 = new Thread(new TaskEvenOdd(print, 10, false),"Odd");
-        Thread t2 = new Thread(new TaskEvenOdd(print, 10, true),"Even");
+        PrintEvenOdd print = new PrintEvenOdd();
+        Thread t1 = new Thread(new EvenOdd(print, 10, false),"Odd");
+        Thread t2 = new Thread(new EvenOdd(print, 10, true),"Even");
         t1.start();
         t2.start();
     }
@@ -15,18 +18,16 @@ public class Print12 {
 }
 
 
-class TaskEvenOdd implements Runnable {
+class EvenOdd implements Runnable {
     private final int max;
-    private final Printer print;
+    private final PrintEvenOdd print;
     private final boolean isEvenNumber;
 
-    public TaskEvenOdd(Printer print, int i, boolean b) {
+    public EvenOdd(PrintEvenOdd print, int i, boolean b) {
         this.print = print;
         this. max = i;
         this.isEvenNumber = b;
     }
-
-    // standard constructors
 
     @Override
     public void run() {
@@ -42,7 +43,8 @@ class TaskEvenOdd implements Runnable {
     }
 }
 
-class Printer {
+class PrintEvenOdd {
+
     private volatile boolean isOdd;
 
     synchronized void printEven(int number) {
@@ -50,7 +52,7 @@ class Printer {
             try {
                 wait();
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+               e.printStackTrace();
             }
         }
         System.out.println(Thread.currentThread().getName() + ":" + number);
@@ -63,7 +65,7 @@ class Printer {
             try {
                 wait();
             } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+                e.printStackTrace();
             }
         }
         System.out.println(Thread.currentThread().getName() + ":" + number);
