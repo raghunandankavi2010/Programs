@@ -17,12 +17,12 @@ public class KthSmallestAndLargestElementInArray {
     private static int findKthSmallestElement(int[] arr, int k) {
         PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());
         for(int i=0;i<k;i++){
-            pq.add(arr[i]); //15 2 3
+            pq.add(arr[i]); // 3 2
         }
         // from 1 to 21
         // arr[i] now is 1
         // remove from queue ie 15
-        // 3 2 1
+        // 3 2
         // remove 3 from queue
         // 2 1 0
         for(int i=k;i<arr.length;i++){
@@ -37,7 +37,7 @@ public class KthSmallestAndLargestElementInArray {
     private static int findKthLargestElement(int[] arr, int k) {
         PriorityQueue<Integer> pq = new PriorityQueue<>();
         for(int i=0;i<k;i++){
-            pq.add(arr[i]); //2 3 15
+            pq.add(arr[i]); //2 3
         }
         // from 1 to 21
         // arr[i] now is 1
