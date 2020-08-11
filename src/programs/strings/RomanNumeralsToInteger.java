@@ -1,5 +1,7 @@
 package programs.strings;
 
+import java.util.TreeMap;
+
 public class RomanNumeralsToInteger {
 
     public static void main(String[] args) {
@@ -14,6 +16,10 @@ public class RomanNumeralsToInteger {
         int inputValue = 17;
         String roman = romanNumeralsToInteger.intToRoman(inputValue);
         System.out.println(roman);
+
+        // usign tree map
+        String output = toRoman(17);
+        System.out.println(output);
 
     }
 
@@ -86,5 +92,33 @@ public class RomanNumeralsToInteger {
         else if(num<100) return TENS[num/10];
         else if(num<1000) return HUNDREDS[num/100];
         else return THOUSANDS[num/1000];
+    }
+
+    // Another solution using treemap from stackoverflow
+    private final static TreeMap<Integer, String> map = new TreeMap<>();
+
+    static {
+        map.put(1000, "M");
+        map.put(900, "CM");
+        map.put(500, "D");
+        map.put(400, "CD");
+        map.put(100, "C");
+        map.put(90, "XC");
+        map.put(50, "L");
+        map.put(40, "XL");
+        map.put(10, "X");
+        map.put(9, "IX");
+        map.put(5, "V");
+        map.put(4, "IV");
+        map.put(1, "I");
+    }
+
+    public static String toRoman(int number) {
+        int l = map.floorKey(number); // gives the key closest to the number
+        if (number == l) { // in case the key matches number get the value from map
+            return map.get(number);
+        }
+        // else ge the value from map and recursive for number - key
+        return map.get(l) + toRoman(number - l);
     }
 }
