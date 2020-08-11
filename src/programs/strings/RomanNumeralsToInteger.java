@@ -70,15 +70,15 @@ public class RomanNumeralsToInteger {
 
     public String intToRoman(int num) {
         int place = 1;
-        String ans="";
+        StringBuilder ans= new StringBuilder();
         while(num>0){
             int rem = num % 10;
             rem *= place;
-            ans = helper(rem) + ans;
+            ans.insert(0, helper(rem));
             place*= 10;
             num = num / 10;
         }
-        return ans;
+        return ans.toString();
     }
 
     String helper(int num){
