@@ -1,6 +1,6 @@
-# Java Programs
+# Sample Programs
 
-Java Programs to demonstrate problem solving skills. Challenges solved from various sources like leetcode, hackerrank and other sources.
+ Programs to demonstrate problem solving skills. Challenges solved from various sources like leetcode, hackerrank and other sources. Written in java and partly in kotlin.
 
 **To run in IntelliJ**
 
