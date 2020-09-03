@@ -5,16 +5,16 @@ import java.util.*
 
 /**
  *  Given String s1 = "ab#c"
- *  where % represents a backspace ie delete character b results in ac
+ *  where # represents a backspace ie delete character b results in ac
  *  Similarly for String s1 = "ad#c" results is ac
- *  comparing s1 == s2 is true
+ *  comparing s1 == s2 is true else false
  */
 
-fun main(args: Array<String>) {
+fun main() {
 
-    val S = "ab#c"
-    val T = "ad#c"
-    val isTrue = check(S, T)
+    val s1 = "ab#c"
+    val s2 = "ad#c"
+    val isTrue = check(s1, s2)
     println(isTrue)
 
 }
@@ -30,12 +30,12 @@ fun check(s1: String, s2: String): Boolean {
 fun processString(s: String): String {
     val stack = Stack<Char>()
     val result = StringBuilder()
-    val scharArray = s.toCharArray()
+    val sCharArray = s.toCharArray()
     var temp = ' '
-    for (i in scharArray.indices) {
-        if (scharArray[i] != '#') {
+    for (i in sCharArray.indices) {
+        if (sCharArray[i] != '#') {
             temp = ' '
-            stack.push(scharArray[i])
+            stack.push(sCharArray[i])
         } else if (stack.isNotEmpty() && temp != '#') {
             temp = '#'
             stack.pop()
