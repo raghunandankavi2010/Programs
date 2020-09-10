@@ -1,6 +1,7 @@
 package programs.arrays;
 
-import org.javatuples.Pair;
+
+import kotlin.Pair;
 
 /**
  * Find out the maximum sub-array of non negative numbers from an array.
@@ -15,7 +16,7 @@ public class MaximumSubArray {
         int[] arr = {1, 2, 5, -7,-7,8,9};
         Pair<Integer,Integer> pair = findSubArray(arr);
         System.out.println("Positive Sub Array whose sum is greater");
-        for(int i=pair.getValue0();i<pair.getValue1();i++){
+        for(int i=pair.getFirst();i<pair.getSecond();i++){
             System.out.print(arr[i]+" ");
         }
 
@@ -27,7 +28,7 @@ public class MaximumSubArray {
     // check if sum calculated is greater than previous sum calculated
     // if so startIndex is pointing of the sub array sum calculation
     // endIndex is again pointing to i
-    private static Pair<Integer,Integer> findSubArray(int arr[]) {
+    private static Pair<Integer,Integer> findSubArray(int[] arr) {
         int n = arr.length;
         int startIndex = 0;
         int endIndex = 0;
