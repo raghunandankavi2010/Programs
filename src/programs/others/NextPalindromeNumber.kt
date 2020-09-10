@@ -1,5 +1,17 @@
 package programs.others
 
+/**
+ *  initially i thought of adding 1 to number
+ *  and checking it if its palindrome or not.
+ *  But the above approach is not good.
+ *  Bellow approach is based on finding middle element
+ *  and mirroring left half to the right half
+ *  case where left side element of mid is less than right side
+ *  add 1 to middle and carry to left side and mirror that on right
+ *  in case lft and right half of middle is already a palindrome the
+ *  add 1 to the middle element
+ *
+ */
 fun main() {
     val num = intArrayOf(9, 9, 9)
     if (isAll9(num, num.size)) {
