@@ -30,18 +30,18 @@ public class LinkedList<I extends Number> {
         linkedList1.add(5);
         linkedList1.add(6);
         linkedList1.add(4);
-        linkedList1.add(23);
+        linkedList1.add(2);
         linkedList1.add(3);
-        Node end = linkedList1.getHead();
+ /*       Node end = linkedList1.getHead();
         while(end.getNext()!=null){
             end = end.getNext();
         }
         sort(linkedList1.getHead(),end);
         linkedList1.print(linkedList1.getHead());
+*/
 
-
-        //Node head =addTwoNumbers2(linkedList.getHead(),linkedList1.getHead());
-        //linkedList.print(head);
+        Node head =addTwoNumbers2(linkedList.getHead(),linkedList1.getHead());
+        linkedList.print(head);
 
         //linkedList.print(swapPairs(linkedList.getHead()));
         // linkedList.print(removeAllNodesWithKValue(linkedList.getHead(), 2));

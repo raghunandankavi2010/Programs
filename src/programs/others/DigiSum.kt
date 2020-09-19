@@ -1,6 +1,10 @@
 package programs.others
 
-
+/** 1234
+ * The sum of 1+2+3+4 = 10,
+ * digSum(x) == 10
+ * Hence ans will be 1+0 = 1
+ */
 
 fun main(){
     val n = 1234

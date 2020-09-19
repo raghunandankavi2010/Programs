@@ -30,9 +30,9 @@ fun isAll9(num: IntArray, n: Int): Boolean {
 }
 
 fun getNextPalinDrome(num: IntArray, size: Int) {
-    val mid = num.size / 2;
+    val mid = num.size / 2
 
-    var i = mid - 1;
+    var i = mid - 1
     var j = if (size % 2 == 0) mid else mid + 1
 
     while (i >= 0 && num[i] == num[j]) {
