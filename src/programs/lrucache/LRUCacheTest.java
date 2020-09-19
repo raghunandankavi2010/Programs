@@ -6,31 +6,16 @@ public class LRUCacheTest {
     public static void main(String... args) {
         Map<Integer, String> cache = new LRUCache<>(5);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 5; i++) {
             cache.put(i, "hi");
         }
-        // entries 0-4 have already been removed
-        // entries 5-9 are ordered
-        System.out.println("cache = " + cache);
-
-        System.out.println(cache.get(7));
-        // entry 7 has moved to the end
-        System.out.println("cache = " + cache);
-
-        for (int i = 10; i < 14; i++) {
-            cache.put(i, "hi");
-        }
-        // entries 5,6,8,9 have been removed (eldest entries)
-        // entry 7 is at the beginning now
-        System.out.println("cache = " + cache);
-
-        System.out.println(cache.get(7));
-        System.out.println("cache = " + cache);
-        cache.put(42, "meaning of life");
-        // entry 7 is gone too
-        System.out.println("cache = " + cache);
+        cache.put(6,"hi");
+        cache.put(7,"hi");
 
         Iterator<Map.Entry<Integer, String>> it = cache.entrySet().iterator();
+        for (Map.Entry<Integer,String> entry : cache.entrySet())
+            System.out.println("Key = " + entry.getKey() +
+                    ", Value = " + entry.getValue());
         Map.Entry<Integer, String> next = it.next();
         System.out.println("Item : "+next.getKey()+" Deleted : "+cache.remove(next.getKey()));
     }
