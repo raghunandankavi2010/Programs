@@ -32,7 +32,7 @@ public class ImplementQueueUsingArray {
 
     private void removeFromQueue() {
         if(front == rear) {
-            System.out.println("Queue is Eey");
+            System.out.println("Queue is Empty");
             return;
         }else {
             if (rear - 1 >= 0) System.arraycopy(queue, 1, queue, 0, rear - 1);
