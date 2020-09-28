@@ -1,7 +1,5 @@
 package programs.strings
 
-import java.lang.StringBuilder
-
 /**
  *  Given two String a and b interleave the string to create a new String
  *  a = abc
@@ -18,18 +16,17 @@ fun main() {
 }
 
 fun interleave(a: String, b: String): String {
-
     val sb = StringBuilder()
-    (0..a.length).takeWhile {
-        it < b.length
-    }.forEach { index ->
-        if(index < a.length) {
-            sb.append(a[index])
-        }
-        if(index < b.length) {
-            sb.append(b[index])
+        var i = 0
+        while (i < a.length or b.length) {
+            if(i < a.length) {
+                sb.append(a[i])
+            }
+            if(i < b.length) {
+                sb.append(b[i])
+            }
+            i++
         }
 
-    }
     return sb.toString()
 }
