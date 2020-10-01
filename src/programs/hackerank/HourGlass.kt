@@ -17,7 +17,7 @@ fun hourglassSum(arr: Array<Array<Int>>): Int {
     return Collections.max(sum)
 }
 
-fun main(args: Array<String>) {
+fun main() {
     val scan = Scanner(System.`in`)
 
     val arr = Array(6) { Array(6) { 0 } }
