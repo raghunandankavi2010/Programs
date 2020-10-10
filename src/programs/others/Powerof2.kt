@@ -2,20 +2,18 @@ package programs.others
 
 
 fun main() {
-    val n = 28
+    val n = 8
     println(findPowerOfTwo(n))
 }
 
 fun findPowerOfTwo(number: Int): Boolean {
-    var n = number
-    if (n == 0)
+    val n = number
+    if (n == 1)
+        return true
+
+    if (n % 2 != 0 || n == 0)
         return false
 
-    while (n != 1) {
-        if (n % 2 != 0)
-            return false
-        n /= 2
-    }
-    return true
+    return findPowerOfTwo(n / 2)
 
 }
