@@ -1,5 +1,6 @@
 package programs.strings;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -12,8 +13,8 @@ import java.util.Map;
 public class FirstNonRepeatingCharacter {
 
     public static void main(String[] args){
-        Map<String,Integer> map = new LinkedHashMap<>();
-        String str = "GeeksQuiz";
+        Map<String,Integer> map = new HashMap<>();
+        String str = "aabcc";
         for(int i=0;i<str.length();i++){
             String value = Character.toString(str.charAt(i));
              if(map.containsKey(value)){
