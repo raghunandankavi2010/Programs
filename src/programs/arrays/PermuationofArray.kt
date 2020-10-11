@@ -9,8 +9,8 @@ import kotlin.collections.ArrayList
  */
 
 fun main() {
-    val nums = intArrayOf(1,2,3)
-    val listOfLists = permute(nums)
+    val numbs = intArrayOf(1,2,3)
+    val listOfLists = permute(numbs)
 
    for( list in listOfLists){
        for( num in list){
@@ -22,13 +22,13 @@ fun main() {
 
 }
 
-fun permute(nums: IntArray) : LinkedList<List<Int>> {
+fun permute(numbs: IntArray) : LinkedList<List<Int>> {
 
     val result = LinkedList<List<Int>>()
     var rSize: Int
     result.add(ArrayList())
 
-    for(num in nums) {
+    for(num in numbs) {
         rSize = result.size
         while (rSize > 0) {
             val permutation = result.pollFirst()
