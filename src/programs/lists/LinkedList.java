@@ -3,7 +3,7 @@ package programs.lists;
 /**
  * Created by raghu on 5/7/17.
  */
-public class LinkedList<I extends Number> {
+public class LinkedList {
 
     private Node head;
     private int list_size;
@@ -14,24 +14,31 @@ public class LinkedList<I extends Number> {
 
     public static void main(String[] args) {
 
-        LinkedList<Number> linkedList = new LinkedList<Number>();
+        LinkedList linkedList = new LinkedList();
         linkedList.add(1);
         linkedList.add(2);
         linkedList.add(3);
         linkedList.add(4);
         linkedList.add(5);
-        //linkedList.add(6);
-        //Node root = reverseInGroups(linkedList.getHead(), 2);
-        //Node root = reverseBetween(linkedList.getHead(),1,2);
-        //linkedList.print(root);
+        linkedList.add(6);
 
-        LinkedList<Number> linkedList1 = new LinkedList<Number>();
+/*        Node root = reverseInGroups(linkedList.getHead(), 2);
+        Node root = reverseBetween(linkedList.getHead(),1,2);
+        linkedList.print(root);*/
+
+
+        LinkedList linkedList1 = new LinkedList();
 
         linkedList1.add(5);
         linkedList1.add(6);
         linkedList1.add(4);
         linkedList1.add(2);
         linkedList1.add(3);
+        linkedList1.head = linkedList1.mergeSort(linkedList1.getHead());
+
+        linkedList1.printList(linkedList1.head);
+
+
  /*       Node end = linkedList1.getHead();
         while(end.getNext()!=null){
             end = end.getNext();
@@ -40,8 +47,8 @@ public class LinkedList<I extends Number> {
         linkedList1.print(linkedList1.getHead());
 */
 
-        Node head =addTwoNumbers2(linkedList.getHead(),linkedList1.getHead());
-        linkedList.print(head);
+        //Node head =addTwoNumbers2(linkedList.getHead(),linkedList1.getHead());
+       // linkedList.print(linkedList.getHead());
 
         //linkedList.print(swapPairs(linkedList.getHead()));
         // linkedList.print(removeAllNodesWithKValue(linkedList.getHead(), 2));
@@ -131,7 +138,71 @@ public class LinkedList<I extends Number> {
 //        linkedList.print(reversed);
 
     }
+    void printList(Node headref)
+    {
+        while (headref != null) {
+            System.out.print(headref.getData() + " ");
+            headref = headref.getNext();
+        }
+    }
 
+
+    Node mergeSort(Node h) {
+        // Base case : if head is null
+        if (h == null || h.getNext() == null) {
+            return h;
+        }
+
+        // get the middle of the list
+        Node middle = getMiddle(h);
+        Node nextofmiddle = middle.getNext();
+
+        // set the next of middle Node to null
+        middle.setNext(null);
+
+        // Apply mergeSort on left list
+        Node left = mergeSort(h);
+
+        // Apply mergeSort on right list
+        Node right = mergeSort(nextofmiddle);
+
+        // Merge the left and right lists
+        Node sortedlist = sortedMerge(left, right);
+        return sortedlist;
+    }
+
+    // Utility function to get the middle of the linked list
+    public static Node getMiddle(Node head) {
+        if (head == null)
+            return head;
+
+        Node slow = head, fast = head;
+
+        while (fast.getNext() != null && fast.getNext().getNext() != null) {
+            slow = slow.getNext();
+            fast = fast.getNext().getNext();
+        }
+        return slow;
+    }
+
+    Node sortedMerge(Node a, Node b) {
+        Node result = null;
+        /* Base cases */
+        if (a == null)
+            return b;
+        if (b == null)
+            return a;
+
+        /* Pick either a or b, and recur */
+        if (a.getData() <= b.getData()) {
+            result = a;
+            result.setNext(sortedMerge(a.getNext(), b));
+        } else {
+            result = b;
+            result.setNext(sortedMerge(a, b.getNext()));
+        }
+        return result;
+    }
 
 
     // 1.find length of 1st list
