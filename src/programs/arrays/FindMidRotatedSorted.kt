@@ -19,6 +19,15 @@ Input: [2,2,2,0,1]
 Output: 0
  */
 
+/**
+ * 4,5,6,7,0,1,2
+ * l = 0 right points to 2
+ * mid = 7; 7>2 so min lies between 0 and 2
+ * if mid element < right most element then min lies either to left of mid or at mid
+ * in case mid and right are same then we cannot decide which way to go
+ * so just do right--
+ *
+ */
 fun main() {
     val nums = intArrayOf(4,5,6,7,0,1,2)
     println(findMin(nums))
