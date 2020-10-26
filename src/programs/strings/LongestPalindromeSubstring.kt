@@ -7,40 +7,44 @@ package programs.strings
 object LongestPalindromeSubstring {
 
     private fun longestPalindrome(str: String): String {
-        var lps = ""
+        var maxLength = 1
+        var start = 0
         val len = str.length
-        // check if length of string is less than opr equal to 1
+
         if (len <= 1) {
             return str
         }
 
-        for (i in str.indices) {
-            val odd = expandPalindrome(str, i, i)
-            val even = expandPalindrome(str, i, i + 1)
-            if (lps.length < odd.length) {
-                lps = odd
-            }
-            if (lps.length < even.length) {
-                lps = even
+        for (i in 1..len) {
+            var low = i - 1
+            var high = i
+            while (low >= 0 && high < len && str[low] == str[high]) {
+                if (high - low + 1 > maxLength) {
+                    start = low
+                    maxLength = high - low + 1
+                }
+                low--
+                high++
             }
 
+            low = i - 1
+            high = i - 1
+            while (low >= 0 && high < len&& str[low] == str[high]) {
+                if (high - low + 1 > maxLength) {
+                    start = low
+                    maxLength = high - low + 1
+                }
+                low--
+                high++
+            }
         }
-        return lps
+        return str.substring(start, start + maxLength)
     }
 
-    private fun expandPalindrome(str: String, l: Int, r: Int): String {
-        var low = l
-        var high = r
-        while (low >= 0 && high < str.length && str[low] == str[high]) {
-            low--
-            high++
-        }
-        return str.substring(low + 1, high)
-    }
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val str = "baabcd"
+        val str = "forgeeksskeegfor"
         println("Brute force approach")
         val result = findPalindrome(str)
         println(result)
