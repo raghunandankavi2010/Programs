@@ -24,14 +24,11 @@ public class FirstNonRepeatingCharacter {
              }
         }
 
-        String result = null;
-        for (int i = 0; i < str.length();  i++) {
-            String value = Character.toString(str.charAt(i));
-            if (map.get(value) == 1){
-                result = value;
+        for(Map.Entry<String,Integer> entry: map.entrySet()){
+            if(entry.getValue()==1){
+                System.out.println(entry.getKey());
                 break;
             }
         }
-        System.out.println(result);
     }
 }
