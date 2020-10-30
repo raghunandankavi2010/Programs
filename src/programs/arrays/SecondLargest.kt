@@ -5,6 +5,14 @@ fun main(){
     val arr = intArrayOf(12, 35, 1, 10, 34, 1)
     val secondLargest = findSecondLargest(arr)
     println(secondLargest)
+    println("By Sorting")
+    println(findSecondLargestBySSorting(arr))
+}
+
+fun findSecondLargestBySSorting(arr: IntArray): Int {
+
+    arr.sort()
+    return arr[arr.size-2]
 }
 
 fun findSecondLargest(arr: IntArray): Int {
