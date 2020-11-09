@@ -1,110 +1,118 @@
-package programs.arrays;
+package programs.arrays
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*
 
 /**
  * This is from geeks for geeks
  */
+class RemoveDuplicate {
 
-public class RemoveDuplicate {
-    // Function to remove duplicate elements
-    // This function returns new size of modified
-    // array.
 
-    private static int removeDuplicates(int[] arr, int n) {
-        // Return, if array is empty
-        // or contains a single element
-        if (n==0 || n==1)
-            return n;
+    companion object {
+        // Function to remove duplicate elements
+        // This function returns new size of modified
+        // array.
+        private fun removeDuplicates(arr: IntArray, n: Int): Int {
+            // Return, if array is empty
+            // or contains a single element
+            if (n == 0 || n == 1) return n
+            val temp = IntArray(n)
 
-        int[] temp = new int[n];
+            // Start traversing elements
+            var j = 0
+            for (i in 0 until n - 1) {
+                // If current element is not equal
+                // to next element then store that
+                // current element
+                if (arr[i] != arr[i + 1]) temp[j++] = arr[i]
+            }
 
-        // Start traversing elements
-        int j = 0;
-        for (int i=0; i<n-1; i++) {
-            // If current element is not equal
-            // to next element then store that
-            // current element
-            if (arr[i] != arr[i + 1])
-                temp[j++] = arr[i];
+            // Store the last element as whether
+            // it is unique or repeated, it hasn't
+            // stored previously
+            temp[j++] = arr[n - 1]
+
+            // Modify original array
+            if (j >= 0) System.arraycopy(temp, 0, arr, 0, j)
+            return j
         }
 
-        // Store the last element as whether
-        // it is unique or repeated, it hasn't
-        // stored previously
-        temp[j++] = arr[n-1];
+        @JvmStatic
+        fun main(args: Array<String>) {
 
-        // Modify original array
-        if (j >= 0) System.arraycopy(temp, 0, arr, 0, j);
+            val array = intArrayOf(0, 4, 2, 4, 5, 2, 3, 1)
+            countDuplicatesUsingMap(array)
 
-        return j;
-    }
-
-    public static void main (String[] args) {
-        /*
-         * unsorted array find duplicates
-         */
-
-        int[] array = {0,4, 2, 4, 5, 2, 3, 1};
-        int arr_size = array.length;
-        printRepeating(array, arr_size);
-        findRepeat(array);
-
-        /*
-         * below array is sorted
-         */
-
-        int[] arr = {1, 2, 2, 3, 4, 4, 4, 5, 5};
-        int n = arr.length;
-
-        n = removeDuplicates(arr, n);
-
-        // Print updated array
-        for (int i=0; i<n; i++)
-            System.out.print(arr[i]+" ");
-    }
+            val arr_size = array.size
+            printRepeating(array, arr_size)
+            findRepeat(array)
 
 
+            val arr = intArrayOf(1, 2, 2, 3, 4, 4, 4, 5, 5)
+            var n = arr.size
+            n = removeDuplicates(arr, n)
 
-       private static  void printRepeating(int[] arr, int size)
-        {
-            int[] count = new int[size];
-            int i;
+
+            for (i in 0 until n) print(arr[i].toString() + " ")
+        }
+
+        private fun printRepeating(arr: IntArray, size: Int) {
+            val count = IntArray(size)
+            var i: Int
 
             /*
                4 (count 1),2 (count 1), 4 (count already 1 so dup), 5 (count 1) , 2 (count already 1 so dup), 3 (count 1) , 1 (count 1)
                count[0] = 0, count[2] = 1, count[3] = 1 ,count[4] = 1, count[5] = 1, count[6] = 0
-             */
-            System.out.println("Repeated elements are : ");
-            for (i = 0; i < size; i++) {
+             */println("Repeated elements are : ")
+            i = 0
+            while (i < size) {
                 if (count[arr[i]] == 1) {
-                    System.out.println("Repeated " + arr[i]);
+                    println("Repeated " + arr[i])
+                } else {
+                    count[arr[i]] = count[arr[i]] + 1
                 }
-                else {
-                    count[arr[i]] = count[arr[i]] + 1;
-                }
-
+                i++
             }
             // for logging purpose. Not required
-            for (i = 0; i < size; i++) {
-                    System.out.println("Number :"+arr[i] +" Count at pos " + count[i]);
-
+            i = 0
+            while (i < size) {
+                println("Number :" + arr[i] + " Count at pos " + count[i])
+                i++
             }
         }
 
-    // find duplicates using HashSet.
-    private static int findRepeat(int[] numbers) {
-        Set<Integer> numbersSeen = new HashSet<>();
-        for (int number : numbers) {
-            if (numbersSeen.contains(number)) {
-                return number;
-            } else {
-                numbersSeen.add(number);
+        // find duplicates using HashSet.
+        private fun findRepeat(numbers: IntArray): Int {
+            val numbersSeen: MutableSet<Int> = HashSet()
+            for (number in numbers) {
+                if (numbersSeen.contains(number)) {
+                    return number
+                } else {
+                    numbersSeen.add(number)
+                }
             }
+            throw IllegalArgumentException("no duplicate!")
         }
 
-        // whoops--no duplicate
-        throw new IllegalArgumentException("no duplicate!");
+       private fun countDuplicatesUsingMap(data: IntArray) {
+
+            var map = mutableMapOf<Int,Int>()
+            for (i in data.indices) {
+                if(!map.containsKey(data[i])){
+                    map[data[i]] = 1
+                }else {
+                    val count = map.getOrDefault(data[i], 0)
+                    map[data[i]] = count+1
+
+                }
+            }
+
+
+           map.forEach { (k, v) ->
+                 if(v>1){
+                     println("$k = $v")
+                 }
+           }
+        }
     }
 }
