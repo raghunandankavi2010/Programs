@@ -29,11 +29,15 @@ Output: 0
  *
  */
 fun main() {
-    val nums = intArrayOf(4,5,6,7,0,1,2)
+    val nums = intArrayOf(4,5,6,7,0,0,1,2)
     println(findMin(nums))
-    println("Using standard functions available")
     val min = nums.minOrNull()
-    println(min)
+   val index =  min?.let{
+        val index = nums.indexOf(min)
+        index
+    }
+
+    println("Using standard functions available $min and the index is $index")
 }
 
 fun findMin(nums: IntArray): Int {
@@ -55,5 +59,6 @@ fun findMin(nums: IntArray): Int {
             }
         }
     }
+    println("Index where min element is $l")
     return nums[l]
 }
