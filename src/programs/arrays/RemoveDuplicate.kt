@@ -41,6 +41,7 @@ class RemoveDuplicate {
         fun main(args: Array<String>) {
 
             val array = intArrayOf(1, 2, 2, 3, 4, 4, 4, 5, 5)
+            removeDuplicatesStdFun(array)
             countDuplicatesUsingMap(array)
 
             val arrSize = array.size
@@ -54,6 +55,12 @@ class RemoveDuplicate {
 
 
             for (i in 0 until n) print(arr[i].toString() + " ")
+        }
+
+        private fun removeDuplicatesStdFun(array: IntArray) {
+
+            val distinct = array.distinct()
+            println("Array without duplicates $distinct")
         }
 
         private fun printRepeating(arr: IntArray, size: Int) {
