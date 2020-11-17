@@ -40,11 +40,11 @@ class RemoveDuplicate {
         @JvmStatic
         fun main(args: Array<String>) {
 
-            val array = intArrayOf(0, 4, 2, 4, 5, 2, 3, 1)
+            val array = intArrayOf(1, 2, 2, 3, 4, 4, 4, 5, 5)
             countDuplicatesUsingMap(array)
 
-            val arr_size = array.size
-            printRepeating(array, arr_size)
+            val arrSize = array.size
+            printRepeating(array, arrSize)
             findRepeat(array)
 
 
@@ -58,13 +58,12 @@ class RemoveDuplicate {
 
         private fun printRepeating(arr: IntArray, size: Int) {
             val count = IntArray(size)
-            var i: Int
 
             /*
                4 (count 1),2 (count 1), 4 (count already 1 so dup), 5 (count 1) , 2 (count already 1 so dup), 3 (count 1) , 1 (count 1)
                count[0] = 0, count[2] = 1, count[3] = 1 ,count[4] = 1, count[5] = 1, count[6] = 0
              */println("Repeated elements are : ")
-            i = 0
+            var i = 0
             while (i < size) {
                 if (count[arr[i]] == 1) {
                     println("Repeated " + arr[i])
@@ -96,14 +95,12 @@ class RemoveDuplicate {
 
        private fun countDuplicatesUsingMap(data: IntArray) {
 
-            var map = mutableMapOf<Int,Int>()
+            val map = mutableMapOf<Int,Int>()
             for (i in data.indices) {
                 if(!map.containsKey(data[i])){
                     map[data[i]] = 1
                 }else {
-                    val count = map.getOrDefault(data[i], 0)
-                    map[data[i]] = count+1
-
+                    map.computeIfPresent(data[i]){ _, value -> value + 1 }
                 }
             }
 
@@ -113,6 +110,12 @@ class RemoveDuplicate {
                      println("$k = $v")
                  }
            }
+
+           val maxValue = map.maxByOrNull { it.value }
+
+           println("Maximum repeated value $maxValue")
         }
     }
+
+
 }
