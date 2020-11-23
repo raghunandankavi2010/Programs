@@ -9,6 +9,10 @@ public class StringPermutations {
         String input = "abab";
         permutation(input);
         printPermutationsIterative(input);
+        System.out.println("Permutations");
+        permutations(input.toCharArray(), 0);
+        System.out.println("Distinct Permutations");
+        distinctPermutation(input.toCharArray(),0);
     }
 
     /**
@@ -33,7 +37,7 @@ public class StringPermutations {
             checkPalindrome(perm);
         } else {
             for (int i = 0; i < word.length(); i++) {
-                permutation(perm + word.charAt(i), word.substring(0, i) + word.substring(i + 1, word.length()));
+                permutation(perm + word.charAt(i), word.substring(0, i) + word.substring(i + 1));
             }
         }
     }
@@ -82,25 +86,69 @@ public class StringPermutations {
     // pc = 1 % 1 = 0
     // temp = b
     // next iteration you will have abba with pc = 0 and so on..
-    private static void printPermutationsIterative(String string){
-        int [] factorials = new int[string.length()+1];
+    private static void printPermutationsIterative(String string) {
+        int[] factorials = new int[string.length() + 1];
         factorials[0] = 1;
-        for (int i = 1; i<=string.length();i++) {
-            factorials[i] = factorials[i-1] * i;
+        for (int i = 1; i <= string.length(); i++) {
+            factorials[i] = factorials[i - 1] * i;
         }
 
         for (int i = 0; i < factorials[string.length()]; i++) {
-            String onePermutation="";
+            StringBuilder onePermutation = new StringBuilder();
             String temp = string;
             int positionCode = i;
-            for (int position = string.length(); position > 0 ;position--){
-                int selected = positionCode / factorials[position-1];
-                onePermutation += temp.charAt(selected);
-                positionCode = positionCode % factorials[position-1];
-                temp = temp.substring(0,selected) + temp.substring(selected+1);
+            for (int position = string.length(); position > 0; position--) {
+                int selected = positionCode / factorials[position - 1];
+                onePermutation.append(temp.charAt(selected));
+                positionCode = positionCode % factorials[position - 1];
+                temp = temp.substring(0, selected) + temp.substring(selected + 1);
             }
             System.out.println(onePermutation);
         }
+    }
+
+
+    private static void permutations(char[] ch, int currentIndex) {
+        if (currentIndex == ch.length - 1) {
+            System.out.println(String.valueOf(ch));
+        }
+
+        for (int i = currentIndex; i < ch.length; i++) {
+            swap(ch, currentIndex, i);
+            permutations(ch, currentIndex + 1);
+            swap(ch, currentIndex, i);
+        }
+    }
+
+    private static void swap(char[] ch, int i, int j) {
+        char temp = ch[i];
+        ch[i] = ch[j];
+        ch[j] = temp;
+
+    }
+
+    private static void distinctPermutation(char[] ch, int currentIndex){
+        if(currentIndex == ch.length-1) {
+            System.out.println(String.valueOf(ch));
+        }
+
+        for (int i = currentIndex; i < ch.length; i++) {
+         boolean check = isSwapRequired(ch,currentIndex,i);
+         if(check){
+             swap(ch,currentIndex,i);
+             distinctPermutation(ch,currentIndex+1);
+             swap(ch, currentIndex, i);
+         }
+        }
+    }
+
+    private static boolean isSwapRequired(char[] ch, int start, int currentIndex) {
+        for (int i = start; i < currentIndex; i++) {
+            if (ch[i] == ch[currentIndex]) {
+                return false;
+            }
+        }
+        return true;
     }
 }
 
