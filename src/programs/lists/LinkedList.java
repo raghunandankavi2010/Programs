@@ -20,11 +20,12 @@ public class LinkedList {
         linkedList.add(3);
         linkedList.add(4);
         linkedList.add(5);
-        linkedList.add(6);
+        //linkedList.add(6);
 
-/*        Node root = reverseInGroups(linkedList.getHead(), 2);
-        Node root = reverseBetween(linkedList.getHead(),1,2);
-        linkedList.print(root);*/
+        Node root = reverseInGroups2(linkedList.getHead(),3 );
+        linkedList.print(root);
+        /*Node root = reverseBetween(linkedList.getHead(),1,2);
+        linkedList.print(root);
 
 
         LinkedList linkedList1 = new LinkedList();
@@ -146,6 +147,46 @@ public class LinkedList {
         }
     }
 
+    /**
+     * simple reverse list in k groups recursive
+     * @param head root node
+     * @param k a number for reversing the group of noded
+     * @return reversed head node ie
+     */
+    public static Node  reverseInGroups2(Node head, int k){
+        Node prev = null;
+        Node next = null;
+        Node curr = head;
+        int count = 0;
+        while(count<k & curr!=null){
+            next = curr.getNext();
+            curr.setNext(prev);
+            prev = curr;
+            curr = next;
+            count++;
+        }
+
+        // restore the reversed group if the group count is less than k
+        // if count is 2 and k is 3 there is no need to reverse. keep original order
+        if (count < k) {
+            curr = prev;
+            prev = null;
+            next = null;
+
+            while (count != 0) {
+                count--;
+                next = curr.getNext();
+                curr.setNext(prev);
+                prev = curr;
+                curr = next;
+            }
+        }
+        if(next!=null) {
+            Node reverseHead = reverseInGroups2(next,k);
+            head.setNext(reverseHead);
+        }
+        return prev;
+    }
 
     Node mergeSort(Node h) {
         // Base case : if head is null
