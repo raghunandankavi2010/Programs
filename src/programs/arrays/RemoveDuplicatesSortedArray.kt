@@ -2,8 +2,8 @@ package programs.arrays
 
 /**
  * Input: nums = [1,1,1,2,2,3]
-Output: 5, nums = [1,1,2,2,3]
-Explanation: Your function should return length = 5, with the first five elements of nums being 1, 1, 2, 2 and 3 respectively. It doesn't matter what you leave beyond the returned length.
+ * Output: 5, nums = [1,1,2,2,3]
+ * Explanation: Your function should return length = 5, with the first five elements of nums being 1, 1, 2, 2 and 3 respectively. It doesn't matter what you leave beyond the returned length.
  */
 class RemoveDuplicatesSortedArray {
 
