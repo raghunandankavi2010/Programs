@@ -17,7 +17,7 @@ public class RomanNumeralsToInteger {
         String roman = romanNumeralsToInteger.intToRoman(inputValue);
         System.out.println(roman);
 
-        // usign tree map
+        // using tree map
         String output = toRoman(17);
         System.out.println(output);
 
