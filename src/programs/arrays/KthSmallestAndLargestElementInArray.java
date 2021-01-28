@@ -10,8 +10,8 @@ public class KthSmallestAndLargestElementInArray {
         int k=2;
         int kthSmallestElement = findKthSmallestElement(arr,k);
         int kthLargestElement = findKthLargestElement(arr,k);
-        System.out.println(String.format("Smallest %d element is %d",k,kthSmallestElement));
-        System.out.println(String.format("Largest %d element is %d",k,kthLargestElement));
+        System.out.printf("Smallest %d element is %d%n",k,kthSmallestElement);
+        System.out.printf("Largest %d element is %d%n",k,kthLargestElement);
     }
 
     private static int findKthSmallestElement(int[] arr, int k) {
