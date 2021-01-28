@@ -26,7 +26,7 @@ public class KthSmallestAndLargestElementInArray {
         // remove 3 from queue
         // 2 1 0
         for(int i=k;i<arr.length;i++){
-            if(arr[i]<pq.peek()){
+            if(arr[i]< pq.peek()){
                 pq.poll(); // remove from queue
                 pq.add(arr[i]);
             }
