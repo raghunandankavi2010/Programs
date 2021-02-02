@@ -25,16 +25,23 @@ object PalindromeRemovingChar {
     private fun possiblePalinByRemovingOneChar(str: String): Int {
         var low = 0
         var high = str.length - 1
-        while (low < high) {
+        while (low <= high) {
             if (str[low] == str[high]) {
                 low++
                 high--
             } else {
                 // check if removing the left char forms a palindrome
-                if (isPalindrome(low + 1, high, str)) return low
+                if (isPalindrome(low + 1, high, str)) {
+                    return low
+                }
 
                 // check if removing the right char forms a palindrome
-                if (isPalindrome(low, high - 1, str)) return high
+                else if (isPalindrome(low, high - 1, str)) {
+                    return high
+                } else { // handle case when removing from left or right does not make string palindrome
+                    low++
+                    high--
+                }
             }
         }
         return -1
