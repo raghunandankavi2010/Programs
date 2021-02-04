@@ -4,6 +4,7 @@ package programs.strings
  * Given a String find all subsequences of given length k
  * Given String s = "ab int k = 2
  * ab ba are subsequences of length 2
+ * without duplicates
  */
 fun main() {
     var inputString = "aabcc"
