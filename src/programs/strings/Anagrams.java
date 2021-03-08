@@ -20,13 +20,14 @@ public class Anagrams {
 
         StringBuilder sb = new StringBuilder(s2);
         char[] s = s1.toCharArray();
-
+        // go through each element is one string
+        // find the index of the element in another string
+        // remove it
+        // if string is empty that means its a anagram
         for (char ch : s) {
             int index = sb.indexOf("" + ch);
             if (index != -1) {
-
                 sb.deleteCharAt(index);
-
             }
         }
 
