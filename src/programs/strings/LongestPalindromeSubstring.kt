@@ -28,8 +28,8 @@ object LongestPalindromeSubstring {
             }
 
             low = i - 1
-            high = i - 1
-            while (low >= 0 && high < len&& str[low] == str[high]) {
+            high = i + 1
+            while (low >= 0 && high < len && str[low] == str[high]) {
                 if (high - low + 1 > maxLength) {
                     start = low
                     maxLength = high - low + 1
@@ -41,7 +41,6 @@ object LongestPalindromeSubstring {
         return str.substring(start, start + maxLength)
     }
 
-
     @JvmStatic
     fun main(args: Array<String>) {
         val str = "forgeeksskeegfor"
@@ -50,6 +49,9 @@ object LongestPalindromeSubstring {
         println(result)
         println("Better approach")
         println(longestPalindrome(str))
+        println("Dynamic Programming approach")
+        findPalindromeDP(str)
+
     }
 
     private fun findPalindrome(str: String): String {
@@ -77,5 +79,42 @@ object LongestPalindromeSubstring {
             high--
         }
         return low >= high
+    }
+
+    private fun findPalindromeDP(str: String) {
+        val n = str.length
+        val dp = Array(n) { BooleanArray(n) }
+
+        var maxLength = 1
+        // fill table when string length is 1
+        for (i in 0 until n) {
+            dp[i][i] = true
+        }
+
+        // fill table fro string length 2
+        var start = 0
+        for (i in 0 until n - 1) {
+            if (str[i] == str[i + 1]) {
+               dp[i][i+1] = true
+                start = i
+                maxLength = 2
+            }
+        }
+
+        for(k in 3.. n) {
+            for(i in 0 until n-k+1) {
+                val j = i + k - 1
+                if (dp[i + 1][j - 1] && str[i] == str[j]) {
+                    dp[i][j] = true
+                    if (k > maxLength) {
+                        start = i
+                        maxLength = k
+                    }
+                }
+            }
+        }
+
+        println("${str.substring(start,start + maxLength)} and length is $maxLength")
+
     }
 }
