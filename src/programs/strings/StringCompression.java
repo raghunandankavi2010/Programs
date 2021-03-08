@@ -1,13 +1,13 @@
 package programs.strings;
 
 /**
- *  input = AAAABBCCC
- *  output = A4B2C3
+ *  input = AAAABBCCAAA
+ *  output = A4B2C3A3
  */
 public class StringCompression {
 
     public static void main(String[] args) {
-        String input = "AAAABBCCC";
+        String input = "AAAABBCCCAAA";
         StringCompression stringCompression = new StringCompression();
         String output = stringCompression.compress(input);
         System.out.println(output);
