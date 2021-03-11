@@ -8,6 +8,7 @@ package programs.arrays
  * firstMin,firstMax,secondMin,secondMax
  * output
  * 1,30,2,25
+ * Complexity O(n)
  */
 fun main() {
     val intArray = arrayOf(2, 4, 5, 6, 1, 30, 13, 25, 10)
@@ -26,7 +27,7 @@ fun main() {
         else if (intArray[i] < secondMin) {
             secondMin = intArray[i]
         }
-
+        // first firstMax and secondMax
         if (intArray[i] > firstMax) {
             secondMax = firstMax
             firstMax = intArray[i]
