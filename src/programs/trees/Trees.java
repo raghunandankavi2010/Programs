@@ -13,33 +13,38 @@ public class Trees {
     private Trees() {
 
         Node n1 = new Node();
-
-        addNode(n1, 1);
-        Node n2 = new Node();
-        addNode(n2, 2);
-        Node n3 = new Node();
-        addNode(n3, 3);
-
+        addNode(n1, 3);
         //printSpiral(rootNode);
         //Node result = search(rootNode,3);
        // System.out.println("Searched Node "+result.getData());
        // bottomView(rootNode);
-        /*Node n2 = new Node();
-        addNode(n2, 1);
+        Node n2 = new Node();
+        addNode(n2, 9);
         Node n0 = new Node();
-        addNode(n0, 0);
+        addNode(n0, 20);
         Node n3 = new Node();
-        addNode(n3, 8);
+        addNode(n3, 15);
         Node n4 = new Node();
         addNode(n4, 7);
-        Node n5 = new Node();
-        addNode(n5, 6);
-        Node n6 = new Node();
+        DFS(rootNode);
+       // printInOrder(rootNode);
+         /*Node n5 = new Node();
+        addNode(n5, 7);
+
+       Node n6 = new Node();
         addNode(n6, 3);
         Node n7 = new Node();
         addNode(n7, 9);
         Node n8 = new Node();
         addNode(n8, 10);*/
+        /*List<List<Integer>> list = zigZag(rootNode);
+        for (List<Integer> integers : list) {
+            for (Integer integer : integers) {
+                System.out.print(integer);
+            }
+            System.out.println();
+        }*/
+
        // System.out.println("maximum path sum"+maxPathSum(rootNode));
 /*
 
@@ -96,7 +101,7 @@ public class Trees {
         //leftView(rootNode,1);
         //System.out.println("Print data at each level");
         //printDataAtLevelBFS(rootNode);
-         DFS(rootNode);
+         //DFS(rootNode);
      /*   System.out.println("RootNode"+rootNode.getData());
         System.out.println("In Order");
         printInOrder(rootNode);
@@ -238,18 +243,51 @@ public class Trees {
             }
             currentLevelCount--;
             if (currentLevelCount == 0) {
-                System.out.println("");
+                System.out.println("\n");
                 currentLevelCount = nextLevelCount;
                 nextLevelCount = 0;
             }
         }
     }
 
+    private  List<List<Integer>> zigZag(Node root){
+        if(root == null){
+            return new ArrayList<>();
+        }
+        List<List<Integer>> res = new ArrayList<>();
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+        int level = 1;
+        while(!queue.isEmpty()){
+            int levelSize = queue.size();
+
+            List<Integer> list = new ArrayList<>();
+
+            for(int i =0;i<levelSize;i++) {
+                Node node = queue.poll();
+                assert node != null;
+                if (level % 2 == 1) {
+                    list.add(node.getData());
+                } else {
+                    list.add(0, node.getData());
+                }
+                if(node.getLeftNode()!=null) {
+                    queue.add(node.getLeftNode());
+                }
+                if(node.getRightNode()!=null) {
+                    queue.add(node.getRightNode());
+                }
+            }
+            level++;
+            res.add(list);
+        }
+        return res;
+    }
 
     /* Breadth First Search or level order Traversal*/
     private void printDataAtLevel(Node rootNode) {
 
-        Queue<Node> queue = new LinkedList<Node>();
+        Queue<Node> queue = new LinkedList<>();
 
         queue.add(rootNode);
         while (!queue.isEmpty()) {
@@ -257,7 +295,7 @@ public class Trees {
             System.out.print("Level " + levelNodes);
             while (levelNodes > 0) {
 
-                Node n = (Node) queue.remove();
+                Node n = queue.remove();
 
                 System.out.print(" Data at Node: " + n.getData());
                 if (n.getLeftNode() != null) {
@@ -269,15 +307,15 @@ public class Trees {
 
                 levelNodes--;
             }
-            System.out.println("");
+            System.out.println("\n");
         }
 
 
     }
 
     private void reverseLevelOrder(Node node) {
-        Stack<Node> S = new Stack<Node>();
-        Queue<Node> Q = new LinkedList<Node>();
+        Stack<Node> S = new Stack<>();
+        Queue<Node> Q = new LinkedList<>();
         Q.add(node);
 
         // Do something like normal level order traversal order.Following
@@ -309,7 +347,7 @@ public class Trees {
     }
 
     private void DFS(Node root) {
-        Stack<Node> s = new Stack<Node>();
+        Stack<Node> s = new Stack<>();
         s.add(root);
         while (!s.isEmpty()) {
             // popping because its already visited
@@ -323,7 +361,7 @@ public class Trees {
     }
 
     private int DFSSUM(Node root,int sum) {
-        Stack<Node> s = new Stack<Node>();
+        Stack<Node> s = new Stack<>();
         s.add(root);
         while (!s.isEmpty()) {
             // popping because its already visited
@@ -362,7 +400,6 @@ public class Trees {
                 print(root.getLeftNode());
             }
             if (root.getRightNode() != null) {
-                ;
                 print(root.getRightNode());
             }
         }
@@ -433,7 +470,7 @@ public class Trees {
     // 7. increment current level and decrement level traversed.
     // 8. if current level is same as k (given level) then print all nodes in queue.
     private static void getKthDistanceNodes(Node root,Node start,int k){
-        Map<Node,Node> parentNodeMap = new HashMap<Node,Node>();
+        Map<Node,Node> parentNodeMap = new HashMap<>();
         populateMap(parentNodeMap,root,null);
 
         HashSet<Node> seen = new HashSet<>();
