@@ -23,9 +23,8 @@ class ArrayProblem {
 
     fun method2(A: Array<Int>): Array<Int> {
         var j = 0
-
-        // each time we encounter a non-zero, `j` is incremented, and
-        // swap i and j
+        // if its not zero  swap it with index which has zero
+        // the start index for zero is tracked by j
         for (i in A.indices) {
             if (A[i] != 0) {
                 val temp = A[i]
@@ -48,7 +47,7 @@ fun main() {
         print("$it ")
     }
 
-    println("Using 0 as the pivot")
+    println("Swapping technique")
 
     val outputArray2 = arrayProblem.method2(inputArray)
     outputArray2.forEach {
