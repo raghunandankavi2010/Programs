@@ -38,5 +38,22 @@ class ArrayProblem {
         return A
     }
 }
+fun main() {
 
+    val arrayProblem = ArrayProblem()
+    val inputArray = arrayOf(1,2,3,0,0,4,5,0,6,0,7,8,0,0,0,9)
+
+    val outputArray = arrayProblem.method1(inputArray)
+    outputArray.forEach {
+        print("$it ")
+    }
+
+    println("Using 0 as the pivot")
+
+    val outputArray2 = arrayProblem.method2(inputArray)
+    outputArray2.forEach {
+        print("$it ")
+    }
+
+}
 
