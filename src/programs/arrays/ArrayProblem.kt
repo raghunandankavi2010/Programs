@@ -1,6 +1,8 @@
 package programs.arrays
 
-
+/**
+ *  Asked in Decathlon.
+ */
 class ArrayProblem {
 
     fun method1(inputArray: Array<Int>): Array<Int> {
