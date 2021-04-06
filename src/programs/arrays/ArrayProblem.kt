@@ -20,7 +20,7 @@ class ArrayProblem {
         // put zeros.
         while (count < inputArray.size)
             inputArray[count++] = 0
-       return inputArray
+        return inputArray
     }
 
     fun method2(A: Array<Int>): Array<Int> {
@@ -38,11 +38,31 @@ class ArrayProblem {
 
         return A
     }
+
+    fun myMethod3(inputArray: Array<Int>): Array<Int> {
+        var start = -1
+        for( i in inputArray.indices) {
+            if(inputArray[i] == 0 && start == -1) {
+                start = i
+            }
+
+            if(inputArray[i]!=0 && start!=-1) {
+                val temp = inputArray[i]
+                inputArray[i] = inputArray[start]
+                inputArray[start] = temp
+                start += 1
+            }
+        }
+        return inputArray
+    }
 }
+
+
+
 fun main() {
 
     val arrayProblem = ArrayProblem()
-    val inputArray = arrayOf(1,2,3,0,0,4,5,0,6,0,7,8,0,0,0,9)
+    val inputArray = arrayOf(1, 2, 3, 0, 0, 4, 5, 0, 6, 0, 7, 8, 0, 0, 0, 9)
 
     val outputArray = arrayProblem.method1(inputArray)
     outputArray.forEach {
@@ -55,6 +75,13 @@ fun main() {
     outputArray2.forEach {
         print("$it ")
     }
+    println("\nThird Method")
+
+    val outputArray3 = arrayProblem.myMethod3(inputArray)
+    outputArray3.forEach {
+        print("$it ")
+    }
+
 
 }
 
