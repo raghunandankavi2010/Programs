@@ -8,17 +8,18 @@ import java.util.HashMap
  *  One way is to sort array and then increment low and high based on sum greater os lesser than k
  */
 fun main() {
-    val intArray = intArrayOf(10,25,5,7,20,3)
-    val k = 35
+    val intArray = intArrayOf(10,25,0,5,7,20,3)
+    val k = 25
 
     val complementMap: HashMap<Int, Int> = HashMap()
 
     for (i in intArray.indices) {
         val curr: Int = intArray[i]
         if (complementMap.containsKey(k - curr)) {
-          println("Pair is $curr ${k-curr}")
+          println("Pair is $curr ${complementMap[k - curr]}")
+            break
         }
-        complementMap[curr] = i
+        complementMap[curr] = curr
     }
 
 }
