@@ -9,7 +9,7 @@ import java.util.HashMap
  */
 fun main() {
     val intArray = intArrayOf(10,25,0,5,7,20,3)
-    val k = 25
+    val k = 3
 
     val complementMap: HashMap<Int, Int> = HashMap()
 

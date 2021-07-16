@@ -7,7 +7,7 @@ package programs.arrays
 fun main() {
     val array = arrayOf(1, 0, 1, 1, 0, 1, 0, 0)
 
-    var left = 0;
+    var left = 0
     var right = array.size -1
     while(left > right) {
         if(array[left] == 1) {
