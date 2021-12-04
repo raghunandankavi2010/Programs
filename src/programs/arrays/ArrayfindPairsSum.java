@@ -2,6 +2,7 @@ package programs.arrays;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ArrayfindPairsSum {
 
@@ -10,11 +11,13 @@ public class ArrayfindPairsSum {
         int[] arr = {11, 11, 11, 12, 55};
         //int sum = 23;
         //getPairsCount(arr, sum);
-        int[] arrUnsorted = { 10,1,1};
+        int[] arrUnsorted = {10, 1, 1};
         int total = 11;
 
         //findPairsEqualToSum(arrUnsorted,total);
-       findPairsEqualToSumHashMap(arrUnsorted, total);
+        // findPairsEqualToSumHashMap(arrUnsorted, total);
+
+        getPairsCountDuplicate(arrUnsorted, arrUnsorted.length, total);
     }
 
     // Prints number of pairs in arr[0..n-1] with sum equal
@@ -59,11 +62,38 @@ public class ArrayfindPairsSum {
         }
     }
 
+
+    private static void getPairsCountDuplicate(int[] arr, int n, int sum) {
+        Map<Integer,Integer> mp = new HashMap<>();
+
+        // Traverse through all elements
+        for(int i = 0; i < n; i++) {
+
+            // Search if a pair can be formed with
+            // arr[i].
+            int rem = sum - arr[i];
+            if (mp.containsKey(rem)) {
+                int count = mp.get(rem);
+
+                for(int j = 0; j < count; j++)
+                    System.out.print("(" + rem +
+                            ", " + arr[i] +
+                            ")" + "\n");
+            }
+            if (mp.containsKey(arr[i])) {
+                mp.put(arr[i], mp.get(arr[i]) + 1);
+            }
+            else {
+                mp.put(arr[i], 1);
+            }
+        }
+    }
+
     private static void findPairsEqualToSumHashMap(int[] arr, int sum) {
         HashMap<Integer, Integer> map = new HashMap<>();
 
         for (int i = 0; i < arr.length - 1; i++) {
-                map.put(arr[i], arr[i]);
+            map.put(arr[i], arr[i]);
         }
 
         for (int i = 0; i < arr.length - 1; i++) {
@@ -72,12 +102,12 @@ public class ArrayfindPairsSum {
             // check if map contains that number
             // check if that number and arr[i] total to sum given
             // print the value in map and arr[i]
-           if(map.containsKey(sum - arr[i])) {
-               int x =  map.get(sum - arr[i]);
-               if (x+arr[i] == sum) {
-                   System.out.println("Pairs :" + x + " " + arr[i]);
-               }
-           }
+            if (map.containsKey(sum - arr[i])) {
+                int x = map.get(sum - arr[i]);
+                if (x + arr[i] == sum) {
+                    System.out.println("Pairs :" + x + " " + arr[i]);
+                }
+            }
         }
     }
 }
