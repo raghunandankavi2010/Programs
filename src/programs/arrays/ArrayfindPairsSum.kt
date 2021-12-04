@@ -1,39 +1,40 @@
-package programs.arrays;
+package programs.arrays
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import kotlin.jvm.JvmStatic
+import programs.arrays.ArrayfindPairsSum
+import java.util.Arrays
+import java.util.HashMap
 
-public class ArrayfindPairsSum {
-
-
-    public static void main(String[] args) {
-        int[] arr = {11, 11, 11, 12, 55};
+object ArrayfindPairsSum {
+    @JvmStatic
+    fun main(args: Array<String>) {
+        val arr = intArrayOf(11, 11, 11, 12, 55)
         //int sum = 23;
         //getPairsCount(arr, sum);
-        int[] arrUnsorted = {10, 1, 1};
-        int total = 11;
+        val arrUnsorted = intArrayOf(10, 1, 1)
+        val total = 11
 
         //findPairsEqualToSum(arrUnsorted,total);
         // findPairsEqualToSumHashMap(arrUnsorted, total);
+        getPairsCountDuplicate(arrUnsorted, arrUnsorted.size, total)
 
-        getPairsCountDuplicate(arrUnsorted, arrUnsorted.length, total);
+        val a = intArrayOf(0, -1, 2, -3, 1, 3, 3)
+        val x = 6
+
+        println(isfindPair(a, x))
     }
 
     // Prints number of pairs in arr[0..n-1] with sum equal
     // to 'sum'
-    private static void getPairsCount(int[] arr, int sum) {
+    private fun getPairsCount(arr: IntArray, sum: Int) {
 
         //int count = 0;// Initialize result
 
         // Consider all possible pairs and check their sums
-        for (int i = 0; i < arr.length; i++)
-            for (int j = i + 1; j < arr.length; j++)
-                if ((arr[i] + arr[j]) == sum) {
-
-                    System.out.println("pairs" + arr[i] + " " + arr[j]);
-                    // count++;
-                }
+        for (i in arr.indices) for (j in i + 1 until arr.size) if (arr[i] + arr[j] == sum) {
+            println("pairs" + arr[i] + " " + arr[j])
+            // count++;
+        }
 
         //System.out.printf("Count of pairs is %d", count);
     }
@@ -45,69 +46,87 @@ public class ArrayfindPairsSum {
     // 4. decrement end if arr[start]+arr[end] is greater than sum
     // 5. if equal print pair and increment start and decrement end
     // 6. repeat above until start<end
-    private static void findPairsEqualToSum(int[] arr, int sum) {
-        Arrays.sort(arr);
-        int start = 0;
-        int end = arr.length - 1;
+    private fun findPairsEqualToSum(arr: IntArray, sum: Int) {
+        Arrays.sort(arr)
+        var start = 0
+        var end = arr.size - 1
         while (start < end) {
             if (arr[start] + arr[end] > sum) {
-                end--;
+                end--
             } else if (arr[start] + arr[end] < sum) {
-                start++;
+                start++
             } else if (arr[start] + arr[end] == sum) {
-                System.out.println("pairs : " + arr[start] + " " + arr[end] + " Sum is: " + (arr[start] + arr[end]));
-                start++;
-                end--;
+                println("pairs : " + arr[start] + " " + arr[end] + " Sum is: " + (arr[start] + arr[end]))
+                start++
+                end--
             }
         }
     }
 
-
-    private static void getPairsCountDuplicate(int[] arr, int n, int sum) {
-        Map<Integer,Integer> mp = new HashMap<>();
+    private fun getPairsCountDuplicate(arr: IntArray, n: Int, sum: Int) {
+        val mp: MutableMap<Int, Int> = HashMap()
 
         // Traverse through all elements
-        for(int i = 0; i < n; i++) {
+        for (i in 0 until n) {
 
             // Search if a pair can be formed with
             // arr[i].
-            int rem = sum - arr[i];
+            val rem = sum - arr[i]
             if (mp.containsKey(rem)) {
-                int count = mp.get(rem);
-
-                for(int j = 0; j < count; j++)
-                    System.out.print("(" + rem +
-                            ", " + arr[i] +
-                            ")" + "\n");
+                val count = mp[rem]!!
+                for (j in 0 until count) print(
+                    """
+    ($rem, ${arr[i]})
+    
+    """.trimIndent()
+                )
             }
             if (mp.containsKey(arr[i])) {
-                mp.put(arr[i], mp.get(arr[i]) + 1);
-            }
-            else {
-                mp.put(arr[i], 1);
+                mp[arr[i]] = mp[arr[i]]!! + 1
+            } else {
+                mp[arr[i]] = 1
             }
         }
     }
 
-    private static void findPairsEqualToSumHashMap(int[] arr, int sum) {
-        HashMap<Integer, Integer> map = new HashMap<>();
-
-        for (int i = 0; i < arr.length - 1; i++) {
-            map.put(arr[i], arr[i]);
+    private fun findPairsEqualToSumHashMap(arr: IntArray, sum: Int) {
+        val map = HashMap<Int, Int>()
+        for (i in 0 until arr.size - 1) {
+            map[arr[i]] = arr[i]
         }
-
-        for (int i = 0; i < arr.length - 1; i++) {
+        for (i in 0 until arr.size - 1) {
             // number + x = sum
             // sum - number = x
             // check if map contains that number
             // check if that number and arr[i] total to sum given
             // print the value in map and arr[i]
             if (map.containsKey(sum - arr[i])) {
-                int x = map.get(sum - arr[i]);
+                val x = map[sum - arr[i]]!!
                 if (x + arr[i] == sum) {
-                    System.out.println("Pairs :" + x + " " + arr[i]);
+                    println("Pairs :" + x + " " + arr[i])
                 }
             }
         }
+    }
+    fun isfindPair(array: IntArray, sum: Int): Boolean {
+        val mp: MutableMap<Int, Int> = HashMap()
+
+        var check = false
+        for (i in array.indices) {
+
+            val rem: Int = sum - array[i]
+            check = if (mp.containsKey(rem)) {
+                val count = mp.getOrDefault(rem, -1)
+                true
+            } else {
+                false
+            }
+            if (mp.containsKey(array[i])) {
+                mp[array[i]] = mp.getOrDefault(array[i], 0) + 1
+            } else {
+                mp[array[i]] = 1
+            }
+        }
+        return check
     }
 }
