@@ -1,7 +1,5 @@
 package programs.search
 
-import programs.arrays.binarySearch
-
 
 fun main() {
     val array = intArrayOf(1,3,5,8,12,13,17,19,28,39,103,123,140,2040)
@@ -38,4 +36,5 @@ fun binarySearchNow(array: IntArray,givenNumber: Int, l: Int, r: Int): Int {
     } else{
         return -1
     }
+
 }
