@@ -1,7 +1,6 @@
 package programs.arrays
 
 import kotlin.jvm.JvmStatic
-import programs.arrays.ArrayfindPairsSum
 import java.util.Arrays
 import java.util.HashMap
 
