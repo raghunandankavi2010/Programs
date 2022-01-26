@@ -73,13 +73,9 @@ object ArrayfindPairsSum {
             // arr[i].
             val rem = sum - arr[i]
             if (mp.containsKey(rem)) {
-                val count = mp[rem]!!
-                for (j in 0 until count) print(
-                    """
-    ($rem, ${arr[i]})
-    
-    """.trimIndent()
-                )
+                val count = mp.getOrDefault(rem,0)
+                for (j in 0 until count)
+                    print("""($rem, ${arr[i]})""".trimIndent())
             }
             if (mp.containsKey(arr[i])) {
                 mp[arr[i]] = mp[arr[i]]!! + 1
