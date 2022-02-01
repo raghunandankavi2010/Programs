@@ -18,7 +18,7 @@ fun main() {
 fun sortArray(array: Array<Int>) {
     var left = 0
     var right = array.size -1
-    while(left > right) {
+    while(left < right) {
         if(array[left] == 1) {
             val temp = array[left]
             array[left] = array[right]
