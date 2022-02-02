@@ -14,15 +14,15 @@ fun main() {
 
     if(input1.size > input2.size) {
         Arrays.sort(input1)
-        input2.forEachIndexed { index, element ->
-            if(binarySearch(index,input1)){
+        input2.forEach{ element ->
+            if(binarySearch(element,input1)){
                 set.add(element)
             }
 
         }
     } else if(input1.size < input2.size) {
         Arrays.sort(input2)
-        input2.forEachIndexed { index, element ->
+        input2.forEach { element ->
             if(binarySearch(element,input1)) {
                 set.add(element)
             }
@@ -30,7 +30,7 @@ fun main() {
         }
     } else {
         Arrays.sort(input1)
-        input2.forEachIndexed { index, element ->
+        input2.forEach{ element ->
             if(binarySearch(element,input1)){
                 set.add(element)
             }
