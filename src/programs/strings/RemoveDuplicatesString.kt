@@ -6,6 +6,7 @@ fun main() {
     val input2 = "alphabets"
     uncommonChars(input1,input2)
     println()
+    uncommonUsingSet(input1,input2)
     val input = "aabbc"
     removeDuplicates(input)
 }
@@ -22,6 +23,31 @@ fun removeDuplicates(input: String){
 
     println(sb.toString())
 }
+
+fun uncommonUsingSet(input1: String, input2: String) {
+    val set1 = HashSet<Char>()
+
+    val set2 = HashSet<Char>()
+
+    input1.forEach {
+        set1.add(it)
+    }
+
+    input2.forEach {
+        set2.add(it)
+    }
+
+   set1.forEach { char ->
+       if(set2.contains(char)){
+           set2.remove(char)
+       } else{
+           set2.add(char)
+       }
+   }
+
+    println(set2)
+}
+
 fun uncommonChars(input1: String, input2: String){
     val mod = IntArray(26)
     for (element in input1) {
