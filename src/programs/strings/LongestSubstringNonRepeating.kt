@@ -1,36 +1,47 @@
-package programs.strings;
+package programs.strings
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashMap
+import kotlin.jvm.JvmStatic
+import kotlin.math.max
 
-public class LongestSubstringNonRepeating {
-
+class LongestSubstringNonRepeating {
     /**
      *
      * @param input string
      * @return output longest length substring without repeating chars
      * https://www.baeldung.com/java-longest-substring-without-repeated-characters
      */
-    private String getUniqueCharacterSubstring(String input) {
-        Map<Character, Integer> visited = new HashMap<>();
-        String output = "";
-        for (int start = 0, end = 0; end < input.length(); end++) {
-            char currChar = input.charAt(end);
+    private fun getUniqueCharacterSubstring(input: String): String {
+        val visited: MutableMap<Char, Int> = HashMap()
+        var output = ""
+        var start = 0
+        var end = 0
+        var finalLength = 0
+        while (end < input.length) {
+            val currChar = input[end]
             if (visited.containsKey(currChar)) {
-                start = Math.max(visited.get(currChar)+1, start);
+                start = max(visited.getOrDefault(currChar, 0) + 1, start)
             }
-            if (output.length() < end - start + 1) {
-                output = input.substring(start, end + 1);
-                output = output.trim(); // remove spaces
-
+            if (output.length < end - start + 1) {
+                output = input.substring(start, end + 1)
+                output = output.trim { it <= ' ' } // remove spaces
             }
-            visited.put(currChar, end);
+            if (finalLength < (end - start + 1)) {
+                finalLength = end - start + 1
+            }
+            visited[currChar] = end
+            end++
         }
-        return output;
+        println(finalLength)
+
+        return output
     }
 
-    public static void main(String[] args){
-        LongestSubstringNonRepeating longestSubstringNonRepeating = new LongestSubstringNonRepeating();
-        System.out.println(longestSubstringNonRepeating.getUniqueCharacterSubstring("Hello World"));
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            val longestSubstringNonRepeating = LongestSubstringNonRepeating()
+            println(longestSubstringNonRepeating.getUniqueCharacterSubstring("abcabcbb"))
+        }
     }
 }
