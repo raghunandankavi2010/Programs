@@ -12,7 +12,7 @@ Explanation: t is "ece" which its length is 3.
  */
 
 fun main() {
-    val input = "ccaabbb"
+    val input = "eceba"
     val map = HashMap<Char, Int>()
 
     var start = 0
