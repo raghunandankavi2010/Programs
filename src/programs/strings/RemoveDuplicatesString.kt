@@ -1,18 +1,45 @@
-package programs.strings;
+package programs.strings
 
-public class RemoveDuplicatesString {
 
-    public static void main(String[] args){
-        String input = "aabbbcc";
-        StringBuilder sb = new StringBuilder();
-        boolean[] mod = new boolean[256];
-        for(int i=0;i<input.length();i++){
-            char val = input.charAt(i);
-            if(!mod[val]){
-                sb.append(val);
-                mod[val]=true;
-            }
+fun main() {
+    uncommonChars()
+    println()
+    removeDuplicates()
+}
+
+fun removeDuplicates(){
+    val input = "aabbc"
+    val mod = IntArray(256)
+    val sb = StringBuilder()
+    input.forEachIndexed { index, c ->
+        mod[input[index] - 'a'] = mod[input[index] - 'a'] + 1
+        if(mod[input[index] - 'a'] == 1){
+            sb.append(c)
         }
-        System.out.println(sb.toString());
+
+    }
+
+    println(sb.toString())
+}
+fun uncommonChars(){
+    val input = "characters"
+    val input2 = "alphabets"
+    val mod = IntArray(26)
+    for (element in input) {
+        mod[element - 'a'] = 1
+    }
+    for (i in input2.indices) {
+        var value = mod[input2[i] - 'a']
+        value = if (value == 1 || value == -1) {
+            -1
+        } else {
+            1
+        }
+        mod[input2[i] - 'a'] = value
+    }
+    for (i in mod.indices) {
+        if (mod[i] == 1) {
+            print((i + 'a'.toInt()).toChar() + " ")
+        }
     }
 }
