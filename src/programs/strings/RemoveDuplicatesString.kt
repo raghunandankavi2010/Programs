@@ -2,30 +2,29 @@ package programs.strings
 
 
 fun main() {
-    uncommonChars()
+    val input1 = "characters"
+    val input2 = "alphabets"
+    uncommonChars(input1,input2)
     println()
-    removeDuplicates()
+    val input = "aabbc"
+    removeDuplicates(input)
 }
 
-fun removeDuplicates(){
-    val input = "aabbc"
+fun removeDuplicates(input: String){
     val mod = IntArray(256)
     val sb = StringBuilder()
     input.forEachIndexed { index, c ->
         mod[input[index] - 'a'] = mod[input[index] - 'a'] + 1
-        if(mod[input[index] - 'a'] == 1){
+        if(mod[input[index] - 'a'] == 1) {
             sb.append(c)
         }
-
     }
 
     println(sb.toString())
 }
-fun uncommonChars(){
-    val input = "characters"
-    val input2 = "alphabets"
+fun uncommonChars(input1: String, input2: String){
     val mod = IntArray(26)
-    for (element in input) {
+    for (element in input1) {
         mod[element - 'a'] = 1
     }
     for (i in input2.indices) {
