@@ -31,8 +31,8 @@ private fun anagram3(s1: String, s2: String): Boolean {
     }
 
     var isAnagram = true
-    for (i in 0..visited.size-1) {
-        if (visited[i] != 0) {
+    for (element in visited) {
+        if (element != 0) {
             isAnagram = false
             break
         }
