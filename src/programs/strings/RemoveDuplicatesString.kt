@@ -7,6 +7,9 @@ fun main() {
     uncommonChars(input1,input2)
     println()
     uncommonUsingSet(input1,input2)
+    println()
+    uncommonChars2(input1,input2)
+    println()
     val input = "aabbc"
     removeDuplicates(input)
 }
@@ -61,6 +64,21 @@ fun uncommonChars(input1: String, input2: String){
             1
         }
         mod[input2[i] - 'a'] = value
+    }
+    for (i in mod.indices) {
+        if (mod[i] == 1) {
+            print((i + 'a'.toInt()).toChar() + " ")
+        }
+    }
+}
+
+fun uncommonChars2(input1: String, input2: String){
+    val mod = IntArray(26)
+    for (element in input1) {
+        mod[element - 'a'] = 1
+    }
+    for (element in input2) {
+        mod[element - 'a'] += 1
     }
     for (i in mod.indices) {
         if (mod[i] == 1) {
