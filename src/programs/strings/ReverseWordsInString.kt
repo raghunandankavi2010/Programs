@@ -1,95 +1,121 @@
-package programs.strings;
+package programs.strings
 
-import java.util.Arrays;
+import kotlin.jvm.JvmStatic
+import programs.strings.ReverseWordsInString
+import java.lang.StringBuilder
+import java.util.*
 
 /**
  * https://leetcode.com/problems/reverse-words-in-a-string/submissions/
  */
-public class ReverseWordsInString {
+class ReverseWordsInString {
+//    private fun reverseWords(s: String) {
+//        val arr = s.toCharArray()
+//        var i = 0
+//        var j = arr.size - 1
+//        while (i < j) {
+//            // if it is not space then swap char at i and j
+//            // increment i and decrement j
+//            if (arr[i] != ' ' && arr[j] != ' ') {
+//                arr[i] = arr[i] xor arr[j]
+//                arr[j] = arr[j] xor arr[i]
+//                arr[i] = arr[i] xor arr[j]
+//                i++
+//                j--
+//            } else if (arr[i] == ' ') { // space just increment i
+//                i++
+//            } else if (arr[j] == ' ') { // space just decrement j
+//                j--
+//            }
+//        }
+//        println(String(arr))
+//    }
 
-    public static void main(String[] args) {
-        ReverseWordsInString reverseWordsInString = new ReverseWordsInString();
-        String s = " Hello World! ";
-        reverseWordsInString.reverse(s);
-        // philips test.
-        String s2 = "I am working at Manyata";
-        reverseWordsInString.reverseWords(s2);
-
-
-    }
-
-    private void reverseWords(String s) {
-        char[] arr = s.toCharArray();
-        int i = 0;
-        int j = arr.length - 1;
-        while (i < j) {
-            // if it is not space then swap char at i and j
-            // increment i and decrement j
-            if (arr[i] != ' ' && arr[j]!= ' ') {
-                arr[i] ^= arr[j];
-                arr[j] ^= arr[i];
-                arr[i] ^= arr[j];
-                i++;
-                j--;
-            } else if(arr[i]==' ') { // space just increment i
-                i++;
-            } else if(arr[j]==' ') { // space just decrement j
-                j--;
+    private fun reverseWordsInString(input: String): String {
+        val s = input.toCharArray()
+        var start = 0
+        for (end in s.indices) {
+            if (s[end] == ' ') {
+                reverse(s, start, end)
+                start = end + 1
             }
         }
-        System.out.println(String.valueOf(arr));
-
+        reverse(s, start, s.size - 1)
+        reverse(s, 0, s.size - 1)
+        return Arrays.toString(s)
     }
 
-    private String reverseWordsInString(String input) {
-        char[] s = input.toCharArray();
-        int start = 0;
-        for (int end = 0; end < s.length; end++) {
-            if(s[end] == ' ') {
-                reverse(s,start, end);
-                start= end  + 1;
-            }
-        }
-
-        reverse(s, start, s.length - 1);
-
-        reverse(s, 0, s.length - 1);
-
-        return Arrays.toString(s);
-
-    }
-
-    private void reverse(char[] str, int start, int end) {
+    private fun reverse(str: CharArray, start: Int, end: Int) {
         // Temporary variable
         // to store character
-        char temp;
-
+        var start = start
+        var end = end
+        var temp: Char
         while (start <= end) {
             // Swapping the first
             // and last character
-            temp = str[start];
-            str[start] = str[end];
-            str[end] = temp;
-            start++;
-            end--;
+            temp = str[start]
+            str[start] = str[end]
+            str[end] = temp
+            start++
+            end--
         }
     }
 
-    private void reverse(String s) {
-        s = s.replaceAll("\\s+", " ").trim();
-        String[] strgs = s.split("\\s");
-        int n = strgs.length - 1;
-        StringBuilder sb = new StringBuilder();
-        int i = n;
+    private fun reverse(s: String) {
+        var s = s
+        s = s.replace("\\s+".toRegex(), " ").trim { it <= ' ' }
+        val strgs = s.split("\\s".toRegex()).toTypedArray()
+        val n = strgs.size - 1
+        val sb = StringBuilder()
+        var i = n
         while (i >= 0) {
             if (i == 0) {
-                sb.append(strgs[i]);
+                sb.append(strgs[i])
             } else {
-                sb.append(strgs[i]).append(" ");
+                sb.append(strgs[i]).append(" ")
             }
-            i--;
+            i--
         }
-        System.out.println("Reversed String : " + sb.toString());
+        println("Reversed String : $sb")
     }
 
+    private fun reverseIndividualWords(input: String) {
+        val stack = Stack<Char>()
+
+        input.forEach {
+            if(it != ' '){
+                stack.push(it)
+            } else{
+                while(!stack.isEmpty()){
+                    print(stack.pop())
+                }
+                print(" ")
+            }
+        }
+        while(!stack.isEmpty()){
+            print(stack.pop())
+        }
+
+    }
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            val reverseWordsInString = ReverseWordsInString()
+            val s = " Hello World! "
+            //reverseWordsInString.reverse(s)
+            // philips test.
+            val s2 = "I am working at Manyata"
+            //reverseWordsInString.reverseWords(s2)
+            reverseWordsInString.reverseIndividualWords(s2)
+
+        }
+    }
+
+}
+
+infix fun String.xor(that: String) = mapIndexed { index, c ->
+    that[index].toInt().xor(c.toInt())
+}.joinToString(separator = "") {
+    it.toChar().toString()
 }
