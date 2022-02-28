@@ -36,7 +36,7 @@ fun multiply(num1: String, num2: String): String {
         for(j in num2.length-1 downTo 0 ){
             val mul = (num1[i] - '0') * (num2[j] - '0')
 
-            val sum = res[i + j + 1] + mul // add preious element at position + product
+            val sum = res[i + j + 1] + mul // add previous element at position + product
             res[i +j] += sum /10 // add carry to previous position
             res[ i + j + 1] = sum %10 // update last digit in result array
         }
