@@ -21,7 +21,7 @@ fun main() {
 
     for (i in index until array.size) {
         if (minHeap.peek() > array[i]) continue else {
-            if (array[i] % 2 == 0 && !minHeap.contains(array[i])) { // contains is to avoid duplicates
+            if (array[i] % 2 == 0 && !minHeap.contains(array[i])) { // contains check is to avoid duplicates
                 minHeap.poll()
                 minHeap.add(array[i])
             }
