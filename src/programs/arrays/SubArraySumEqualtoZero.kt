@@ -3,10 +3,12 @@ package programs.arrays
 
 fun main() {
 
-    val intArray = arrayOf(4,-1,2,1)
+    val intArray = arrayOf(4,-3,2,1)
     subArraySumEqualtoZero(intArray)
     val k = 3
-    subArraySumEqualToK(intArray,k)
+    println("\nNumber of Sub Array equal to $k")
+    val secondArray = arrayOf(3,4,-1)
+    subArraySumEqualToK(secondArray,k)
 }
 
 fun subArraySumEqualToK(intArray: Array<Int>, k: Int) {
@@ -49,8 +51,7 @@ fun subArraySumEqualtoZero(intArray: Array<Int>) {
 
     if(flag) {
         println("Yes $start $end")
-        println("Subrray : ")
-
+        print("SubArray : ")
         for(i in start.. end){
             print("${intArray[i]} ")
         }
