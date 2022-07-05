@@ -3,7 +3,6 @@ package programs.arrays
 import kotlin.math.abs
 
 
-
 /**
  * Two pointer technique problems
  * Given array  -6,-2,-1,1,4,6
@@ -21,8 +20,8 @@ fun main() {
 }
 
 fun mergeArray() {
-    val inputArray1 = arrayOf(-6, -2, -1, 1,46)
-    val inputArray2 = arrayOf(4, 16, 36)
+    val inputArray1 = arrayOf(1)
+    val inputArray2 = arrayOf(1,1,2)
 
     var p1 = inputArray1.size - 1
     var p2 = inputArray2.size - 1
@@ -48,19 +47,21 @@ fun mergeArray() {
     }
 
 
-    while (p1 >= 0) {
+    while (n >= 0 && p1 >= 0) {
         outputArray[n] = inputArray1[p1]
         p1--
         n--
     }
 
-    while (n >=0 && p2 >= 0) {
+    while (n >= 0 && p2 >= 0) {
         outputArray[n] = inputArray2[p2]
         p2--
         n--
     }
 
-    outputArray.forEach { num ->
+    val resultArray = outputArray.filter { it -> it != 0 }.toIntArray()
+
+    resultArray.forEach { num ->
         print("$num ")
     }
 }
