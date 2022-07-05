@@ -32,10 +32,15 @@ fun mergeArray() {
 
 
     while (p1 >= 0 && p2 >= 0) {
-        if (inputArray1[p1] > inputArray2[p2]) {
+        if (inputArray1[p1] == 0) {
+            p1--
+        } else if (inputArray2[p2] == 0) {
+            p2--
+        }
+        if (inputArray1[p1] >= inputArray2[p2]) {
             outputArray[n] = inputArray1[p1]
             p1--
-        } else {
+        } else if(inputArray1[p1] < inputArray2[p2]){
             outputArray[n] = inputArray2[p2]
             p2--
         }
