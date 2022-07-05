@@ -16,7 +16,7 @@ public class ShortestNonContinuousSubArray {
 
     public static void main(String[] args) {
 
-        int[] arr = {2, 6, 4, 8, 10, 9, 15};
+        int[] arr = {2, 1};
         ShortestNonContinuousSubArray shortestNonContinuousSubArray = new ShortestNonContinuousSubArray();
         System.out.println(shortestNonContinuousSubArray.findUnsortedSubarray(arr));
     }
