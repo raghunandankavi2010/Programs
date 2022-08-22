@@ -6,7 +6,7 @@ package programs.arrays
 fun main() {
     val arr = arrayOf(1,0,1,0,1,0,1,1,1)
 
-    // calcualte total number of ones. that will be our window
+    // calculate total number of ones. that will be our window
     val totalOnes = arr.count { it == 1}
     var currZeros = 0
     var ans: Int
