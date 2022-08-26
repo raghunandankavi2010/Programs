@@ -40,21 +40,39 @@ class RemoveDuplicate {
         @JvmStatic
         fun main(args: Array<String>) {
 
-            val array = intArrayOf(1, 2, 2, 3, 4, 4, 4, 5, 5)
-            removeDuplicatesStdFun(array)
-            countDuplicatesUsingMap(array)
+            val iarr = intArrayOf(1, 2)
+            println(removeDuplicates(iarr))
 
-            val arrSize = array.size
-            printRepeating(array, arrSize)
-            findRepeat(array)
+//            val array = intArrayOf(1, 2, 2, 3, 4, 4, 4, 5, 5)
+//            removeDuplicatesStdFun(array)
+//            countDuplicatesUsingMap(array)
+//
+//            val arrSize = array.size
+//            printRepeating(array, arrSize)
+//            findRepeat(array)
+//
+//
+//            val arr = intArrayOf(1, 2, 2, 3, 4, 4, 4, 5, 5)
+//            var n = arr.size
+//            n = removeDuplicates(arr, n)
+//
+//
+//            for (i in 0 until n) print(arr[i].toString() + " ")
+        }
 
+        //1,1,2
 
-            val arr = intArrayOf(1, 2, 2, 3, 4, 4, 4, 5, 5)
-            var n = arr.size
-            n = removeDuplicates(arr, n)
+        private fun removeDuplicates(nums: IntArray): Int {
+            var count = 0
+            var index = 0
+            for (i in nums.indices) {
+                if (i < nums.size - 1 && nums[i] == nums[i + 1]) continue
+                nums[index] = nums[i]
+                index++
+                count++
 
-
-            for (i in 0 until n) print(arr[i].toString() + " ")
+            }
+            return count
         }
 
         private fun removeDuplicatesStdFun(array: IntArray) {
@@ -100,27 +118,27 @@ class RemoveDuplicate {
             throw IllegalArgumentException("no duplicate!")
         }
 
-       private fun countDuplicatesUsingMap(data: IntArray) {
+        private fun countDuplicatesUsingMap(data: IntArray) {
 
-            val map = mutableMapOf<Int,Int>()
+            val map = mutableMapOf<Int, Int>()
             for (i in data.indices) {
-                if(!map.containsKey(data[i])){
+                if (!map.containsKey(data[i])) {
                     map[data[i]] = 1
-                }else {
-                    map.computeIfPresent(data[i]){ _, value -> value + 1 }
+                } else {
+                    map.computeIfPresent(data[i]) { _, value -> value + 1 }
                 }
             }
 
 
-           map.forEach { (k, v) ->
-                 if(v>1){
-                     println("$k = $v")
-                 }
-           }
+            map.forEach { (k, v) ->
+                if (v > 1) {
+                    println("$k = $v")
+                }
+            }
 
-           val maxValue = map.maxByOrNull { it.value }
+            val maxValue = map.maxByOrNull { it.value }
 
-           println("Maximum repeated value $maxValue")
+            println("Maximum repeated value $maxValue")
         }
     }
 
