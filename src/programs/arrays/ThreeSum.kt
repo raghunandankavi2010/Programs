@@ -3,42 +3,44 @@ package programs.arrays
 import java.util.*
 
 fun main() {
+    val arr = intArrayOf(0,0,0)
+    println(threeSum(arr))
+}
 
-    val nums = arrayOf(-1, 0, 1, 2, -1, -4)
-    val k = 0
-    val list = mutableListOf<Triple<Int,Int,Int>>()
 
-    Arrays.sort(nums)
-    for (i in nums.indices) {
-        if(i > 0 && nums[i] == nums[i-1]) continue // very important to skip duplciates
+fun threeSum(nums: IntArray): List<List<Int>> {
+    nums.sort()
+    val listOfList = ArrayList<List<Int>>()
+    for( i in nums.indices) {
+        if(i > 0 && nums[i] == nums[i-1]) continue
         val firstNumber = nums[i]
         val target = 0 - nums[i]
         var left = i + 1
         var right = nums.size - 1
-
-        while (left < right) {
+        while(left < right) {
             val sum = nums[left] + nums[right]
-            if (sum > target){
-                right --
-            } else if( sum < target) {
-                left ++
-            } else {
-                list.add(Triple(firstNumber,nums[left],nums[right]))
-                // very important to skip duplicates
-                while(nums[left] == nums[left + 1])
+            if(sum == target) {
+                val list = ArrayList<Int>()
+                list.add(nums[left])
+                list.add(nums[right])
+                list.add(nums[i])
+                listOfList.add(list)
+                while(left < right && nums[left] == nums[left + 1] ) {
                     left++
-
-                while(nums[right] == nums[right-1])
+                }
+                while(right > left && nums[right] == nums[right - 1]) {
                     right--
-
-                left++
+                }
                 right--
+                left++
+            } else if(sum > target) {
+                right--
+            } else {
+                left--
             }
         }
     }
 
-    list.forEach {
-         println("${it.first} ${it.second} ${it.third}")
+    return listOfList
 
-    }
 }
