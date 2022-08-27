@@ -12,8 +12,9 @@ The following subsets with more than  element exist. These exclude the empty sub
  */
 fun main() {
 
-    val arr = intArrayOf(-2, 1, 3, -4, 5)
+    val arr = intArrayOf(-2, -4, -5)
     println(maxSubsetSum(arr))
+    println(maxSubsetSum2(arr))
 }
 // max = 0
 // maxAdj  = 0
@@ -34,4 +35,20 @@ private fun maxSubsetSum(arr: IntArray): Int {
         max = max(s[i + 2], max)
     }
     return max
+}
+/** [-2,1,3-4,5]
+* nitially arr[0] = -2
+ * arr[1] = 1
+ * sum at index 2 can be sum at index - 1 if current element is excluded or
+ * sum at index - 2 + arr[2] -> the current element. This is because they are non-adjacent
+ * we take the max
+*/
+private fun maxSubsetSum2(arr: IntArray): Int {
+    val maxSum = IntArray(arr.size)
+    if(arr.isEmpty()) return 0
+    if(arr.size == 1) return arr[0]
+    for(i in 2 until arr.size) {
+        maxSum[i] = max(maxSum[i-1], maxSum[i-2] + arr[i])
+    }
+    return maxSum[arr.size-1]
 }
