@@ -1,5 +1,7 @@
 package programs.strings
 
+import kotlin.math.min
+
 /**
  *  Created by Raghunandan Kavi 14 Spet 2022
  *  Given two lowercase alphabet strings s and t, return the minimum amount of operations on s required to make t a substring of s. In each operation, you can choose any position in s and change the character at that position to any other character.
@@ -24,14 +26,13 @@ fun main() {
 }
 
 private fun solve(s: String, t: String): Int {
-    val diff = s.length - t.length
     var min = t.length
     var i = 0
     while (i < s.length) {
         val start = i
         val end = i + t.length
         if (end <= s.length) {
-            min = Math.min(min, distance(s.substring(start, end), t))
+            min = min(min, distance(s.substring(start, end), t))
         }
         i++
     }
