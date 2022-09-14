@@ -21,7 +21,7 @@ We can multiply 2 to get 4, and then again to get 8, then add 1 to get 9.
 fun main() {
     val start = 4
     var end = 10
-    var result = 0
+    var result: Int
     var count = 0
 
     while(end != start) {
