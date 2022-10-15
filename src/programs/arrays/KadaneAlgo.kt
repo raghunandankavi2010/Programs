@@ -11,15 +11,15 @@ fun main() {
     array.forEachIndexed { index, element ->
         currSum += element
 
-        if(currSum > maxSum) {
+        if (currSum > maxSum) {
             maxSum = currSum
             start = sIndex
             end = index
         }
 
-        if(currSum < 0) {
+        if (currSum < 0) {
             currSum = 0
-            sIndex = index +1
+            sIndex = index + 1
         }
     }
 
