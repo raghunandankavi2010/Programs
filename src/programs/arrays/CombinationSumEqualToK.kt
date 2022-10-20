@@ -1,14 +1,13 @@
-import java.util.*
+package programs.arrays
 
 fun main() {
-    val arr = intArrayOf(1,2,3,0,0,0,-4,-2)
+    val arr = intArrayOf(1, 2, 3, 0, 0, 0, -4, -2)
     val r = 5
     val n = arr.size
-    val target = 0
+    val target = 5
     val output = ArrayList<ArrayList<Int>>()
-    printCombination(arr, n, r, target,output)
-
-    output.distinct().forEach {it ->
+    printCombination(arr, n, r, target, output)
+    output.distinct().forEach {
         println(it)
     }
 }
@@ -27,9 +26,9 @@ fun combinationUtil(
 
 ) {
     if (index == r) {
-        if(currSum == target){
+        if (currSum == target) {
             val list = ArrayList<Int>()
-            data.forEach{it ->
+            data.forEach {
                 list.add(it)
             }
             output.add(list)
@@ -38,11 +37,11 @@ fun combinationUtil(
     }
 
     var i = start
-    while (i <= end ) {
+    while (i <= end) {
         var tempSum = currSum
         tempSum += arr[i]
         data[index] = arr[i]
-        combinationUtil(arr, data, i + 1, end, index + 1, r, target,output,tempSum)
+        combinationUtil(arr, data, i + 1, end, index + 1, r, target, output, tempSum)
         i++
     }
 }
