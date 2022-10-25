@@ -1,52 +1,41 @@
 package programs.arrays
 
-import kotlin.collections.ArrayList
+import java.util.*
+
 
 fun main() {
-    val arr = intArrayOf(4, -2, 3, -1)
-    val r = 2
-    val n = arr.size
-    val target = 2
-    val output = ArrayList<List<Int>>()
-    printCombination(arr, n, r, target, output)
-    output.distinct().forEach {
-        println(it)
-    }
+    val arr = intArrayOf(1, 2, 3, 0, 0, 0, -4, -2)
+    val k = 5
+    val target = 0
+    println(combinationSum(arr, target, k))
 }
 
-fun printCombination(arr: IntArray, n: Int, r: Int, target: Int, output: ArrayList<List<Int>>) {
-    val data = IntArray(r)
-    val currSum = 0
-    combinationUtil(arr, data, 0, n - 1, 0, r, target, output, currSum)
+
+fun combinationSum(nums: IntArray, target: Int, k: Int): List<List<Int>> {
+    val list: MutableList<List<Int>> = ArrayList()
+    Arrays.sort(nums)
+    backtrack(list, ArrayList(), nums, target, 0, k)
+    return list
 }
 
-fun combinationUtil(
-    arr: IntArray, data: IntArray, start: Int,
-    end: Int, index: Int, r: Int, target: Int,
-    output: ArrayList<List<Int>>,
-    currSum: Int
-
+private fun backtrack(
+    list: MutableList<List<Int>>,
+    tempList: MutableList<Int>,
+    nums: IntArray,
+    remain: Int,
+    start: Int,
+    k: Int
 ) {
-    if (index == r) {
-        if (currSum == target) {
-            val list = ArrayList<Int>()
-            listOf(data)
-            data.forEach {
-                list.add(it)
-            }
-            output.add(list)
-        }
+    if (remain < 0)
         return
-    }
-
-    var i = start
-    while (i <= end) {
-        var tempSum = currSum
-        tempSum += arr[i]
-        data[index] = arr[i]
-        combinationUtil(arr, data, i + 1, end, index + 1, r, target, output, tempSum)
-        i++
+    else if (remain == 0 && tempList.size == k) {
+        list.add(ArrayList(tempList))
+    } else {
+        for (i in start until nums.size) {
+            if (i > start && nums[i] == nums[i - 1]) continue  // skip duplicates
+            tempList.add(nums[i])
+            backtrack(list, tempList, nums, remain - nums[i], i + 1, k)
+            tempList.removeAt(tempList.size - 1)
+        }
     }
 }
-
-
