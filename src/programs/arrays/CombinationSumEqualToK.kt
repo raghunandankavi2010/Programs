@@ -4,7 +4,7 @@ import java.util.*
 
 
 fun main() {
-    val arr = intArrayOf(1, 2, 3, 0, 0, 0, -4, -2)
+    val arr = intArrayOf(1,2,3,0,0,0,-4,-2)
     val k = 5
     val target = 0
     println(combinationSum(arr, target, k))
@@ -30,6 +30,7 @@ private fun backtrack(
         return
     else if (remain == 0 && tempList.size == k) {
         list.add(ArrayList(tempList))
+        return
     } else {
         for (i in start until nums.size) {
             if (i > start && nums[i] == nums[i - 1]) continue  // skip duplicates
