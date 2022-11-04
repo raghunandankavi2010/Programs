@@ -9,7 +9,7 @@ import kotlin.collections.ArrayList
  */
 
 fun main() {
-    val numbs = intArrayOf(1, 2, 3,4)
+    val numbs = intArrayOf(1, 2, 3)
     // Iteratively
     /*val listOfLists = permute(numbs)
     for (list in listOfLists) {
@@ -20,7 +20,27 @@ fun main() {
     }*/
 
     // Recursively
-    recursivePermutation(numbs)
+    //recursivePermutation(numbs)
+    val list = ArrayList<MutableList<Int>>()
+    backTrack(list,ArrayList(),numbs)
+    list.forEach {
+        println(it)
+    }
+
+}
+
+fun backTrack(list: ArrayList<MutableList<Int>>, tempList: ArrayList<Int>, nums: IntArray) {
+    if(tempList.size == nums.size) {
+        list.add(ArrayList(tempList))
+        return
+    }
+    for(i in nums.indices) {
+        if(tempList.contains(nums[i])) continue
+        tempList.add(nums[i])
+        backTrack(list,tempList,nums)
+        tempList.removeAt(tempList.size - 1)
+    }
+
 
 }
 
