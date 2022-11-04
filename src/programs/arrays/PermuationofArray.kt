@@ -20,7 +20,7 @@ fun main() {
     }*/
 
     // Recursively
-    //recursivePermutation(numbs)
+    recursivePermutation(numbs)
     val list = ArrayList<MutableList<Int>>()
     backTrack(list,ArrayList(),numbs)
     list.forEach {
