@@ -1,5 +1,8 @@
 package programs.arrays
 
+import kotlin.math.max
+import kotlin.math.min
+
 /**
  * Given an integer array nums, find a
 subarray
@@ -25,7 +28,7 @@ Explanation: The result cannot be 2, because [-2,-1] is not a subarray.
 fun main() {
 
     val input = arrayOf(2,3,-2,-5,6,-1,4)
-    var output = maxSubArrayProduct2(input)
+    val output = maxSubArrayProduct2(input)
     println(output)
 
 }
@@ -43,7 +46,7 @@ fun maxSubArrayProduct(nums: Array<Int>): Int {
         l *= nums[i]
         r *= nums[n -1 -i]
 
-        ans = Math.max(ans,Math.max(l,r))
+        ans = max(ans,max(l,r))
 
     }
     return ans
@@ -61,9 +64,9 @@ fun maxSubArrayProduct2(nums: Array<Int>): Int {
             currMax = 1
             currMin = 1
         }
-        var tmp = currMax * nums[i]
-        currMax = Math.max(nums[i],Math.max(currMax * nums[i], currMin * nums[i]))
-        currMin = Math.min(nums[i],Math.min(tmp, currMin * nums[i]))
+        val tmp = currMax * nums[i]
+        currMax = max(nums[i],max(currMax * nums[i], currMin * nums[i]))
+        currMin = min(nums[i],min(tmp, currMin * nums[i]))
 
         if (currMax > ans) {
             ans = currMax
