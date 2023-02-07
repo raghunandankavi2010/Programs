@@ -60,7 +60,7 @@ fun maxSubArrayProduct2(nums: Array<Int>): Int {
     val n = nums.size
 
     for(i in 1 until n) {
-        if(nums[i ] == 0) {
+        if(nums[i] == 0) {
             currMax = 1
             currMin = 1
         }
