@@ -26,7 +26,8 @@ public class Trees {
         addNode(n3, 15);
         Node n4 = new Node();
         addNode(n4, 7);
-        DFS(rootNode);
+        verticalOrderTraversing(rootNode);
+       // DFS(rootNode);
        // printInOrder(rootNode);
          /*Node n5 = new Node();
         addNode(n5, 7);
@@ -128,6 +129,40 @@ public class Trees {
 
 
     }
+
+    private void verticalOrderTraversing(Node rootNode) {
+       Queue<Node> queue = new ArrayDeque<>();
+       Map<Integer,ArrayList<Integer>> map = new TreeMap<Integer,ArrayList<Integer>>();
+       queue.add(rootNode);
+
+       while(!queue.isEmpty()) {
+           Node temp = queue.remove();
+           if(!map.containsKey(temp.getHd())) {
+               ArrayList<Integer> list = new ArrayList<>();
+               list.add(temp.getData());
+               map.put(temp.getHd(),list);
+           } else {
+              ArrayList<Integer> tempList = map.getOrDefault(temp.getHd(),new ArrayList<Integer>());
+              tempList.add(temp.getData());
+              map.put(temp.getHd(),tempList);
+           }
+
+           if(temp.getLeftNode() != null){
+               temp.getLeftNode().setHd(temp.getHd()-1);
+               queue.add(temp.getLeftNode());
+           }
+           if(temp.getRightNode() != null){
+               temp.getRightNode().setHd(temp.getHd()+1);
+               queue.add(temp.getRightNode());
+           }
+       }
+
+       for(Map.Entry<Integer,ArrayList<Integer>> entry: map.entrySet()) {
+           System.out.println("Key = " + entry.getKey() +
+                   ", Value = " + entry.getValue());
+       }
+    }
+
     private static Node result;
 
     private static Node search(Node rootNode, int value) {
