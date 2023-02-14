@@ -3,12 +3,40 @@ package programs.arrays
 
 fun main() {
 
-    val intArray = arrayOf(4,-3,2,1)
-    subArraySumEqualtoZero(intArray)
-    val k = 3
-    println("\nNumber of Sub Array equal to $k")
-    val secondArray = arrayOf(3,4,-1)
-    subArraySumEqualToK(secondArray,k)
+    val intArray = arrayOf(5,4,12,1,2)
+    subArraySum(intArray,3)
+    //subArraySumEqualtoZero(intArray)
+   // val k = 3
+    //println("\nNumber of Sub Array equal to $k")
+    //val secondArray = arrayOf(3,4,-1)
+
+    //subArraySumEqualToK(secondArray,k)
+}
+
+/**
+ * This is similar to sliding window technique.
+ * You keep adding sum until it's less than target
+ * if it's greater than target keep subtracting it from the start
+ * incrementing start index
+ */
+
+fun subArraySum(intArray: Array<Int>,k: Int) {
+    var start = 0
+    var sum = 0
+    var end = 0
+    for(i in intArray.indices) {
+
+        sum += intArray[i]
+        while(sum > k ) {
+            sum -= intArray[start]
+            start++
+        }
+        if(sum == k){
+            end = i
+            break
+        }
+    }
+    println("$start $end")
 }
 
 fun subArraySumEqualToK(intArray: Array<Int>, k: Int) {
