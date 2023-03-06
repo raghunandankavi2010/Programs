@@ -22,11 +22,9 @@ public class Pyramid {
             int colVal = res;
             while (j < i) {
                 if(j >=1) {
-                    System.out.print(colVal - j -j + " ");
-
-                } else {
-                    System.out.print(colVal - j + " ");
+                    colVal = colVal-2;
                 }
+                System.out.print(colVal + " ");
                 j++;
             }
             res += 2;
