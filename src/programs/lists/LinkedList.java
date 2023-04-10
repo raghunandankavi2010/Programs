@@ -276,9 +276,10 @@ public class LinkedList {
                 count1++;
             }
         }
-        while (current.getNext() != null && current.getNext() != null) {
+        while (current.getNext() != null && current1.getNext() != null) {
             if (current.getData() == current1.getData()) {
                 data = current.getData();
+                break;
             }
             current = current.getNext();
             current1 = current1.getNext();

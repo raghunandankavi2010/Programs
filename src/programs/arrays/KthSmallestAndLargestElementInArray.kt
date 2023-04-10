@@ -14,7 +14,7 @@ object KthSmallestAndLargestElementInArray {
     }
 
     private fun findKthSmallestElement(arr: IntArray, k: Int): Int {
-        val pq = PriorityQueue(Comparator.reverseOrder<Int>())
+        val pq = PriorityQueue(Comparator.reverseOrder<Int>()) // max Heap
         for (i in 0 until k) {
             pq.add(arr[i]) // 3 2
         }
@@ -34,21 +34,10 @@ object KthSmallestAndLargestElementInArray {
     }
 
     private fun findKthLargestElement(arr: IntArray, k: Int): Int {
-        val pq = PriorityQueue<Int>()
+        val pq = PriorityQueue<Int>() // min Heap
         for (i in 0 until k) {
             pq.add(arr[i]) //2 3
         }
-        // from 1 to 21
-        // arr[i] now is 1
-        // 1 > 2 skip
-        // 0 > 2 skip
-        // 3 > 23 true
-        // remove 2 and add 23
-        // 3 15 23
-        // 21 > 3
-        // remove 3 and add 21
-        // 15 23 21
-        // return 15
         for (i in k until arr.size) {
             if (arr[i] > pq.peek()) {
                 pq.poll()
