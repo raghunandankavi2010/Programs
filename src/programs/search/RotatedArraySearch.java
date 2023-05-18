@@ -16,6 +16,8 @@ public class RotatedArraySearch {
 
     public static void main(String[] args) {
         int[] arr = {5, 6, 7, 8, 9, 10, 1, 2, 3};
+        // 5< = 8
+        // 8< 6
         int[] temp = {3, 1, 2};
         if (checkArrayRotation(temp)) {
             System.out.println("Array is not rotated");
@@ -23,9 +25,39 @@ public class RotatedArraySearch {
             System.out.println("Array rotated right");
         }
         int n = arr.length;
-        int key = 9;
-        int searchedElementIndex = search(arr, n, key);
+        int key = 2;
+        int searchedElementIndex = search2(arr, 0, arr.length - 1, key);
         System.out.println("Searched Element is at index: " + searchedElementIndex);
+    }
+
+
+    /** Using one single binary search
+     *  This i little trickier than finding the pivot.
+     *
+     */
+    private static int search2(int[] arr, int low, int high, int target) {
+        if (low > high) return -1;
+
+        int mid = (low + high) / 2;
+        // if middle element is equal to target return mid as index
+        if (target == arr[mid]) return mid;
+        // if arr[low] <= arr[mid]
+        if (arr[low] <= arr[mid]) {
+            // if target< low then move right
+            // if target > mid then move right
+            if (target > arr[mid] || target < arr[low]) {
+                return search2(arr, mid + 1, high, target);
+            } else {
+                return search2(arr, low, mid - 1, target);
+            }
+        } else {
+            if (target < arr[mid] || target > arr[high]) {
+                return search2(arr, low, mid - 1, target);
+            } else if (target > arr[mid] && target < arr[high]) {
+                return search2(arr, mid + 1, high, target);
+            }
+        }
+        return -1;
     }
 
     private static int search(int[] arr, int n, int key) {
