@@ -649,6 +649,39 @@ public class Trees {
         return res;
     }
 
+    private static void printTopView(Node head) {
+        Map<Integer,Integer> map = new TreeMap<>();
+
+        Queue<Node> queue = new LinkedList<Node>();
+
+        int hd = 0;
+        queue.add(head);
+        map.put(hd,head.getData());
+
+        while(!queue.isEmpty()) {
+            Node temp = queue.poll();
+
+            if(!map.containsKey(temp.getHd())){
+                map.put(temp.getHd(),temp.getData());
+            }
+
+            if(temp.getLeftNode() != null) {
+                temp.getLeftNode().setHd(hd-1);
+                queue.add(temp.getLeftNode());
+            }
+
+            if(temp.getRightNode() != null) {
+                temp.getRightNode().setHd(hd+1);
+                queue.add(temp.getRightNode());
+            }
+        }
+
+        for(Map.Entry<Integer,Integer> entry: map.entrySet()) {
+            Integer value = entry.getValue();
+            System.out.println(value+" ");
+        }
+    }
+
     // print bottomview
     // traverse by level
     // left horizontal distance is root-1

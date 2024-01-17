@@ -9,7 +9,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" exported="" name="junit" level="project" />
-    <orderEntry type="library" exported="" name="KotlinJavaRuntime" level="project" />
     <orderEntry type="library" exported="" name="joda.time" level="project" />
+    <orderEntry type="library" name="jetbrains.kotlin.stdlib" level="project" />
   </component>
 </module>
