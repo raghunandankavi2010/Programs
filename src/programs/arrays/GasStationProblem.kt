@@ -20,7 +20,7 @@ fun getGasStation(gas: IntArray, cost: IntArray): Int {
     var tank = 0
     gas.forEachIndexed { index, element ->
         totalDiff += element - cost[index]
-        tank = tank + element - cost[index]
+        tank +=  element - cost[index]
         if (tank < 0) {
             starting += 1
             tank = 0
