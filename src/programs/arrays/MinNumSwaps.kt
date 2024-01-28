@@ -11,7 +11,7 @@ fun main() {
     var currZeros = 0
     var ans: Int
 
-    // calculate the number of zeros in the first windpow
+    // calculate the number of zeros in the first window
     for(i in 0 until totalOnes) {
         if(arr[i] == 0) {
             currZeros += 1
