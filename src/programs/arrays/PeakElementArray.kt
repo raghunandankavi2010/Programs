@@ -5,7 +5,7 @@ package programs.arrays
 *
 * */
 fun main() {
-    val nums = arrayOf(4, 3)
+    val nums = arrayOf(1,2,3,1)
     peakElement(nums)
 }
 
@@ -21,8 +21,8 @@ fun peakElement(arr: Array<Int>) {
 
     for( i in arr.indices){
         if(i-1 >= 0 && i+1 <= arr.size-1) {
-            if(arr[i] > arr[i-1] && arr[i] > arr[i+1]) {
-                println(arr[i])
+            if(arr[i] > arr[i-1] && arr[i+1] < arr[i]) {
+                println(arr[i-1])
             } else{
                 continue
             }
