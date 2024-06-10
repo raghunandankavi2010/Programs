@@ -9,7 +9,7 @@ import kotlin.math.min
  * compute how much water it is able to trap after raining.
  */
 fun main(){
-    val arr = intArrayOf(2, 0, 2)
+    val arr = intArrayOf(0,1,0,2,1,0,1,3,2,1,2,1)
     val water = trappedWater(arr)
     println(water)
 }

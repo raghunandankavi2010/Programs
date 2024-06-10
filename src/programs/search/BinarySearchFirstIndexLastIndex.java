@@ -16,7 +16,7 @@ public class BinarySearchFirstIndexLastIndex {
     public static void main(String[] args) {
         int[] arr = {1, 2, 2, 2, 2, 3, 4, 7, 8, 8};
         int[] result = new int[2];
-        int search = 8;
+        int search = 2;
         BinarySearchFirstIndexLastIndex binarySearchFirstIndexLastIndex = new BinarySearchFirstIndexLastIndex();
         int first = binarySearchFirstIndexLastIndex.findfirstIndex(arr,search);
         int last = binarySearchFirstIndexLastIndex.findfirstIndex(arr,search+1)-1;
