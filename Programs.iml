@@ -8,8 +8,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="junit" level="project" />
     <orderEntry type="library" exported="" name="joda.time" level="project" />
     <orderEntry type="library" name="jetbrains.kotlin.stdlib" level="project" />
+    <orderEntry type="library" name="junit" level="project" />
   </component>
 </module>
