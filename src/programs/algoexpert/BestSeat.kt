@@ -1,4 +1,4 @@
-package programs.leetcode
+package programs.algoexpert
 
 fun main() {
     val seats = mutableListOf(1)
