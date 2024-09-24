@@ -11,5 +11,6 @@
     <orderEntry type="library" exported="" name="joda.time" level="project" />
     <orderEntry type="library" name="junit" level="project" />
     <orderEntry type="library" name="jetbrains.kotlin.stdlib.jdk7" level="project" />
+    <orderEntry type="library" name="jetbrains.kotlin.stdlib" level="project" />
   </component>
 </module>
