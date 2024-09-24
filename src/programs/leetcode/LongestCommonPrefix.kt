@@ -1,4 +1,4 @@
-package programs.algoexpert
+package programs.leetcode
 
 private fun longestCommonPrefix(arr1: IntArray, arr2: IntArray): Int {
     fun getPrefixes(num: Int): Set<String> {
